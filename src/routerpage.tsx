@@ -5,6 +5,8 @@ import {
 import Homepage from './page/Homepage';
 import Register from './page/Register';
 import Login from './page/Login';
+import ForgotPassword from './page/ForgotPassword';
+
 
 function Routerpage() {
     return (
@@ -13,9 +15,10 @@ function Routerpage() {
         v7_relativeSplatPath: true,
       }}>
           <Routes>
-              <Route path='/homepage' element={<Homepage />}/>  
+              <Route path='/' element={<Homepage />}/>  
               <Route path='/register' element={<Register />}/>
-              <Route path='/login' element={<Login />}/>      
+              <Route path='/login' element={<Login />}/>  
+              <Route path='/resetpassword' element={<ForgotPassword />}/>  
           </Routes>
       </BrowserRouter>
     )

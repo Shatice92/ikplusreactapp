@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 
 function Register() {
@@ -7,7 +8,8 @@ function Register() {
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
-  const [isEquals, setIsEquals] = useState(true);
+  const navigate = useNavigate(); 
+
   const register = () => {
     if (email === '' || password === '' || rePassword === '') {
       swal('Hata', 'Lütfen tüm alanları doldurunuz', 'error');
@@ -17,52 +19,52 @@ function Register() {
       swal('Hata', 'Şifreler uyuşmuyor', 'error');
       return;
     }
-  
 
     fetch('http://localhost:9090/register', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        'firstName': firstName,
-        'lastName': lastName,
-        'email': email,
-        'password': password,
-        'rePassword': rePassword
-      })
-    }).then(res => res.json())
-      .then(data => {
+        firstName,
+        lastName,
+        email,
+        password,
+        rePassword,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-        if (data.code === 200)
+        if (data.code === 200) {
           swal('Başarılı', 'Kayıt işlemi başarılı', 'success');
-        else
+          navigate('/login'); 
+        } else {
           swal('Hata', data.message, 'error');
-      })
-  }
-
+        }
+      });
+  };
 
   return (
     <div>
-
       <div className="container" id="container">
         <div className="form-container sign-in-container">
-          <form action="#">
-            <h1>Sign Up</h1>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <h1>Kayıt Ol</h1>
             <input type="text" placeholder="İsim" onChange={(e) => setFirstName(e.target.value)} />
             <input type="text" placeholder="Soyisim" onChange={(e) => setLastName(e.target.value)} />
             <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-            <input type="password" placeholder="Repassword" onChange={(e) => setRePassword(e.target.value)} />
-            <button onClick={register}>Sign Up</button>
+            <input type="password" placeholder="Parola" onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" placeholder="Parola Tekrar" onChange={(e) => setRePassword(e.target.value)} />
+            <button type="button" onClick={register}>Kaydet</button>
           </form>
         </div>
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-right">
-              <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start journey with us</p>
-              <button onClick={() => window.location.href = '/login'} className="ghost" id="signUp">Sign In</button>
+              <h1>Merhaba!</h1>
+              <p>Aramıza Hoş Geldiniz</p>
+              <button onClick={() => navigate('/login')} className="ghost" id="signUp">Giriş Yap</button>
             </div>
           </div>
         </div>
@@ -72,12 +74,11 @@ function Register() {
         <p>
           Created with <i className="fa fa-heart"></i> by
           <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-
           <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
         </p>
       </footer>
     </div>
-  )
+  );
 }
 
-export default Register
+export default Register;

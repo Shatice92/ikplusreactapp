@@ -45,7 +45,7 @@ a {
 }
 
 button {
-	border-radius: 20px;
+	border-radius: 10px;
 	border: 1px solid #FF4B2B;
 	background-color: #FF4B2B;
 	color: #FFFFFF;
@@ -57,9 +57,13 @@ button {
 	transition: transform 80ms ease-in;
 
 	cursor: pointer;
+}
 
 button:active {
 	transform: scale(0.95);
+}
+button:hover {
+	background-color: #000000;
 }
 
 button:focus {
