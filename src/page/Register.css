@@ -1,0 +1,111 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #1e1e1e, #34a853, #fbbc05);
+}
+
+.form-wrapper {
+  display: flex;
+  width: 850px;
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* 🟢 LOGO ARKA PLANI - DAHA YUMUŞAK VE PROFESYONEL */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 220px;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  border-radius: 50%;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Daha yumuşak çerçeve */
+  transition: all 0.3s ease-in-out;
+  
+}
+
+/* 🟢 LOGO BOYUTU VE PARLAKLIK AYARLANDI */
+.logo {
+  width: 190px; /* Önceki 195px -> Şimdi 190px, daha dengeli */
+  height: auto;
+  
+  padding: 12px;
+  border-radius: 50%;
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.15)); /* Hafif dış gölge */
+  box-shadow: 
+    inset 0px 2px 4px rgba(0, 0, 0, 0.05), /* Daha hafif iç gölge */
+    0px 4px 8px rgba(255, 255, 255, 0.2); /* Hafif parlaklık efekti */
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 20;
+  background: linear-gradient(to bottom, #ffffff, #f6f6f6); /* Daha doğal bir degrade */
+  .logo img {
+  margin-left: -15px; /* İstediğiniz kadar sola kaydırabilirsiniz */
+}
+}
+
+
+
+
+/* Hover efekti: Logo üstüne gelince hafif parlayacak */
+.logo-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 12px 24px rgba(255, 255, 255, 0.15);
+}
+
+/* FORM VE INPUTLAR */
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+input:focus {
+  border-color: #34a853;
+  box-shadow: 0px 0px 10px rgba(52, 168, 83, 0.5);
+  outline: none;
+}
+
+/* BUTONLAR */
+.register-button, .login-button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 10px;
+  margin-top: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-button {
+  background-color: #34a853;
+  color: white;
+  border: none;
+  box-shadow: 0px 5px 12px rgba(52, 168, 83, 0.3);
+}
+
+.register-button:hover {
+  background-color: #2e8c43;
+  transform: scale(1.05);
+}
+
+.login-button {
+  background: none;
+  border: 2px solid white;
+  color: white;
+}
+
+.login-button:hover {
+  background: white;
+  color: #ff4b2b;
+  transform: scale(1.05);
+}

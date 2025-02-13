@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import '../page/Register.css'; // CSS dosyası
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -8,7 +9,7 @@ function Register() {
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const register = () => {
     if (email === '' || password === '' || rePassword === '') {
@@ -23,7 +24,7 @@ function Register() {
     fetch('http://localhost:9090/register', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         firstName,
@@ -38,7 +39,7 @@ function Register() {
         console.log(data);
         if (data.code === 200) {
           swal('Başarılı', 'Kayıt işlemi başarılı', 'success');
-          navigate('/login'); 
+          navigate('/login');
         } else {
           swal('Hata', data.message, 'error');
         }
@@ -62,6 +63,10 @@ function Register() {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-right">
+              <div className="logo-container">
+                <img src="/bütünnn.png" alt="Logo" className="logo" />
+                
+              </div>
               <h1>Merhaba!</h1>
               <p>Aramıza Hoş Geldiniz</p>
               <button onClick={() => navigate('/login')} className="ghost" id="signUp">Giriş Yap</button>
