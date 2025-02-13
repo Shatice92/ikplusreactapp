@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import './login.css';
 import swal from 'sweetalert';
 
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Yönlendirme için useNavigate hook'u
+
+  
 
   const login = () => {
     if (email === '' || password === '') {
@@ -40,9 +43,9 @@ function Login() {
           <form onSubmit={(e) => e.preventDefault()}>
             <h1>Giriş Yap</h1>
             <div className="social-container">
-              <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
-              <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
-              <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
+              <img src="icon/facebook.png" width={20} height={20} className="social" alt="" />
+              <img src="icon/google.png" width={20} height={20} className="social" alt="" />
+              <img src="icon/linkedin.png" width={20} height={20} className="social" alt="" />
             </div>
             <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
             <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Parola" />
