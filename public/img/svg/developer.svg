@@ -1,0 +1,41 @@
+<svg viewBox="0 0 130 40" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="#ff416c" stroke-width="1">
+    <!-- Merkez figür -->
+    <circle cx="65" cy="20" r="10" />
+    <circle cx="65" cy="16" r="4" />
+    <path d="M61 22 Q65 28 69 22" />
+    
+    <!-- Sol figürler -->
+    <circle cx="25" cy="20" r="7" />
+    <circle cx="25" cy="17" r="3" />
+    <path d="M22 22 Q25 26 28 22" />
+    
+    <circle cx="45" cy="10" r="7" />
+    <circle cx="45" cy="7" r="3" />
+    <path d="M42 12 Q45 16 48 12" />
+    
+    <!-- Sağ figürler -->
+    <circle cx="105" cy="20" r="7" />
+    <circle cx="105" cy="17" r="3" />
+    <path d="M102 22 Q105 26 108 22" />
+    
+    <circle cx="85" cy="10" r="7" />
+    <circle cx="85" cy="7" r="3" />
+    <path d="M82 12 Q85 16 88 12" />
+    
+    <!-- Alt figürler -->
+    <circle cx="45" cy="32" r="7" />
+    <circle cx="45" cy="29" r="3" />
+    <path d="M42 34 Q45 38 48 34" />
+    
+    <circle cx="85" cy="32" r="7" />
+    <circle cx="85" cy="29" r="3" />
+    <path d="M82 34 Q85 38 88 34" />
+    
+    <!-- Bağlantı çizgileri -->
+    <path d="M32 20 L55 20" />
+    <path d="M75 20 L98 20" />
+    <path d="M52 10 L78 10" />
+    <path d="M52 32 L78 32" />
+  </g>
+</svg>

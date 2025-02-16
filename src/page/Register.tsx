@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+import './login.css';
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -8,7 +9,7 @@ function Register() {
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const register = () => {
     if (email === '' || password === '' || rePassword === '') {
@@ -38,7 +39,7 @@ function Register() {
         console.log(data);
         if (data.code === 200) {
           swal('Başarılı', 'Kayıt işlemi başarılı', 'success');
-          navigate('/login'); 
+          navigate('/login');
         } else {
           swal('Hata', data.message, 'error');
         }
@@ -62,6 +63,12 @@ function Register() {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-right">
+              <div className="circles-container">
+                <div className="circle"></div>
+                <div className="circle"></div>
+                <div className="circle"></div>
+                <img src="/favicon.ico" alt="Logo" className="circle-icon" />
+              </div>
               <h1>Merhaba!</h1>
               <p>Aramıza Hoş Geldiniz</p>
               <button onClick={() => navigate('/login')} className="ghost" id="signUp">Giriş Yap</button>
@@ -73,8 +80,8 @@ function Register() {
       <footer>
         <p>
           Created with <i className="fa fa-heart"></i> by
-          <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-          <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
+          <a target="_blank" rel="noreferrer" href="https://florin-pop.com">Florin Pop</a>
+          <a target="_blank" rel="noreferrer" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
         </p>
       </footer>
     </div>
