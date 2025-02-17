@@ -53,41 +53,41 @@ const Footer = () => {
         <Container>
           <Row justify="space-between">
             <Col lg={10} md={10} sm={12} xs={12}>
-              <Language>{t("Contact")}</Language>
-              <Large to="/">{t("Tell us everything")}</Large>
-              <Para>{t("Do you have any question? Feel free to reach out.")}</Para>
+              <Language>{t("İletişim")}</Language>
+              <Large to="/">{t("Bizimle paylaşın")}</Large>
+              <Para>{t("Herhangi bir sorunuz mu var?")}</Para>
               <a href="mailto:l.qqbadze@gmail.com">
-                <Chat>{t("Let's Chat")}</Chat>
+                <Chat>{t("Bizimle İletişime Geçin")}</Chat>
               </a>
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{t("Policy")}</Title>
-              <Large to="/">{t("Application Security")}</Large>
-              <Large to="/">{t("Software Principles")}</Large>
+              <Title>{t("Politikamız")}</Title>
+              <Large to="/">{t("Uygulama Güvenliğimiz")}</Large>
+              <Large to="/">{t("Yazılım İlkelerimiz")}</Large>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
               <Empty />
-              <Large to="/">{t("Support Center")}</Large>
-              <Large to="/">{t("Customer Support")}</Large>
+              <Large to="/">{t("Destek Merkezimiz")}</Large>
+              <Large to="/">{t("Müşteri Desteğimiz")}</Large>
             </Col>
           </Row>
           <Row justify="space-between">
             <Col lg={10} md={10} sm={12} xs={12}>
               <Empty />
-              <Language>{t("Address")}</Language>
-              <Para>Rancho Santa Margarita</Para>
-              <Para>2131 Elk Street</Para>
-              <Para>California</Para>
+              <Language>{t("Adres")}</Language>
+              <Para>ATATÜRK</Para>
+              <Para>1881.cd</Para>
+              <Para>Ankara</Para>
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{t("Company")}</Title>
-              <Large to="/">{t("About")}</Large>
+              <Title>{t("Şirketimiz")}</Title>
+              <Large to="/">{t("Hakkımızda")}</Large>
               <Large to="/">{t("Blog")}</Large>
-              <Large to="/">{t("Press")}</Large>
-              <Large to="/">{t("Careers & Culture")}</Large>
+              <Large to="/">{t("Basında Biz")}</Large>
+              <Large to="/">{t("Kariyer & Kültür")}</Large>
             </Col>
             <Col lg={6} md={6} sm={12} xs={12}>
-              <Label htmlFor="select-lang">{t("Language")}</Label>
+              <Label htmlFor="select-lang">{t("Diğer Diller")}</Label>
               <LanguageSwitchContainer>
                 <LanguageSwitch onClick={() => handleChange("en")}>
                   <SvgIcon src="united-states.svg" aria-label="homepage" width="30px" height="30px" />

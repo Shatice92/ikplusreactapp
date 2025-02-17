@@ -47,38 +47,38 @@ const Header = ({
           onClick={scrollToAbout} 
           style={{width:"50px", padding:"10px"}}
         >
-          <Span>{t("About")}</Span>
+          <Span>{t("Hakkımızda")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={scrollToMission}>
-          <Span>{t("Mission")}</Span>
+          <Span>{t("Görevlerimiz")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={scrollToProduct}>
-          <Span>{t("Product")}</Span>
+          <Span>{t("Ürünlerimiz")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "100px" }}
           onClick={scrollToContact}
         >
           <Span>
-            <Button>{t("Contact")}</Button>
+            <Button>{t("İletişim")}</Button>
           </Span>
         </CustomNavLinkSmall>
 
         <CustomNavLinkSmall
           style={{ width: "180px" }}
-          onClick={() => navigate('/login')}
+          onClick={() => navigate('/Giriş Yap')}
         >
           <Span>
-            <Button>{t("Login")}</Button>
+            <Button>{t("Giriş Yap")}</Button>
           </Span>
         </CustomNavLinkSmall>
 
         <CustomNavLinkSmall
           style={{ width: "180px" }}
-          onClick={() => navigate('/register')}
+          onClick={() => navigate('/Kayıt Ol')}
         >
           <Span>
-            <Button>{t("Register")}</Button>
+            <Button>{t("Kayıt Ol")}</Button>
           </Span>
         </CustomNavLinkSmall>
       </>

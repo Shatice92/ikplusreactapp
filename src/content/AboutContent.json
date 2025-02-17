@@ -21,6 +21,16 @@
       "title": "Performans Değerlendirme",
       "content": "360 derece performans değerlendirme, hedef takibi, yetkinlik bazlı değerlendirme ve kariyer planlama araçları.",
       "icon": "performance.svg"
+    },
+    {
+      "title": "Eğitim ve Gelişim Yönetimi",
+      "content": "Çalışanların eğitim süreçlerini takip edin, gelişim planları oluşturun ve online eğitim modülleriyle yetkinliklerini artırın.",
+      "icon": "education.svg"
+    },
+    {
+      "title": "İşe Alım ve Aday Takibi",
+      "content": "Açık pozisyonları yönetin, aday havuzu oluşturun ve işe alım süreçlerini hızlandırın.",
+      "icon": "recruitment.svg"
     }
   ]
 }
