@@ -5,12 +5,14 @@ import AboutContent from "../../content/AboutContent.json";
 import MissionContent from "../../content/MissionContent.json";
 import ProductContent from "../../content/ProductContent.json";
 import ContactContent from "../../content/ContactContent.json";
+import CommentContent from "../../content/CommentContent.json";
 
 const Contact = lazy(() => import("../../components/ContactForm"));
 const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
 const Container = lazy(() => import("../../common/Container"));
 const ScrollToTop = lazy(() => import("../../common/ScrollToTop"));
 const ContentBlock = lazy(() => import("../../components/ContentBlock"));
+
 
 const Home = () => {
   return (
@@ -44,6 +46,14 @@ const Home = () => {
         icon="product-launch.svg"
         id="mission"
       />
+      <ContentBlock
+        direction="right"
+        title={CommentContent.title}
+        content={CommentContent.text}  
+        icon="product-launch.svg"
+        id="comment"
+      />
+
       <ContentBlock
         direction="left"
         title={ProductContent.title}

@@ -26,12 +26,12 @@ interface HeaderProps {
   scrollToContact: () => void;
 }
 
-const Header = ({ 
-  t, 
+const Header = ({
+  t,
   scrollToAbout,
   scrollToMission,
   scrollToProduct,
-  scrollToContact 
+  scrollToContact
 }: HeaderProps) => {
   const [visible, setVisibility] = useState(false);
   const navigate = useNavigate();
@@ -43,24 +43,24 @@ const Header = ({
   const MenuItem = () => {
     return (
       <>
-        <CustomNavLinkSmall 
-          onClick={scrollToAbout} 
-          style={{width:"50px", padding:"10px"}}
+        <CustomNavLinkSmall
+          onClick={scrollToAbout}
+          style={{ width: "50px", padding: "50px" }}
         >
-          <Span>{t("About")}</Span>
+          <Span>{t("Hakkımızda")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={scrollToMission}>
-          <Span>{t("Mission")}</Span>
+          <Span>{t("Misyonumuz")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={scrollToProduct}>
-          <Span>{t("Product")}</Span>
+          <Span>{t("Ürünlerimiz")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "100px" }}
           onClick={scrollToContact}
         >
           <Span>
-            <Button>{t("Contact")}</Button>
+            <Button>{t("İletişim")}</Button>
           </Span>
         </CustomNavLinkSmall>
 
@@ -69,7 +69,7 @@ const Header = ({
           onClick={() => navigate('/login')}
         >
           <Span>
-            <Button>{t("Login")}</Button>
+            <Button>{t("Giriş Yap")}</Button>
           </Span>
         </CustomNavLinkSmall>
 
@@ -78,7 +78,7 @@ const Header = ({
           onClick={() => navigate('/register')}
         >
           <Span>
-            <Button>{t("Register")}</Button>
+            <Button>{t("Kayıt Ol")}</Button>
           </Span>
         </CustomNavLinkSmall>
       </>
@@ -89,8 +89,8 @@ const Header = ({
     <HeaderSection>
       <Container>
         <Row justify="space-between">
-          <LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="logo.svg" width="101px" height="64px" />
+          <LogoContainer to="/homepage" aria-label="homepage">
+            <SvgIcon src="logo.svg" width="250px" height="250px" />
           </LogoContainer>
           <NotHidden>
             <MenuItem />

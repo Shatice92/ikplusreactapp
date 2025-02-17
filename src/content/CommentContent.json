@@ -1,0 +1,28 @@
+
+
+
+
+{
+    "title": "Kullanıcı Yorumları",
+    "text": "İK Plus'ı kullanan müşterilerimizin deneyimlerini keşfedin.",
+    "comments": [
+        {
+            "userImageUrl": "https://randomuser.me/api/portraits/men/10.jpg",
+            "companyId": 1,
+            "userId": 101,
+            "comment": "İK süreçlerimizi çok daha verimli hale getirdi. Kullanımı kolay ve pratik!",
+            "rating": 4.8,
+            "createdAt": "2024-02-17T10:15:30",
+            "updatedAt": "2024-02-17T10:15:30"
+        },
+        {
+            "userImageUrl": "https://randomuser.me/api/portraits/women/12.jpg",
+            "companyId": 2,
+            "userId": 102,
+            "comment": "Özellikle bordro yönetimi sayesinde büyük bir zaman tasarrufu sağladık.",
+            "rating": 5.0,
+            "createdAt": "2024-02-16T09:45:00",
+            "updatedAt": "2024-02-16T09:45:00"
+        }
+    ]
+}

@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Styles } from "./styles/styles";
+import ForgotPassword from "./page/ForgotPassword";
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -30,10 +31,11 @@ const RouterPage = () => {
         scrollToContact={() => scrollToSection("contact")}
       />
       <Routes>
-        <Route path="/" element={<Home />} />
+        
         <Route path="/homepage" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/reset-password" element={<ForgotPassword />} />
       </Routes>
       <Footer />
     </>

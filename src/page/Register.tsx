@@ -21,29 +21,37 @@ function Register() {
       return;
     }
 
-    fetch('http://localhost:9090/register', {
+    fetch('http://localhost:9090/v1/dev/user/register', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-        password,
-        rePassword,
+          firstName,
+          lastName,
+          email,
+          password,
+          rePassword,
       }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.code === 200) {
+  })
+  .then((res) => {
+      if (!res.ok) {
+          throw new Error("Sunucudan geçersiz yanıt geldi");
+      }
+      return res.json();
+  })
+  .then((data) => {
+      console.log(data);
+      if (data.code === 200) {
           swal('Başarılı', 'Kayıt işlemi başarılı', 'success');
           navigate('/login');
-        } else {
+      } else {
           swal('Hata', data.message, 'error');
-        }
-      });
+      }
+  })
+  .catch((error) => {
+      console.error("Hata: ", error);
+  });
   };
 
   return (
@@ -78,11 +86,7 @@ function Register() {
       </div>
 
       <footer>
-        <p>
-          Created with <i className="fa fa-heart"></i> by
-          <a target="_blank" rel="noreferrer" href="https://florin-pop.com">Florin Pop</a>
-          <a target="_blank" rel="noreferrer" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-        </p>
+        
       </footer>
     </div>
   );
