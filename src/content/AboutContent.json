@@ -1,0 +1,26 @@
+{
+  "title": "Özelliklerimiz",
+  "text": "IK Plus ile tüm İK süreçlerinizi tek platformdan yönetin. Gelişmiş özelliklerimiz sayesinde İK departmanınızın verimliliğini artırın.",
+  "section": [
+    {
+      "title": "Personel Yönetimi",
+      "content": "Çalışan bilgilerini güvenle saklayın, özlük dosyalarını dijital ortamda yönetin, organizasyon şemalarını kolayca oluşturun.",
+      "icon": "team.svg"
+    },
+    {
+      "title": "İzin Takibi",
+      "content": "İzin süreçlerini otomatikleştirin, takvim entegrasyonu ile izinleri planlayın, raporları tek tıkla alın.",
+      "icon": "calendar.svg"
+    },
+    {
+      "title": "Bordro Yönetimi",
+      "content": "Maaş hesaplamalarını otomatikleştirin, yasal mevzuata uygun bordro süreçlerini yönetin, e-bordro ile kağıt israfını önleyin.",
+      "icon": "payment.svg"
+    },
+    {
+      "title": "Performans Değerlendirme",
+      "content": "360 derece performans değerlendirme, hedef takibi, yetkinlik bazlı değerlendirme ve kariyer planlama araçları.",
+      "icon": "performance.svg"
+    }
+  ]
+}

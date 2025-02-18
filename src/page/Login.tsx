@@ -43,9 +43,9 @@ function Login() {
           <form onSubmit={(e) => e.preventDefault()}>
             <h1>Giriş Yap</h1>
             <div className="social-container">
-              <img src="icon/facebook.png" width={20} height={20} className="social" alt="" />
-              <img src="icon/google.png" width={20} height={20} className="social" alt="" />
-              <img src="icon/linkedin.png" width={20} height={20} className="social" alt="" />
+              <a href="#" className="social"><i className="fab fa-facebook-f"></i></a>
+              <a href="#" className="social"><i className="fab fa-google-plus-g"></i></a>
+              <a href="#" className="social"><i className="fab fa-linkedin-in"></i></a>
             </div>
             <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" />
             <input onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Parola" />
@@ -56,6 +56,12 @@ function Login() {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-right">
+              <div className="circles-container">
+                <div className="circle"></div>
+                <div className="circle"></div>
+                <div className="circle"></div>
+                <img src="/favicon.ico" alt="Logo" className="circle-icon" />
+              </div>
               <h1>Merhaba!</h1>
               <p>Hesabınız yoksa lütfen kayıt olunuz.</p>
               <button onClick={() => navigate('/register')} className="ghost" id="signUp">Kayıt Ol</button>
@@ -67,8 +73,8 @@ function Login() {
       <footer>
         <p>
           Created with <i className="fa fa-heart"></i> by
-          <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-          <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
+          <a target="_blank" rel="noreferrer" href="https://florin-pop.com">Florin Pop</a>
+          <a target="_blank" rel="noreferrer" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
         </p>
       </footer>
     </div>

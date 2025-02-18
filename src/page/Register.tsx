@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
+<<<<<<< HEAD
 import '../page/Register.css'; // CSS dosyası
+=======
+import './login.css';
+>>>>>>> main
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -63,9 +67,11 @@ function Register() {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-right">
-              <div className="logo-container">
-                <img src="/bütünnn.png" alt="Logo" className="logo" />
-                
+              <div className="circles-container">
+                <div className="circle"></div>
+                <div className="circle"></div>
+                <div className="circle"></div>
+                <img src="/favicon.ico" alt="Logo" className="circle-icon" />
               </div>
               <h1>Merhaba!</h1>
               <p>Aramıza Hoş Geldiniz</p>
@@ -78,8 +84,8 @@ function Register() {
       <footer>
         <p>
           Created with <i className="fa fa-heart"></i> by
-          <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-          <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
+          <a target="_blank" rel="noreferrer" href="https://florin-pop.com">Florin Pop</a>
+          <a target="_blank" rel="noreferrer" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
         </p>
       </footer>
     </div>

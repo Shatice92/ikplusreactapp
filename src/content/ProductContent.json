@@ -1,0 +1,18 @@
+{
+  "title": "Çözümlerimiz",
+  "text": "IK Plus'ın sunduğu yenilikçi çözümler ile tanışın. Temel İK modüllerimizin yanı sıra, yapay zeka destekli işe alım araçları, eğitim yönetim sistemi, çalışan self-servis portalı ve gelişmiş raporlama araçları ile şirketinizin İK süreçlerini geleceğe taşıyın. Bulut tabanlı altyapımız sayesinde her ölçekteki şirkete uygun, esnek ve ölçeklenebilir çözümler sunuyoruz.",
+  "section": [
+    {
+      "title": "IK Plus Core",
+      "content": "Temel İK süreçleri için tam entegre çözüm"
+    },
+    {
+      "title": "IK Plus Talent",
+      "content": "Yetenek yönetimi ve işe alım süreçleri"
+    },
+    {
+      "title": "IK Plus Analytics",
+      "content": "İK analitiği ve raporlama araçları"
+    }
+  ]
+}
