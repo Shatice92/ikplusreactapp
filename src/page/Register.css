@@ -46,7 +46,7 @@
   margin-bottom: 20;
   background: linear-gradient(to bottom, #ffffff, #f6f6f6); /* Daha doğal bir degrade */
   .logo img {
-  margin-left: -15px; /* İstediğiniz kadar sola kaydırabilirsiniz */
+  margin-left: -25px; /* İstediğiniz kadar sola kaydırabilirsiniz */
 }
 }
 
