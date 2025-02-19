@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import "./login.css";
+import "./logindeneme.css";
 
 function Register() {
   const [formData, setFormData] = useState({

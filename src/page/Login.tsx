@@ -1,92 +1,92 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import swal from "sweetalert";
-import "./login.css";
+import React, { useState } from 'react'
+import "./logindeneme.css"
+import { useNavigate } from 'react-router';
+import swal from 'sweetalert';
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    if (!email || !password) {
-      swal("Hata", "Lütfen tüm alanları doldurunuz", "error");
-      return;
-    }
+    const handleLogin = async () => {
+        if (!email || !password) {
+            swal("Hata", "Lütfen tüm alanları doldurunuz", "error");
+            return;
+        }
 
-    try {
-      const response = await fetch("http://localhost:9090/v1/dev/user/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+        try {
+            const response = await fetch("http://localhost:9090/v1/dev/user/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+            });
 
-      if (!response.ok) {
-        throw new Error("Sunucu hatası");
-      }
+            if (!response.ok) {
+                throw new Error("Sunucu hatası");
+            }
 
-      const data = await response.json();
+            const data = await response.json();
 
-      if (data.code === 200) {
-        swal("Başarılı", "Giriş başarılı!", "success");
-        sessionStorage.setItem("token", data.data.token);
-        navigate("/user-profile");
-      } else {
-        swal("Hata", data.message || "Bilinmeyen bir hata oluştu", "error");
-      }
-    } catch (error) {
-      console.error("Giriş hatası:", error);
-      swal("Hata", "Giriş yapılırken bir hata oluştu, tekrar deneyin.", "error");
-    }
-  };
-
-  return (
-    <div className="container">
-      <div className="form-container sign-in-container">
-        <form onSubmit={(e) => e.preventDefault()}>
-          <h1>Giriş Yap</h1>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Parola"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="button" onClick={handleLogin}>
-            Giriş Yap
-          </button>
-          <p>
-            <a onClick={() => navigate("/resetpassword")} className="forgot-password-link">
-              Parolanızı mı unuttunuz?
-            </a>
-          </p>
-        </form>
-      </div>
-
-      <div className="overlay-container">
-        <div className="overlay">
-          <div className="overlay-panel overlay-right">
-            <div className="circles-container">
-              <div className="circle"></div>
-              <div className="circle"></div>
-              <div className="circle"></div>
-              <img src="/favicon.ico" alt="Logo" className="circle-icon" />
+            if (data.code === 200) {
+                swal("Başarılı", "Giriş başarılı!", "success");
+                sessionStorage.setItem("token", data.data.token);
+                navigate("/user-profile");
+            } else {
+                swal("Hata", data.message || "Bilinmeyen bir hata oluştu", "error");
+            }
+        } catch (error) {
+            console.error("Giriş hatası:", error);
+            swal("Hata", "Giriş yapılırken bir hata oluştu, tekrar deneyin.", "error");
+        }
+    };
+    return (
+        <div id="login-page">
+            <div className="login">
+                <a href="/homepage">
+                    <img src="/img/svg/logo.svg" width={250} height={250} alt="" />
+                </a>
+                <form className="form-login" onSubmit={(e) => e.preventDefault()}>
+                    <label htmlFor="email">Email</label>
+                    <div className="input-email">
+                        <i className="fas fa-envelope icon"></i>
+                        <input
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <label htmlFor="password">Şifre</label>
+                    <div className="input-password">
+                        <i className="fas fa-lock icon"></i>
+                        <input
+                            type="password"
+                            placeholder="Parola"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="checkbox">
+                        <label htmlFor="remember">
+                            <input type="checkbox" name="remember" />
+                            Beni Hatırla
+                        </label>
+                    </div>
+                    <button type="submit" onClick={handleLogin}><i className="fas fa-door-open"></i> Giriş</button>
+                    <button type="button" onClick={() => navigate("/register")}><i className="fas fa-key"></i> Kayıt ol</button>
+                </form>
+                <p>
+                    <a onClick={() => navigate("/resetpassword")} className="forgot-password-link">
+                        Parolanızı mı unuttunuz?
+                    </a>
+                </p>
             </div>
-            <h1>Merhaba!</h1>
-            <p>Hesabınız yoksa lütfen kayıt olunuz.</p>
-            <button onClick={() => navigate("/register")} className="ghost">
-              Kayıt Ol
-            </button>
-          </div>
+            <div className="background">
+                <img src="https://img.freepik.com/free-photo/businessman-touching-red-icon-connected_1232-176.jpg?t=st=1739968543~exp=1739972143~hmac=d005fb9605fcc0a479e002bb6bfccecdb4b62692e2166d9129587831619dd98d&w=1800" />
+
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    )
 }
 
-export default Login;
+export default Login 

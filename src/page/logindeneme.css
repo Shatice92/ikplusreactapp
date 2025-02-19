@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #666;
+  font-size: 14px;
+  display: block;
+}
+
+#login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Form ve arka planın üst üste gelmesini sağlıyoruz */
+  min-height: 100vh; /* Sayfa yüksekliği tam olsun */
+  overflow: hidden;
+}
+.notice {
+  font-size: 13px;
+  text-align: center;
+  color: #666;
+  
+}
+.login {
+  position: absolute; /* Formu sabitliyoruz */
+  top: 50%; /* Formu dikeyde ortalıyoruz */
+  left: 15%; /* Formu biraz daha sola kaydırıyoruz */
+  transform: translate(-50%, -50%); /* Tam ortalamak için */
+  width: 25%; /* Formun genişliğini %25 yapıyoruz */
+  background: #ffffff;
+  padding: 50px; /* Üst ve alt padding düzenlendi */
+  border-radius: 15px; /* Köşeleri yuvarlatmak için */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+}
+
+
+.login a {
+  margin-top: 25px;
+  text-align: center;
+}
+.form-login {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+}
+.form-login label {
+  text-align: left;
+  font-size: 13px;
+  margin-top: 10px;
+  margin-left: 20px;
+  display: block;
+  color: #666;
+}
+.input-email,
+.input-password {
+  width: 100%;
+  background: #ededed;
+  border-radius: 25px;
+  margin: 4px 0 10px 0;
+  padding: 10px;
+  display: flex;
+}
+.icon {
+  padding: 4px;
+  color: #666;
+  min-width: 30px;
+  text-align: center;
+}
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  border: 0;
+  background: none;
+  font-size: 16px;
+  padding: 4px 0;
+  outline: none;
+}
+button[type="submit"] {
+  width: 100%;
+  border: 0;
+  border-radius: 25px;
+  padding: 14px;
+  background: #ff416c;
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: ease all 0.3s;
+}
+button[type="submit"]:hover {
+  opacity: 0.9;
+}
+.background {
+  position: absolute; /* Görseli sabitliyoruz */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Görselin formun altına gitmesini sağlıyoruz */
+}
+
+.background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+.created {
+  margin-top: 40px;
+  text-align: center;
+}
+.created p {
+  font-size: 13px;
+  font-weight: bold;
+  color: #008552;
+}
+.created a {
+  color: #666;
+  font-weight: normal;
+  text-decoration: none;
+  margin-top: 0;
+}
+.checkbox label {
+  display: inline;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  /* For mobile, we want the form to take up more space */
+  .login {
+    width: 80%; /* Formun genişliğini %80 yaparak daha büyük görünmesini sağlarız */
+    padding: 40px;
+  }
+
+  /* Smaller title margin for smaller screens */
+  .login-title {
+    margin-top: 70px; /* Daha küçük bir üst margin */
+    font-size: 20px;  /* Başlık fontunu küçültme */
+  }
+
+  /* Background image adjustments */
+  .background {
+    width: 80%; /* Görseli tam genişlikte yapıyoruz */
+    height: 20vh; /* Görselin yüksekliğini ekranın yarısı kadar yapıyoruz */
+    padding: 10px; /* Padding'i sıfırlıyoruz */
+  }
+
+  .background img {
+    object-position: top; /* Görselin üst kısmını gösterecek şekilde konumlandırıyoruz */
+  }
+
+  /* Formu ve arka planı alt alta yerleştirmek için */
+  #login-page {
+    flex-direction: column; /* Dikey hizalama */
+    align-items: center; /* İçeriği ortala */
+  }
+
+  .created {
+    margin-top: 20px; /* Daha küçük bir margin */
+  }
+}
