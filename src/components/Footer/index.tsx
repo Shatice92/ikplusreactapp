@@ -2,8 +2,8 @@ import { Row, Col } from "antd";
 import { useTranslation } from "react-i18next"; // useTranslation import edildi
 import { SvgIcon } from "../../common/SvgIcon";
 import Container from "../../common/Container";
-
 import i18n from "i18next";
+import { useLocation } from 'react-router-dom'; // useLocation import edildi
 import {
   FooterSection,
   Title,
@@ -28,6 +28,12 @@ interface SocialLinkProps {
 
 const Footer = () => {
   const { t } = useTranslation(); // useTranslation ile çeviri fonksiyonu alındı
+  const location = useLocation(); // Geçerli sayfa URL'sini almak için
+
+  // Footer'ı sadece '/homepage' sayfasında göstermek için koşul ekliyoruz
+  if (location.pathname !== '/homepage') {
+    return null; // Eğer '/homepage' değilse, Footer render edilmez
+  }
 
   const handleChange = (language: string) => {
     i18n.changeLanguage(language);
@@ -52,50 +58,35 @@ const Footer = () => {
       <FooterSection>
         <Container>
           <Row justify="space-between">
-            <Col lg={10} md={10} sm={12} xs={12}>
-              <Language>{t("Contact")}</Language>
-              <Large to="/">{t("Tell us everything")}</Large>
-              <Para>{t("Do you have any question? Feel free to reach out.")}</Para>
-              <a href="mailto:l.qqbadze@gmail.com">
-                <Chat>{t("Let's Chat")}</Chat>
+            <Col lg={8} md={8} sm={12} xs={12}>
+              <Title>{t("İletişim")}</Title>
+              <Large to="/">{t("Herhangi bir sorunuz mu var?")}</Large>
+              <a href="mailto:contact@ikplus.com">
+                <Chat>{t("Sohbete Başla")}</Chat>
               </a>
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{t("Policy")}</Title>
-              <Large to="/">{t("Application Security")}</Large>
-              <Large to="/">{t("Software Principles")}</Large>
-            </Col>
-            <Col lg={6} md={6} sm={12} xs={12}>
-              <Empty />
-              <Large to="/">{t("Support Center")}</Large>
-              <Large to="/">{t("Customer Support")}</Large>
-            </Col>
-          </Row>
-          <Row justify="space-between">
-            <Col lg={10} md={10} sm={12} xs={12}>
-              <Empty />
-              <Language>{t("Address")}</Language>
-              <Para>Rancho Santa Margarita</Para>
-              <Para>2131 Elk Street</Para>
-              <Para>California</Para>
+              <Title>{t("Politika")}</Title>
+              <Large to="/">{t("Uygulama Güvenliği")}</Large>
+              <Large to="/">{t("Yazılım İlkeleri")}</Large>
             </Col>
             <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{t("Company")}</Title>
-              <Large to="/">{t("About")}</Large>
-              <Large to="/">{t("Blog")}</Large>
-              <Large to="/">{t("Press")}</Large>
-              <Large to="/">{t("Careers & Culture")}</Large>
+              <Title>{t("Yardım")}</Title>
+              <Large to="/">{t("Destek Merkezi")}</Large>
+              <Large to="/">{t("Müşteri Desteği")}</Large>
             </Col>
-            <Col lg={6} md={6} sm={12} xs={12}>
-              <Label htmlFor="select-lang">{t("Language")}</Label>
-              <LanguageSwitchContainer>
-                <LanguageSwitch onClick={() => handleChange("en")}>
-                  <SvgIcon src="united-states.svg" aria-label="homepage" width="30px" height="30px" />
-                </LanguageSwitch>
-                <LanguageSwitch onClick={() => handleChange("es")}>
-                  <SvgIcon src="spain.svg" aria-label="homepage" width="30px" height="30px" />
-                </LanguageSwitch>
-              </LanguageSwitchContainer>
+            <Col lg={8} md={8} sm={12} xs={12}>
+              <Empty />
+              <Title>{t("Adres")}</Title>
+              <Large to="/">{t("Maslak, İstanbul")}</Large>
+              <Large to="/">{t("+90 (212) 123 45 67")}</Large>
+            </Col>
+            <Col lg={8} md={8} sm={12} xs={12}>
+              <Title>{t("Şirket")}</Title>
+              <Large to="/">{t("Hakkımızda")}</Large>
+              <Large to="/">{t("Blog")}</Large>
+              <Large to="/">{t("")}</Large>
+              <Large to="/">{t("Kariyer ve Eğitim")}</Large>
             </Col>
           </Row>
         </Container>
@@ -103,9 +94,9 @@ const Footer = () => {
       <Extra>
         <Container border={true}>
           <Row justify="space-between" align="middle" style={{ paddingTop: "3rem" }}>
-            <NavLink to="/">
+            <NavLink to="/homepage">
               <LogoContainer>
-                <SvgIcon src="logo.svg" aria-label="homepage" width="101px" height="64px" />
+                <SvgIcon src="logo.svg" aria-label="homepage" width="150px" height="100px" />
               </LogoContainer>
             </NavLink>
             <FooterContainer>

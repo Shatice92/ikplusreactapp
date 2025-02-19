@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // useLocation ekleyin
 import type { TFunction } from 'i18next';
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
@@ -26,15 +26,21 @@ interface HeaderProps {
   scrollToContact: () => void;
 }
 
-const Header = ({ 
-  t, 
+const Header = ({
+  t,
   scrollToAbout,
   scrollToMission,
   scrollToProduct,
-  scrollToContact 
+  scrollToContact
 }: HeaderProps) => {
   const [visible, setVisibility] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // Geçerli URL'yi alıyoruz
+
+  // Header'ı sadece '/homepage' URL'sinde göstermek için koşul ekliyoruz
+  if (location.pathname !== '/homepage') {
+    return null; // Eğer '/homepage' değilse, Header render edilmez
+  }
 
   const toggleButton = () => {
     setVisibility(!visible);
@@ -43,24 +49,24 @@ const Header = ({
   const MenuItem = () => {
     return (
       <>
-        <CustomNavLinkSmall 
-          onClick={scrollToAbout} 
-          style={{width:"50px", padding:"10px"}}
+        <CustomNavLinkSmall
+          onClick={scrollToAbout}
+          style={{ width: "50px", padding: "50px" }}
         >
-          <Span>{t("About")}</Span>
+          <Span>{t("Hakkımızda")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={scrollToMission}>
-          <Span>{t("Mission")}</Span>
+          <Span>{t("Misyonumuz")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={scrollToProduct}>
-          <Span>{t("Product")}</Span>
+          <Span>{t("Ürünlerimiz")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall
           style={{ width: "100px" }}
           onClick={scrollToContact}
         >
           <Span>
-            <Button>{t("Contact")}</Button>
+            <Button>{t("İletişim")}</Button>
           </Span>
         </CustomNavLinkSmall>
 
@@ -69,7 +75,7 @@ const Header = ({
           onClick={() => navigate('/login')}
         >
           <Span>
-            <Button>{t("Login")}</Button>
+            <Button>{t("Giriş Yap")}</Button>
           </Span>
         </CustomNavLinkSmall>
 
@@ -78,7 +84,7 @@ const Header = ({
           onClick={() => navigate('/register')}
         >
           <Span>
-            <Button>{t("Register")}</Button>
+            <Button>{t("Kayıt Ol")}</Button>
           </Span>
         </CustomNavLinkSmall>
       </>
@@ -89,8 +95,8 @@ const Header = ({
     <HeaderSection>
       <Container>
         <Row justify="space-between">
-          <LogoContainer to="/" aria-label="homepage">
-            <SvgIcon src="logo.svg" width="101px" height="64px" />
+          <LogoContainer to="/homepage" aria-label="homepage">
+            <SvgIcon src="logo.svg" width="250px" height="250px" />
           </LogoContainer>
           <NotHidden>
             <MenuItem />
