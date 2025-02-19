@@ -6,7 +6,7 @@ import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfileEdit from "./page/UserProfileEdit";
 import UserProfile from "./page/UserProfile";
-import Registerdeneme from "./page/Registerdeneme";
+import Registerdeneme from "./page/Register";
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));

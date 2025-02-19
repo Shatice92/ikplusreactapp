@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "./logindeneme.css"
+import "./login.css"
 import { useNavigate } from 'react-router';
 import swal from 'sweetalert';
 
@@ -82,8 +82,7 @@ function Login() {
                 </p>
             </div>
             <div className="background">
-                <img src="https://img.freepik.com/free-photo/businessman-touching-red-icon-connected_1232-176.jpg?t=st=1739968543~exp=1739972143~hmac=d005fb9605fcc0a479e002bb6bfccecdb4b62692e2166d9129587831619dd98d&w=1800" />
-
+                <img src="/img/ben harikayım.jpg" alt="Background" />
             </div>
         </div>
     )

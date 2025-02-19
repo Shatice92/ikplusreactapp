@@ -8,8 +8,6 @@ a {
   display: block;
 }
 
-
-
 #login-page {
   display: flex;
   justify-content: center;
@@ -64,28 +62,50 @@ button[type="submit"] {
 button[type="submit"]:hover {
   opacity: 0.9;
 }
+.logo-container {
+  text-align: center; /* İçeriği ortalar */
+  margin-bottom: 20px; /* Logonun aşağı ile mesafesini ayarlar */
+}
+
+.logo-container img {
+  display: block;
+  margin: 0 auto;
+}
 
 input {
-  background-color: #eee;
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+  color: #000; /* Yazı rengini siyah yap */
+  background-color: #eee; /* Açık gri arka plan */
+  outline: none; /* Tarayıcının mavi/lacivert çerçevesini kaldır */
+}
+input {
+  background-color: #eee !important;
+  
+  color: #000 !important;
 }
 
 @media (max-width: 768px) {
   .login {
-    width: 80%;
+    width: 80%; /* Formun genişliğini %80 yap */
     padding: 40px;
+    position: static; /* Sayfanın tam ortasında olmasına gerek kalmaz */
+    transform: none; /* Translate kaldırılıyor */
+    top: auto; /* Top değeri kaldırılıyor */
+    left: auto; /* Sol hizalama kaldırılıyor */
+  }
+
+  /* Mobilde arka planı kaldır */
+  .background {
+    display: none;
   }
 
   #login-page {
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-  }
-
-  .background {
-    display: none;
+    flex-direction: column; /* Dikey hizalama */
+    align-items: center; /* İçeriği ortala */
+    height: 100vh; /* Sayfanın tamamını kaplasın */
+    background: #fff; /* Arka planı düz beyaz yap */
   }
 }

@@ -33,6 +33,13 @@ a {
   border-radius: 15px; /* Köşeleri yuvarlatmak için */
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Hafif gölge */
 }
+input {
+  background-color: #eee !important;
+  
+  color: #000 !important;
+}
+
+
 
 
 .login a {
@@ -132,36 +139,24 @@ button[type="submit"]:hover {
 }
 
 @media (max-width: 768px) {
-  /* For mobile, we want the form to take up more space */
   .login {
-    width: 80%; /* Formun genişliğini %80 yaparak daha büyük görünmesini sağlarız */
+    width: 80%; /* Formun genişliğini %80 yap */
     padding: 40px;
+    position: static; /* Sayfanın tam ortasında olmasına gerek kalmaz */
+    transform: none; /* Translate kaldırılıyor */
+    top: auto; /* Top değeri kaldırılıyor */
+    left: auto; /* Sol hizalama kaldırılıyor */
   }
 
-  /* Smaller title margin for smaller screens */
-  .login-title {
-    margin-top: 70px; /* Daha küçük bir üst margin */
-    font-size: 20px;  /* Başlık fontunu küçültme */
-  }
-
-  /* Background image adjustments */
+  /* Mobilde arka planı kaldır */
   .background {
-    width: 80%; /* Görseli tam genişlikte yapıyoruz */
-    height: 20vh; /* Görselin yüksekliğini ekranın yarısı kadar yapıyoruz */
-    padding: 10px; /* Padding'i sıfırlıyoruz */
+    display: none;
   }
 
-  .background img {
-    object-position: top; /* Görselin üst kısmını gösterecek şekilde konumlandırıyoruz */
-  }
-
-  /* Formu ve arka planı alt alta yerleştirmek için */
   #login-page {
     flex-direction: column; /* Dikey hizalama */
     align-items: center; /* İçeriği ortala */
-  }
-
-  .created {
-    margin-top: 20px; /* Daha küçük bir margin */
+    height: 100vh; /* Sayfanın tamamını kaplasın */
+    background: #fff; /* Arka planı düz beyaz yap */
   }
 }
