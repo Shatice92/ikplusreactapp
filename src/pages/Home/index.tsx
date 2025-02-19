@@ -40,7 +40,7 @@ const Home = () => {
         id="about"
       />
       <ContentBlock
-        direction="right"
+        direction="left"
         title={MissionContent.title}
         content={MissionContent.text}
         icon="product-launch.svg"
@@ -50,12 +50,12 @@ const Home = () => {
         direction="right"
         title={CommentContent.title}
         content={CommentContent.text}  
-        icon="product-launch.svg"
+        icon="usercomment.svg"
         id="comment"
       />
 
       <ContentBlock
-        direction="left"
+        direction="right"
         title={ProductContent.title}
         content={ProductContent.text}
         icon="waving.svg"

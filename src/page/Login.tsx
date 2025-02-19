@@ -30,7 +30,7 @@ function Login() {
       if (data.code === 200) {
         swal("Başarılı", "Giriş başarılı!", "success");
         sessionStorage.setItem("token", data.data.token);
-        navigate("/homepage");
+        navigate("/user-profile");
       } else {
         swal("Hata", data.message || "Bilinmeyen bir hata oluştu", "error");
       }

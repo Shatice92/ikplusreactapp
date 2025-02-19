@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Row, Col, Drawer } from "antd";
 import { withTranslation } from "react-i18next";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // useLocation ekleyin
 import type { TFunction } from 'i18next';
 import Container from "../../common/Container";
 import { SvgIcon } from "../../common/SvgIcon";
@@ -35,6 +35,12 @@ const Header = ({
 }: HeaderProps) => {
   const [visible, setVisibility] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // Geçerli URL'yi alıyoruz
+
+  // Header'ı sadece '/homepage' URL'sinde göstermek için koşul ekliyoruz
+  if (location.pathname !== '/homepage') {
+    return null; // Eğer '/homepage' değilse, Header render edilmez
+  }
 
   const toggleButton = () => {
     setVisibility(!visible);

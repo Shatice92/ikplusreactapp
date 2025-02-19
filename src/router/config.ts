@@ -5,7 +5,7 @@ interface RouteItem {
 
 const routes: RouteItem[] = [
   {
-    path: "/",
+    path: "/homepage",
     component: "Home",
   },
 ];
