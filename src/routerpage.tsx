@@ -6,7 +6,6 @@ import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfileEdit from "./page/UserProfileEdit";
 import UserProfile from "./page/UserProfile";
-import Registerdeneme from "./page/Register";
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -29,16 +28,17 @@ const RouterPage = () => {
   // Dummy user data (bu veriyi backend'den alabilirsiniz)
   const dummyUserData = {
     firstName: "Hatice",
-    lastName: "Yılmaz",
+    lastName: "SEYREK",
     email: "hatice@example.com",
     gender: "Kadın",
     phoneNumber: "1234567890",
-    birthDate: "1990-01-01",
+    birthDate: "1992-11-29",
     maritalStatus: "Evli",
     bloodType: "A+",
     identificationNumber: "12345678901",
     nationality: "Türk",
     educationLevel: "Üniversite",
+    status: "ACTIVE" as "ACTIVE" | "INACTIVE" 
   };
 
   const handleSave = (updatedData: any) => {
@@ -68,17 +68,15 @@ const RouterPage = () => {
           <Route path="/homepage" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/registerdeneme" element={<Registerdeneme />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
 
           {/* Profil Görüntüleme Sayfası */}
           <Route 
             path="/user-profile" 
             element={
-              <UserProfile 
-                userData={{...dummyUserData, password: ""}} 
+              <UserProfile
               />
-            } 
+            }
           />
           {/* Profil Düzenleme Sayfası */}
           <Route 

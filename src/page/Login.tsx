@@ -8,7 +8,8 @@ function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
+    const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault(); // Sayfa yenilemesini engelle
         if (!email || !password) {
             swal("Hata", "Lütfen tüm alanları doldurunuz", "error");
             return;
@@ -45,7 +46,8 @@ function Login() {
                 <a href="/homepage">
                     <img src="/img/svg/logo.svg" width={250} height={250} alt="" />
                 </a>
-                <form className="form-login" onSubmit={(e) => e.preventDefault()}>
+                <form className="form-login" onSubmit={handleLogin}>
+
                     <label htmlFor="email">Email</label>
                     <div className="input-email">
                         <i className="fas fa-envelope icon"></i>
@@ -72,11 +74,12 @@ function Login() {
                             Beni Hatırla
                         </label>
                     </div>
-                    <button type="submit" onClick={handleLogin}><i className="fas fa-door-open"></i> Giriş</button>
+                    <button type="submit"><i className="fas fa-door-open"></i> Giriş</button>
+
                     <button type="button" onClick={() => navigate("/register")}><i className="fas fa-key"></i> Kayıt ol</button>
                 </form>
                 <p>
-                    <a onClick={() => navigate("/resetpassword")} className="forgot-password-link">
+                    <a onClick={() => navigate("/reset-password")} className="forgot-password-link">
                         Parolanızı mı unuttunuz?
                     </a>
                 </p>
