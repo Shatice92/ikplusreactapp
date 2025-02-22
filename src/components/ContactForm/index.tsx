@@ -76,6 +76,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                   />
                   <ValidationType type="name" />
                 </InputField>
+                </ButtonContainer>
               </Col>
               <Col span={24}>
                 <InputField>
