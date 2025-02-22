@@ -39,12 +39,12 @@ const UserProfile = () => {
 
   const saveChanges = () => {
     if (!editableData) return;
-
-    fetch("/api/update-profile", {
-      method: "POST",
+  
+    fetch("http://localhost:9090/v1/dev/user/update-user-profile", {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       },
       body: JSON.stringify(editableData),
     })
@@ -132,11 +132,11 @@ const UserProfile = () => {
                 <li>
                   <strong>Eğitim Seviyesi:</strong>
                   <select name="educationLevel" value={editableData.educationLevel} onChange={handleChange}>
-                    <option value="İlkokul">İlkokul</option>
-                    <option value="Ortaokul">Ortaokul</option>
-                    <option value="Lise">Lise</option>
-                    <option value="Üniversite">Üniversite</option>
-                    <option value="Yüksek Lisans">Yüksek Lisans</option>
+                    <option value="İlkokul">ILKOKUL</option>
+                    <option value="Ortaokul">ORTAOKUL</option>
+                    <option value="Lise">LISE</option>
+                    <option value="Üniversite">UNIVERSITE</option>
+                    <option value="Yüksek Lisans">YUKSEK_LISANS</option>
                     <option value="Doktora">Doktora</option>
                   </select>
                 </li>

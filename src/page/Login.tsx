@@ -9,7 +9,7 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); // Sayfa yenilemesini engelle
+        event.preventDefault(); 
         if (!email || !password) {
             swal("Hata", "Lütfen tüm alanları doldurunuz", "error");
             return;
