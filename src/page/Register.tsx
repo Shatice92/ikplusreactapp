@@ -1,49 +1,67 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import swal from 'sweetalert';
-import './login.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import "./login.css";
 
 function Register() {
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
-  const [rePassword, setRePassword] = useState('');
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    rePassword: "",
+  });
+
   const navigate = useNavigate();
 
-  const register = () => {
-    if (email === '' || password === '' || rePassword === '') {
-      swal('Hata', 'Lütfen tüm alanları doldurunuz', 'error');
-      return;
-    }
-    if (password !== rePassword) {
-      swal('Hata', 'Şifreler uyuşmuyor', 'error');
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const register = async () => {
+    const { firstName, lastName, email, password, rePassword } = formData;
+
+    
+    if (!firstName || !lastName || !email || !password || !rePassword) {
+      swal("Hata", "Lütfen tüm alanları doldurunuz", "error");
       return;
     }
 
-    fetch('http://localhost:9090/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        firstName,
-        lastName,
-        email,
-        password,
-        rePassword,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.code === 200) {
-          swal('Başarılı', 'Kayıt işlemi başarılı', 'success');
-          navigate('/login');
-        } else {
-          swal('Hata', data.message, 'error');
-        }
+    // Şifre doğrulama
+    if (password !== rePassword) {
+      swal("Hata", "Şifreler uyuşmuyor", "error");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:9090/v1/dev/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ firstName, lastName, email, password,rePassword }),
       });
+
+      if (!response.ok) {
+        throw new Error("Sunucudan geçersiz yanıt geldi");
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.code === 200) {
+        swal("Başarılı", "Kayıt işlemi başarılı", "success");
+        navigate("/login");
+      } else {
+        swal("Hata", data.message, "error");
+      }
+    } catch (error) {
+      console.error("Hata: ", error);
+      swal("Hata", "Kayıt işlemi sırasında bir hata oluştu", "error");
+    }
   };
 
   return (
@@ -52,11 +70,11 @@ function Register() {
         <div className="form-container sign-in-container">
           <form onSubmit={(e) => e.preventDefault()}>
             <h1>Kayıt Ol</h1>
-            <input type="text" placeholder="İsim" onChange={(e) => setFirstName(e.target.value)} />
-            <input type="text" placeholder="Soyisim" onChange={(e) => setLastName(e.target.value)} />
-            <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" placeholder="Parola" onChange={(e) => setPassword(e.target.value)} />
-            <input type="password" placeholder="Parola Tekrar" onChange={(e) => setRePassword(e.target.value)} />
+            <input type="text" name="firstName" placeholder="İsim" onChange={handleChange} />
+            <input type="text" name="lastName" placeholder="Soyisim" onChange={handleChange} />
+            <input type="email" name="email" placeholder="Email" onChange={handleChange} />
+            <input type="password" name="password" placeholder="Parola" onChange={handleChange} />
+            <input type="password" name="rePassword" placeholder="Parola Tekrar" onChange={handleChange} />
             <button type="button" onClick={register}>Kaydet</button>
           </form>
         </div>
@@ -71,19 +89,13 @@ function Register() {
               </div>
               <h1>Merhaba!</h1>
               <p>Aramıza Hoş Geldiniz</p>
-              <button onClick={() => navigate('/login')} className="ghost" id="signUp">Giriş Yap</button>
+              <button onClick={() => navigate("/login")} className="ghost" id="signUp">
+                Giriş Yap
+              </button>
             </div>
           </div>
         </div>
       </div>
-
-      <footer>
-        <p>
-          Created with <i className="fa fa-heart"></i> by
-          <a target="_blank" rel="noreferrer" href="https://florin-pop.com">Florin Pop</a>
-          <a target="_blank" rel="noreferrer" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-        </p>
-      </footer>
     </div>
   );
 }

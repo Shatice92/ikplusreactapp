@@ -8,7 +8,7 @@
       "icon": "team.svg"
     },
     {
-      "title": "İzin Takibi",
+      "title": "İZİN TAKİBİ",
       "content": "İzin süreçlerini otomatikleştirin, takvim entegrasyonu ile izinleri planlayın, raporları tek tıkla alın.",
       "icon": "calendar.svg"
     },
@@ -40,7 +40,25 @@
     {
       "title": "Doküman Yönetimi",
       "content": "Açık pozisyonları yönetin, aday havuzu oluşturun ve işe alım süreçlerini hızlandırın.",
-      "icon": "document.svg"
+      "icon": "document.svg",
+      "title": "Eğitim ve Gelişim",
+      "content": "Çalışanlarınıza eğitim fırsatları sunun, gelişim planları oluşturun, eğitimleri dijital ortamda takip edin.",
+      "icon": "education.svg"
+    },
+    {
+      "title": "Vardiya Yönetimi",
+      "content": "Çalışanların vardiya planlarını oluşturun, çalışma saatlerini takip edin, vardiya düzenlemelerini kolayca yapın.",
+      "icon": "shift.svg"
+    },
+    {
+      "title": "Aylık Raporlama",
+      "content": "İK süreçleriyle ilgili aylık raporlar oluşturun, çalışan performansı ve gelişimi hakkında özetler alın.",
+      "icon": "report.svg"
+    },
+    {
+      "title": "Çalışan Memnuniyeti Anketi",
+      "content": "Çalışan memnuniyetini ölçün, anketler ve geri bildirimlerle İK süreçlerinizi iyileştirin.",
+      "icon": "survey.svg"
     }
   ]
 }
