@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './forgotpassword.css';
 
 const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState<string>("");
-  const navigate = useNavigate(); // React Router'dan yönlendirme için hook
+  const navigate = useNavigate();
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,18 +13,21 @@ const ForgotPassword: React.FC = () => {
   };
 
   return (
+    <div className="deneme-container">
     <div className="forgot-password-container">
       <h2>Parolanızı mı unuttunuz?</h2>
       <p>E-posta adresinizi girin, size parola sıfırlama bağlantısı gönderelim.</p>
 
       <form onSubmit={handleResetPassword}>
-        <input
-          type="email"
-          placeholder="E-posta adresiniz"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <div className="input-container">
+          <input
+            type="email"
+            placeholder="E-posta adresiniz"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
 
         <div className="button-container">
           <button type="submit" className="reset-button">Sıfırlama Bağlantısını Gönder</button>
@@ -32,6 +36,7 @@ const ForgotPassword: React.FC = () => {
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };

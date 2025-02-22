@@ -9,7 +9,7 @@ import UserProfile from "./page/UserProfile";
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
-const Login = lazy(() => import("./page/Login"));
+const Login=lazy(()=>import("./page/Login"))
 const Register = lazy(() => import("./page/Register"));
 
 const RouterPage = () => {
@@ -28,16 +28,17 @@ const RouterPage = () => {
   // Dummy user data (bu veriyi backend'den alabilirsiniz)
   const dummyUserData = {
     firstName: "Hatice",
-    lastName: "Yılmaz",
+    lastName: "SEYREK",
     email: "hatice@example.com",
     gender: "Kadın",
     phoneNumber: "1234567890",
-    birthDate: "1990-01-01",
+    birthDate: "1992-11-29",
     maritalStatus: "Evli",
     bloodType: "A+",
     identificationNumber: "12345678901",
     nationality: "Türk",
     educationLevel: "Üniversite",
+    status: "ACTIVE" as "ACTIVE" | "INACTIVE" 
   };
 
   const handleSave = (updatedData: any) => {
@@ -68,15 +69,14 @@ const RouterPage = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
-          
+
           {/* Profil Görüntüleme Sayfası */}
           <Route 
             path="/user-profile" 
             element={
-              <UserProfile 
-                userData={{...dummyUserData, password: ""}} 
+              <UserProfile
               />
-            } 
+            }
           />
           {/* Profil Düzenleme Sayfası */}
           <Route 
