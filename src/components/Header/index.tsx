@@ -56,11 +56,7 @@ const Header = ({
           <Span>{t("Hakkımızda")}</Span>
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={scrollToMission}>
-        HEAD
-          <Span>{t("Görevlerimiz")}</Span>
-
           <Span>{t("Misyonumuz")}</Span>
-        main
         </CustomNavLinkSmall>
         <CustomNavLinkSmall onClick={scrollToProduct}>
           <Span>{t("Ürünlerimiz")}</Span>
@@ -76,7 +72,7 @@ const Header = ({
 
         <CustomNavLinkSmall
           style={{ width: "180px" }}
-          onClick={() => navigate('/Giriş Yap')}
+          onClick={() => navigate('/login')}
         >
           <Span>
             <Button>{t("Giriş Yap")}</Button>
@@ -85,7 +81,7 @@ const Header = ({
 
         <CustomNavLinkSmall
           style={{ width: "180px" }}
-          onClick={() => navigate('/Kayıt Ol')}
+          onClick={() => navigate('/register')}
         >
           <Span>
             <Button>{t("Kayıt Ol")}</Button>

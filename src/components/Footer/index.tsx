@@ -58,51 +58,6 @@ const Footer = () => {
       <FooterSection>
         <Container>
           <Row justify="space-between">
-            HEAD
-            <Col lg={10} md={10} sm={12} xs={12}>
-              <Language>{t("İletişim")}</Language>
-              <Large to="/">{t("Bizimle paylaşın")}</Large>
-              <Para>{t("Herhangi bir sorunuz mu var?")}</Para>
-              <a href="mailto:l.qqbadze@gmail.com">
-                <Chat>{t("Bizimle İletişime Geçin")}</Chat>
-              </a>
-            </Col>
-            <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{t("Politikamız")}</Title>
-              <Large to="/">{t("Uygulama Güvenliğimiz")}</Large>
-              <Large to="/">{t("Yazılım İlkelerimiz")}</Large>
-            </Col>
-            <Col lg={6} md={6} sm={12} xs={12}>
-              <Empty />
-              <Large to="/">{t("Destek Merkezimiz")}</Large>
-              <Large to="/">{t("Müşteri Desteğimiz")}</Large>
-            </Col>
-          </Row>
-          <Row justify="space-between">
-            <Col lg={10} md={10} sm={12} xs={12}>
-              <Empty />
-              <Language>{t("Adres")}</Language>
-              <Para>ATATÜRK</Para>
-              <Para>1881.cd</Para>
-              <Para>Ankara</Para>
-            </Col>
-            <Col lg={8} md={8} sm={12} xs={12}>
-              <Title>{t("Şirketimiz")}</Title>
-              <Large to="/">{t("Hakkımızda")}</Large>
-              <Large to="/">{t("Blog")}</Large>
-              <Large to="/">{t("Basında Biz")}</Large>
-              <Large to="/">{t("Kariyer & Kültür")}</Large>
-            </Col>
-            <Col lg={6} md={6} sm={12} xs={12}>
-              <Label htmlFor="select-lang">{t("Diğer Diller")}</Label>
-              <LanguageSwitchContainer>
-                <LanguageSwitch onClick={() => handleChange("en")}>
-                  <SvgIcon src="united-states.svg" aria-label="homepage" width="30px" height="30px" />
-                </LanguageSwitch>
-                <LanguageSwitch onClick={() => handleChange("es")}>
-                  <SvgIcon src="spain.svg" aria-label="homepage" width="30px" height="30px" />
-                </LanguageSwitch>
-              </LanguageSwitchContainer>
             <Col lg={8} md={8} sm={12} xs={12}>
               <Title>{t("İletişim")}</Title>
               <Large to="/">{t("Herhangi bir sorunuz mu var?")}</Large>
@@ -132,7 +87,6 @@ const Footer = () => {
               <Large to="/">{t("Blog")}</Large>
               <Large to="/">{t("")}</Large>
               <Large to="/">{t("Kariyer ve Eğitim")}</Large>
-            main
             </Col>
           </Row>
         </Container>
