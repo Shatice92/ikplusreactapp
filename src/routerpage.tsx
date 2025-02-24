@@ -6,7 +6,7 @@ import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfileEdit from "./page/UserProfileEdit";
 import UserProfile from "./page/UserProfile";
-import Permissions from "./page/Permissions"; // İzinler sayfasını ekledik
+import CompanyManagerPermissions from "./page/CompanyManagerPermissions"; // Şirket Yöneticisi İçin İzinler sayfasını ekledik
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -82,8 +82,8 @@ const RouterPage = () => {
             }
           />
 
-          {/* ✅ İzinler Sayfası (Permissions) */}
-          <Route path="/permissions" element={<Permissions />} />
+          {/* ✅ Şirket Yöneticisi İçin İzinler Sayfası (CompanyManagerPermissions) */}
+          <Route path="/companymanagerpermissions" element={<CompanyManagerPermissions />} />
         </Routes>
       </Suspense>
 
