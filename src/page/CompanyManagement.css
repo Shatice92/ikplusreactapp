@@ -1,0 +1,209 @@
+#header img {
+    width: 170px; /* Logo boyutunu küçülttük */
+    height: auto;
+
+ 
+  }
+
+  /* #ff416c renk kodumuz */
+  .logout-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    background: #6e071f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 80px;
+  }
+
+  #header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #faf2f2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  .section {
+    flex: 1;
+    padding: 15px;
+    background: #ffe0e0;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    position: relative;
+  }
+
+  .container {
+    background-color: #ffffff; /* Dış alanı beyaz tutuyoruz */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    margin: auto;
+    font-family: Motiva Sans Bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+
+
+/* Genel sayfa düzeni */
+.app-container {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #007bff;
+    padding: 15px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .active {
+    background-color: #0056b3;
+  }
+  
+  /* İçerik bölümü */
+  .content {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    text-align: center;
+  }
+  
+  .home-title {
+    color: #333;
+  }
+
+  .deneme-container {
+    min-height: 100vh;
+    background: 
+        linear-gradient(135deg, rgba(255, 65, 108, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff416c' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    padding: 30px 20px;
+  
+  }
+
+  #header {
+    background: #f8f9fa; /* Açık gri tonunda arka plan */
+  }
+
+  .logout-button:hover {
+    background: #e03e5a; /* Biraz daha koyu pembe */
+    transition: background 0.3s ease-in-out;
+  }
+
+  /* Sidebar Genel Stil */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2c3e50; /* Koyu mavi-gri tonunda sidebar */
+    color: white;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Sidebar Menü Öğeleri */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    border-left: 4px solid transparent; /* Sol tarafta renkli çizgi olacak */
+}
+
+.sidebar-menu li:hover {
+    background: #34495e; /* Hover rengi */
+    color: #f1c40f; /* Sarı hover rengi */
+    border-left: 4px solid #f1c40f; /* Sarı sol çizgi */
+}
+
+/* Aktif Menü Öğesi */
+.sidebar-menu li.active {
+    background: #1abc9c; /* Aktif seçili menü */
+    color: white;
+    border-left: 4px solid #f39c12; /* Turuncu sol çizgi */
+}
+
+/* Sidebar Başlık */
+.sidebar-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid #ecf0f1; /* Alt çizgi */
+}
+
+/* Çıkış Butonu */
+.sidebar .logout-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background: #e74c3c; /* Kırmızı buton */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar .logout-button:hover {
+    background: #c0392b; /* Daha koyu kırmızı */
+}
+
+  

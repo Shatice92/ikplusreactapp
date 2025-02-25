@@ -6,6 +6,8 @@ import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfileEdit from "./page/UserProfileEdit";
 import UserProfile from "./page/UserProfile";
+import CompanyManagement from "./page/CompanyManagement";
+
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -68,6 +70,8 @@ const RouterPage = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
+          <Route path="/company" element={<CompanyManagement />} />
+          
           
           {/* Profil Görüntüleme Sayfası */}
           <Route 
