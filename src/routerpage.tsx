@@ -7,6 +7,7 @@ import ForgotPassword from "./page/ForgotPassword";
 import UserProfileEdit from "./page/UserProfileEdit";
 import UserProfile from "./page/UserProfile";
 import CompanyManagerPermissions from "./page/CompanyManagerPermissions"; // Şirket Yöneticisi İçin İzinler sayfasını ekledik
+import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -82,11 +83,14 @@ const RouterPage = () => {
             }
           />
 
-          {/* ✅ Şirket Yöneticisi İçin İzinler Sayfası (CompanyManagerPermissions) */}
+          {/* ✅ Şirket Yöneticisi İçin İzinler Sayfası */}
           <Route path="/companymanagerpermissions" element={<CompanyManagerPermissions />} />
+
+          {/* ✅ Çalışanlar için İzinler Sayfası */}
+          <Route path="/permissions" element={<Permissions />} />
         </Routes>
       </Suspense>
-
+      
       <Footer />
     </>
   );
