@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './personalmanagement.css'
 import swal from 'sweetalert'
@@ -1152,6 +1153,23 @@ function PersonalManagementPage() {
         };
     }, [employees]);
 
+    const departmentStats = useMemo(() => {
+        if (!employees || employees.length === 0) return [];
+        
+        const stats = employees.reduce((acc: { [key: string]: number }, emp) => {
+            if (emp.department) {
+                acc[emp.department] = (acc[emp.department] || 0) + 1;
+            }
+            return acc;
+        }, {});
+
+        return Object.entries(stats).map(([name, count]) => ({
+            name,
+            count,
+            icon: 'fas fa-users'
+        }));
+    }, [employees]);
+
     // Sayfalama kontrolü
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -1160,7 +1178,13 @@ function PersonalManagementPage() {
             {/* Sidebar */}
             <div className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
                 <div className="sidebar-header">
-                    <h3>IK Plus</h3>
+                    <div className="logo-container">
+                        {sidebarCollapsed ? (
+                            <img src="/assets/logo1.png" alt="IK Plus Logo" className="sidebar-logo" />
+                        ) : (
+                            <img src="/assets/logo2.png" alt="IK Plus Logo" className="sidebar-logo" />
+                        )}
+                    </div>
                     <button className="sidebar-toggle" onClick={toggleSidebar}>
                         <i className="fas fa-chevron-left"></i>
                     </button>
