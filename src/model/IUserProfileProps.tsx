@@ -1,5 +1,6 @@
 export interface IUserProfileProps {
     userData: {
+      [x: string]: any;
       firstName: string;
       lastName: string;
       email: string;
@@ -17,13 +18,13 @@ export interface IUserProfileProps {
   }
   
   export enum UserGender {
-    FEMALE = "FEMALE",
-    MALE = "MALE",
+    KADIN = "KADIN",
+    ERKEK = "ERKEK",
   }
   
   export enum UserMaritalStatus {
-    SINGLE = "SINGLE",
-    MARRIED = "MARRIED",
+    BEKAR = "BEKAR",
+    EVLI = "EVLI",
   }
   
   export enum UserBloodType {
@@ -38,12 +39,12 @@ export interface IUserProfileProps {
   }
   
   export enum UserEducationLevel {
-    PRIMARY_SCHOOL = "İlkokul",
-    MIDDLE_SCHOOL = "Ortaokul",
-    HIGH_SCHOOL = "Lise",
-    UNIVERSITY = "Üniversite",
-    MASTER = "Yüksek Lisans",
-    DOCTORATE = "Doktora",
+    ILKOKUL = "ILKOKUL",
+    ORTAOKUL = "ORTAOKUL",
+    LISEL = "LISE",
+    UNIVERSITE = "UNIVERSITE",
+    YUKSEK_LISANS = "Yüksek Lisans",
+  
   }
   
   export enum UserStatus {
