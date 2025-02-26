@@ -72,11 +72,11 @@
   }
   
   button:nth-child(1) {
-    background-color: #007bff;
+    background-color: #ccc;
     color: white;
   }
   
   button:nth-child(2) {
-    background-color: #dc3545;
+    background-color: #ccc;
     color: white;
   }

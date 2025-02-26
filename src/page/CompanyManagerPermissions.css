@@ -38,7 +38,7 @@ input:focus, select:focus, button:focus {
 
 .new-request-form button {
   background-color: white;
-  color: #333;
+  color: #ccc;
   border: 1px solid #ccc;
   cursor: pointer;
 }
@@ -73,17 +73,17 @@ button {
   border-radius: 5px;
   cursor: pointer;
   background-color: white;
-  color: #333;
+  color: #f2f2f2;
 }
 
 button:hover {
   background-color: #f8f8f8;
-  color: #333; 
+  color: #f8f8f8; 
 }
 
 button:active {
   background-color: #e0e0e0; 
-  color: #333; 
+  color: #f2f2f2; 
 }
 
 button:disabled {
@@ -113,7 +113,7 @@ button:nth-child(2):active,
 button:nth-child(3):active,
 button:nth-child(4):active {
   background-color: #e0e0e0;
-  color: #333;
+  color: #f8f8f8;
 }
 
 input[type="date"] {
