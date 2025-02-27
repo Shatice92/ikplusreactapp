@@ -7,10 +7,10 @@ import ForgotPassword from "./page/ForgotPassword";
 import UserProfileEdit from "./page/UserProfileEdit";
 import UserProfile from "./page/UserProfile";
 import PersonalManagementPage from "./page/PersonalManagementPage";
-
+import TestPage from './page/TestPage';
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
-const Login=lazy(()=>import("./page/Login"))
+const Login = lazy(() => import("./page/Login"))
 const Register = lazy(() => import("./page/Register"));
 
 const RouterPage = () => {
@@ -39,7 +39,7 @@ const RouterPage = () => {
     identificationNumber: "12345678901",
     nationality: "Türk",
     educationLevel: "Üniversite",
-    status: "ACTIVE" as "ACTIVE" | "INACTIVE" 
+    status: "ACTIVE" as "ACTIVE" | "INACTIVE"
   };
 
   const handleSave = (updatedData: any) => {
@@ -50,7 +50,7 @@ const RouterPage = () => {
   return (
     <>
       {/* Default styles tüm sayfalarda geçerli olacak */}
-      <DefaultStyles /> 
+      <DefaultStyles />
 
       {/* Home sayfasına özel stil */}
       <Routes>
@@ -63,7 +63,7 @@ const RouterPage = () => {
         scrollToProduct={() => scrollToSection("product")}
         scrollToContact={() => scrollToSection("contact")}
       />
-      
+
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/homepage" element={<Home />} />
@@ -71,24 +71,25 @@ const RouterPage = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
           <Route path="/personel" element={<PersonalManagementPage />} />
-          
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/test" element={<TestPage />} />
           {/* Profil Görüntüleme Sayfası */}
-          <Route 
-            path="/user-profile" 
+          <Route
+            path="/user-profile"
             element={
               <UserProfile
               />
             }
           />
           {/* Profil Düzenleme Sayfası */}
-          <Route 
-            path="/user-profile-edit" 
+          <Route
+            path="/user-profile-edit"
             element={
-              <UserProfileEdit 
-                userData={dummyUserData} 
-                onSave={handleSave} 
+              <UserProfileEdit
+                userData={dummyUserData}
+                onSave={handleSave}
               />
-            } 
+            }
           />
         </Routes>
       </Suspense>
