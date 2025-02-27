@@ -4,10 +4,12 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
-import UserProfileEdit from "./page/UserProfileEdit";
 import UserProfile from "./page/UserProfile";
-import PersonalManagementPage from "./page/PersonalManagementPage";
-import TestPage from './page/TestPage';
+import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
+import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
+import ResetPassword from "./page/ResetPassword";
+
+
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./page/Login"))
@@ -82,18 +84,10 @@ const RouterPage = () => {
             }
           />
           {/* Profil Düzenleme Sayfası */}
-          <Route
-            path="/user-profile-edit"
-            element={
-              <UserProfileEdit
-                userData={dummyUserData}
-                onSave={handleSave}
-              />
-            }
-          />
+          
         </Routes>
       </Suspense>
-
+      
       <Footer />
     </>
   );
