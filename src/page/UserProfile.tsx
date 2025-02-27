@@ -1,13 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import './UserProfile.css';
 import { useNavigate } from 'react-router';
-import { IUserProfileProps } from '../model/IUserProfileProps';
+import { IUserProfileProps, UserStatus } from '../model/IUserProfileProps';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Sidebar from '../components/organisms/CompanyManagerSidebar';
+import AdminSideBar from '../components/organisms/AdminSideBar';
+import CompanyManagerSidebar from '../components/organisms/CompanyManagerSidebar';
+import EmployeeSideBar from '../components/organisms/EmployeeSideBar';
+
+type RoleName = "ADMIN" | "COMPANY_MANAGER" | "EMPLOYEE" | "VISITOR" | "WEBSITE_MEMBER";
 
 
 const UserProfile = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState<IUserProfileProps["userData"] | null>(null);
   const [editableData, setEditableData] = useState<IUserProfileProps["userData"] | null>(null);
+  const [bloodTypes, setBloodTypes] = useState<string[]>([]);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [userRole, setUserRole] = useState<RoleName | null>(null);
+
+
+  const [recentActions, setRecentActions] = useState([
+    { id: 1, action: "Profil bilgileri güncellendi", date: new Date().toLocaleString() },
+    { id: 2, action: "Yeni görev eklendi", date: new Date().toLocaleString() },
+    { id: 3, action: "Şifre değiştirildi", date: new Date().toLocaleString() },
+    { id: 4, action: "Yeni mesaj alındı", date: new Date().toLocaleString() },
+    { id: 5, action: "İzin talebi onaylandı", date: new Date().toLocaleString() },
+    { id: 6, action: "Hesap durumu değiştirildi", date: new Date().toLocaleString() }
+  ]);
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -16,6 +36,7 @@ const UserProfile = () => {
       return;
     }
 
+    // Kullanıcı bilgilerini çekme
     fetch("http://localhost:9090/v1/dev/user/get-profile-by-token", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
@@ -30,16 +51,62 @@ const UserProfile = () => {
         }
       })
       .catch((err) => console.error("Profil yüklenirken hata oluştu:", err));
+
+    // Kullanıcı rolünü çekme
+    // Kullanıcı rolünü çekme
+    fetch("http://localhost:9090/v1/dev/user/dashboard", {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((roleData) => {
+        if (roleData.code === 200) {
+          setUserRole(roleData.data);
+        } else {
+          console.error("Rol bilgisi alınamadı");
+        }
+      })
+
+    // Kan grubu verisini çekme
+    fetch("http://localhost:9090/v1/dev/blood-types")
+      .then((res) => res.json())
+      .then((response) => {
+        console.log("Kan grupları:", response.data); // Kontrol için log ekleyelim
+        setBloodTypes(response.data); // "data" içindeki diziye erişiyoruz
+      })
+      .catch((err) => console.error("Kan grupları yüklenirken hata oluştu:", err));
   }, [navigate]);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (editableData) {
       setEditableData({ ...editableData, [e.target.name]: e.target.value });
     }
   };
+  // Sidebar Seçimi
+  const renderSidebar = () => {
+    if (!userRole || userRole === "VISITOR" || userRole === "WEBSITE_MEMBER") {
+      return null; // Visitor ve Website Member için sidebar yok
+    }
+    switch (userRole) {
+      case "ADMIN":
+        return <AdminSideBar collapsed={sidebarCollapsed} onToggle={function (): void {
+          throw new Error('Function not implemented.');
+        }} />;
+      case "COMPANY_MANAGER":
+        return <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={function (): void {
+          throw new Error('Function not implemented.');
+        }} />;
+      case "EMPLOYEE":
+        return <EmployeeSideBar collapsed={sidebarCollapsed} onToggle={function (): void {
+          throw new Error('Function not implemented.');
+        }} />;
+      default:
+        return null;
+    }
+  };
 
   const saveChanges = () => {
     if (!editableData) return;
-  
+
     fetch("http://localhost:9090/v1/dev/user/update-user-profile", {
       method: "PUT",
       headers: {
@@ -57,23 +124,41 @@ const UserProfile = () => {
       .catch((err) => console.error("Güncelleme hatası:", err));
   };
 
+  const toggleAccountStatus = () => {
+    if (!editableData) return;
+
+    const newStatus = editableData.status === "ACTIVE" ? "INACTIVE" : "ACTIVE";
+    fetch("http://localhost:9090/v1/dev/user/update-status", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ status: newStatus, userId: editableData.id }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        // Durum değiştirildikten sonra kullanıcı verisini güncelle
+        setEditableData({ ...editableData, status: newStatus === "ACTIVE" ? UserStatus.ACTIVE : UserStatus.INACTIVE });
+        alert(`Hesap ${newStatus === "ACTIVE" ? "aktifleştirildi" : "donduruldu"}`);
+      })
+      .catch((err) => console.error("Hesap durumu güncellenirken hata oluştu:", err));
+  };
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
+  };
+
+
 
   return (
     <div className="deneme-container">
+
       <section className="bg-light py-3 py-md-5 py-xl-8">
-        <div className="container">
-          <div className="row justify-content-between" id="header">
-            <img src="/img/svg/logo.svg" width={100} height={100} alt="Logo" />
-            <span>
-              <button onClick={() => { sessionStorage.removeItem("token"); navigate("/login"); }}>
-                Çıkış Yap
-              </button>
-            </span>
-          </div>
-        </div>
+
 
         <div className="container profile-container">
-          {/* Kullanıcı Kartı */}
+          {renderSidebar()} {/* Dinamik olarak Sidebar render ediliyor */}
+
           <div className="user-card">
             <div className="user-card-header"></div>
             <div className="card-img-container">
@@ -86,10 +171,22 @@ const UserProfile = () => {
             <div className="card-body">
               <h5 className="welcome-title">Merhaba, {userData?.firstName}</h5>
               <p className="welcome-description">Hesabınız başarıyla oluşturuldu. Lütfen bilgilerinizi güncelleyin!</p>
+              {/* Son İşlemler Alanı */}
+              {/* Son İşlemler Alanı */}
+              <div className="recent-actions">
+                <h6>Son İşlemler</h6>
+                <ul>
+                  {recentActions.map((action) => (
+                    <li key={action.id}>
+                      <span className="action-date">{action.date}</span> - {action.action}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
+
           </div>
 
-          {/* Kişisel Bilgiler Alanı */}
           {editableData && (
             <div className="profile-info">
               <h2>Kişisel Bilgileriniz</h2>
@@ -100,8 +197,9 @@ const UserProfile = () => {
                 <li>
                   <strong>Cinsiyet:</strong>
                   <select name="gender" value={editableData.gender} onChange={handleChange}>
-                    <option value="Kadın">Kadın</option>
-                    <option value="Erkek">Erkek</option>
+                    <option >Seçim Yapınız</option>
+                    <option value="KADIN">KADIN</option>
+                    <option value="ERKEK">ERKEK</option>
                   </select>
                 </li>
                 <li><strong>Telefon Numarası:</strong> <input type="text" name="phoneNumber" value={editableData.phoneNumber} onChange={handleChange} /></li>
@@ -109,22 +207,24 @@ const UserProfile = () => {
                 <li>
                   <strong>Medeni Durum:</strong>
                   <select name="maritalStatus" value={editableData.maritalStatus} onChange={handleChange}>
-                    <option value="Bekar">Bekar</option>
-                    <option value="Evli">Evli</option>
+                    <option >Seçim Yapınız</option>
+                    <option value="BEKAR">BEKAR</option>
+                    <option value="EVLI">EVLİ</option>
                   </select>
                 </li>
                 <li>
                   <strong>Kan Grubu:</strong>
-                  <select name="bloodType" value={editableData.bloodType} onChange={handleChange}>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
+                  <select name="bloodType" value={editableData?.bloodType || ""} onChange={handleChange}>
+                    <option >Seçim Yapınız</option>
+                    {bloodTypes.length > 0 ? (
+                      bloodTypes.map((type) => (
+                        <option key={type} value={type}>{type.replace("_", " ")}</option>
+                      ))
+                    ) : (
+                      <option disabled>Yükleniyor...</option>
+                    )}
                   </select>
+
                 </li>
 
                 <li><strong>Kimlik Numarası:</strong> <input type="text" name="identificationNumber" value={editableData.identificationNumber} onChange={handleChange} /></li>
@@ -132,28 +232,33 @@ const UserProfile = () => {
                 <li>
                   <strong>Eğitim Seviyesi:</strong>
                   <select name="educationLevel" value={editableData.educationLevel} onChange={handleChange}>
-                    <option value="İlkokul">ILKOKUL</option>
-                    <option value="Ortaokul">ORTAOKUL</option>
-                    <option value="Lise">LISE</option>
-                    <option value="Üniversite">UNIVERSITE</option>
-                    <option value="Yüksek Lisans">YUKSEK_LISANS</option>
-                    <option value="Doktora">Doktora</option>
+                    <option >Seçim Yapınız</option>
+                    <option value="ILKOKUL">İLKOKUL</option>
+                    <option value="ORTAOKUL">ORTAOKUL</option>
+                    <option value="LISE">LİSE</option>
+                    <option value="UNIVERSITE">ÜNİVERSİTE</option>
+                    <option value="YUKSEK_LISANS">YÜKSEK LİSANS</option>
                   </select>
                 </li>
               </ul>
+
               <button onClick={saveChanges} className="edit-profile-button">
                 Değişiklikleri Kaydet
               </button>
-              <button
-
-                className={editableData.status === "ACTIVE" ? "deactivate-button" : "activate-button"}
-              >
+              <button onClick={toggleAccountStatus} className={editableData.status === "ACTIVE" ? "deactivate-button" : "activate-button"}>
                 {editableData.status === "ACTIVE" ? "Hesabı Dondur" : "Hesabı Aktifleştir"}
+              </button>
+
+              <button className='logout-button' onClick={() => { sessionStorage.removeItem("token"); navigate("/login"); }}>
+                Sistemden Çıkış Yap
               </button>
             </div>
           )}
+
         </div>
+
       </section>
+
     </div>
   );
 };

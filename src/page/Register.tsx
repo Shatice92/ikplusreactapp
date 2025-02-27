@@ -67,11 +67,11 @@ function Register() {
     return (
         <div id="login-page">
             <div className="login">
-            <div className="logo-container">
+
                 <a href="/homepage">
                     <img src="/img/svg/logo.svg" width={250} height={250} alt="" />
                 </a>
-                </div>
+
                 <div className="form-container sign-in-container">
                     <form onSubmit={(e) => e.preventDefault()}>
                         <input type="text" name="firstName" placeholder="İsim" onChange={handleChange} />
@@ -85,7 +85,7 @@ function Register() {
                 </div>
             </div>
             <div className="background">
-                <img src="/img/ben harikayım.jpg" alt="Background" />
+                <img src="/img/background.jpg" alt="Background" />
             </div>
         </div>
     )
