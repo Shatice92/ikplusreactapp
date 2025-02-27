@@ -1,0 +1,82 @@
+.permissions-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .new-request-form,
+  .requests-list {
+    margin-top: 20px;
+  }
+  
+  .new-request-form input,
+  .new-request-form select,
+  .new-request-form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .new-request-form button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .new-request-form button:hover {
+    background-color: #218838;
+  }
+  
+  .requests-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .requests-list table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  .requests-list th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .requests-list th {
+    background-color: #f2f2f2;
+  }
+  
+  button {
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:nth-child(1) {
+    background-color: #ccc;
+    color: white;
+  }
+  
+  button:nth-child(2) {
+    background-color: #ccc;
+    color: white;
+  }
