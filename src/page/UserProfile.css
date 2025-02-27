@@ -20,10 +20,6 @@
   margin-bottom: 5px;
 }
 
-body {
-  background: linear-gradient(to bottom right, #ff416c, #ff7e80); /* Gradyan arka plan */
-  color: #333;
-}
 #header img {
   width: 150px; /* Logo boyutunu küçülttük */
   height: auto;
@@ -32,7 +28,7 @@ body {
 .logout-button {
   padding: 6px 12px;
   font-size: 14px;
-  background: #ff416c;
+  background: grey;
   color: white;
   border: none;
   border-radius: 5px;
@@ -180,25 +176,21 @@ body {
   font-size: 16px;
 }
 
-.edit-profile-button {
+.edit-profile-button, .deactivate-button, .activate-button {
   background-color: #ff416c;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 6px 16px; /* Reduced padding for a shorter button */
+  font-size: 14px; /* Adjust font size for better fitting */
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+  max-width: 200px; /* Optional: limit the button width */
+  width: 100%; /* Makes button responsive, adjusting to available space */
+  text-align: center; /* Ensures the text is centered */
+  margin-bottom: 20px;
 }
 
-.deactivate-button, .activate-button {
-  background-color: #ff416c;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-}
 
 .recent-activity {
   background-color: #ffe0e0; /* Aktivite bölümü için pastel tonları */

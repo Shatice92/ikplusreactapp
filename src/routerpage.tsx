@@ -4,14 +4,15 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
-import UserProfileEdit from "./page/UserProfileEdit";
 import UserProfile from "./page/UserProfile";
 import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
 import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
+import ResetPassword from "./page/ResetPassword";
+
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
-const Login = lazy(() => import("./page/Login"));
+const Login=lazy(()=>import("./page/Login"))
 const Register = lazy(() => import("./page/Register"));
 
 const RouterPage = () => {
@@ -40,7 +41,7 @@ const RouterPage = () => {
     identificationNumber: "12345678901",
     nationality: "Türk",
     educationLevel: "Üniversite",
-    status: "ACTIVE" as "ACTIVE" | "INACTIVE",
+    status: "ACTIVE" as "ACTIVE" | "INACTIVE" 
   };
 
   const handleSave = (updatedData: any) => {
@@ -73,20 +74,15 @@ const RouterPage = () => {
           <Route path="/reset-password" element={<ForgotPassword />} />
 
           {/* Profil Görüntüleme Sayfası */}
-          <Route path="/user-profile" element={<UserProfile />} />
-
-          {/* Profil Düzenleme Sayfası */}
-          <Route
-            path="/user-profile-edit"
+          <Route 
+            path="/user-profile" 
             element={
-              <UserProfileEdit userData={dummyUserData} onSave={handleSave} />
+              <UserProfile
+              />
             }
           />
-
-          <Route path="/companymanagerpermissions" element={<CompanyManagerPermissions />} />
-
-          {/* ✅ Çalışanlar için İzinler Sayfası */}
-          <Route path="/permissions" element={<Permissions />} />
+          {/* Profil Düzenleme Sayfası */}
+          
         </Routes>
       </Suspense>
       
