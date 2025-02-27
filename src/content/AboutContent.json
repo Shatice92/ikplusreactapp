@@ -23,6 +23,24 @@
       "icon": "performance.svg"
     },
     {
+      "title": "Eğitim ve Gelişim Yönetimi",
+      "content": "Çalışanların eğitim süreçlerini takip edin, gelişim planları oluşturun ve online eğitim modülleriyle yetkinliklerini artırın.",
+      "icon": "education.svg"
+    },
+    {
+      "title": "İşe Alım ve Aday Takibi",
+      "content": "Açık pozisyonları yönetin, aday havuzu oluşturun ve işe alım süreçlerini hızlandırın.",
+      "icon": "recruitment.svg"
+    },
+    {
+      "title": "Yan Haklar ve Ödüllendirme",
+      "content": "İş sözleşmeleri, özlük dosyaları ve şirket içi dokümanlarınızı güvenli bir şekilde saklayın. Çalışanlarla belge paylaşımı yapın, onay ve imza süreçlerini dijitale taşıyın.",
+      "icon": "gift.svg"
+    },
+    {
+      "title": "Doküman Yönetimi",
+      "content": "Açık pozisyonları yönetin, aday havuzu oluşturun ve işe alım süreçlerini hızlandırın.",
+      "icon": "document.svg",
       "title": "Eğitim ve Gelişim",
       "content": "Çalışanlarınıza eğitim fırsatları sunun, gelişim planları oluşturun, eğitimleri dijital ortamda takip edin.",
       "icon": "education.svg"
