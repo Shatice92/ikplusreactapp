@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import './resetpassword.css';
 
 const ResetPassword: React.FC = () => {
@@ -7,7 +7,6 @@ const ResetPassword: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const location = useLocation();
-  const navigate = useNavigate();
 
   // Token'ı URL'den al
   const queryParams = new URLSearchParams(location.search);
@@ -21,26 +20,25 @@ const ResetPassword: React.FC = () => {
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (newPassword !== confirmPassword) {
       setError("Şifreler uyuşmuyor.");
       return;
     }
-
+  
     try {
-      const response = await fetch("http://localhost:9090/v1/dev/password/reset", {
+      const response = await fetch(`http://localhost:9090/v1/dev/password/reset?token=${token}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token, newPassword }),
+        body: JSON.stringify({ newPassword }),
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         alert("Şifreniz başarıyla sıfırlandı!");
-        navigate("/login"); // Giriş sayfasına yönlendir
       } else {
         setError(data.message || "Şifre sıfırlama başarısız oldu.");
       }
@@ -49,6 +47,7 @@ const ResetPassword: React.FC = () => {
       setError("Bir hata oluştu, lütfen tekrar deneyin.");
     }
   };
+  
 
   return (
     <div className="reset-password-container">

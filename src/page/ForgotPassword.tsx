@@ -6,30 +6,32 @@ const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleResetPassword = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // ForgotPassword sayfasındaki yönlendirme
+const handleResetPassword = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:9090/v1/dev/password/request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+  try {
+    const params = new URLSearchParams();
+    params.append("email", email);
 
-      const data = await response.json();
+    const response = await fetch(`http://localhost:9090/v1/dev/password/request?${params.toString()}`, {
+      method: "POST",
+    });
 
-      if (response.ok) {
-        alert("Şifre sıfırlama bağlantısı e-posta adresinize gönderildi!");
-      } else {
-        alert(data.message || "Şifre sıfırlama talebi başarısız oldu.");
-      }
-    } catch (error) {
-      console.error("Şifre sıfırlama hatası:", error);
-      alert("Bir hata oluştu, lütfen tekrar deneyin.");
+    const data = await response.text();
+
+    if (response.ok) {
+      alert("Şifre sıfırlama bağlantısı e-posta adresinize gönderildi!");
+    } else {
+      alert(data || "Şifre sıfırlama talebi başarısız oldu.");
     }
-  };
+  } catch (error) {
+    console.error("Şifre sıfırlama hatası:", error);
+    alert("Bir hata oluştu, lütfen tekrar deneyin.");
+  }
+  // Burada React Router'a yönlendirme yapıyoruz.
+  navigate("/login");
+};
 
   return (
     <div className="deneme-container">
