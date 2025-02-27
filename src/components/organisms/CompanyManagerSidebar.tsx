@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import "./Sidebar.css";
 
 interface SidebarProps {
@@ -6,6 +7,10 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
+    const navigate = useNavigate();
+
+
+    
   
   return (
       <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
