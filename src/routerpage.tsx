@@ -58,9 +58,6 @@ const RouterPage = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
-
-
-          {/* Profil Görüntüleme Sayfası */}
           <Route
             path="/profile"
             element={
@@ -68,11 +65,8 @@ const RouterPage = () => {
               />
             }
           />
-          {/* Profil Düzenleme Sayfası */}
-
         </Routes>
       </Suspense>
-
       <Footer />
     </>
   );

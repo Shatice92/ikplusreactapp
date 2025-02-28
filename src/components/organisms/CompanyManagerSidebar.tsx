@@ -13,6 +13,40 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
         navigate("/companymanager-leaves");
     };
 
+    const handleShiftNavigation = () => {
+        navigate("/companymanager-shifts");
+    };
+
+    const handleAssetNavigation = () => {
+        navigate("/companymanager-assets");
+    };
+
+    const handleSalaryNavigation = () => {
+        navigate("/companymanager-salaries");
+    };
+
+    const handleBonusNavigation = () => {
+        navigate("/companymanager-bonuses");
+    };
+
+    const handleExpenseNavigation = () => {
+        navigate("/companymanager-expenses");
+    };
+
+    const handleReportNavigation = () => {
+        navigate("/companymanager-reports");
+    };
+    const handlePersonalNavigation = () => {
+        navigate("/companymanager-personal-management");
+    };
+
+    const handleProfileNavigation = () => {
+        navigate("/profile");
+    };
+
+    const handleSettingsNavigation = () => {
+        navigate("/companymanager-settings");
+    };
 
     return (
         <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
@@ -33,7 +67,7 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
             <ul className="sidebar-menu">
                 <li className="menu-label">Ana Menü</li>
                 <li>
-                    <a href="#" className="active">
+                <a onClick={handlePersonalNavigation}>
                         <i className="fas fa-users"></i>
                         <span>Personel Yönetimi</span>
                     </a>
@@ -45,13 +79,13 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a onClick={handleShiftNavigation}>
                         <i className="fas fa-clock"></i>
                         <span>Vardiya Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a onClick={handleAssetNavigation}>
                         <i className="fas fa-box"></i>
                         <span>Zimmet Yönetimi</span>
                     </a>
@@ -59,19 +93,19 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
 
                 <li className="menu-label">Finans</li>
                 <li>
-                    <a href="#">
+                    <a onClick={handleSalaryNavigation}>
                         <i className="fas fa-money-bill-wave"></i>
                         <span>Maaş Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a onClick={handleBonusNavigation}>
                         <i className="fas fa-gift"></i>
                         <span>Prim Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a onClick={handleExpenseNavigation}>
                         <i className="fas fa-receipt"></i>
                         <span>Harcama Yönetimi</span>
                     </a>
@@ -79,26 +113,29 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
 
                 <li className="menu-label">Diğer</li>
                 <li>
-                    <a href="#">
+                    <a onClick={handleReportNavigation}>
                         <i className="fas fa-chart-line"></i>
                         <span>Raporlar</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a onClick={handleProfileNavigation}>
                         <i className="fas fa-user-cog"></i>
                         <span>Profil Ayarları</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a onClick={handleSettingsNavigation}>
                         <i className="fas fa-cog"></i>
                         <span>Ayarlar</span>
                     </a>
                 </li>
-                <button className='logout-button' onClick={() => { sessionStorage.removeItem("token"); navigate("/login"); }}>
-                Sistemden Çıkış Yap
-              </button>
+                <button className='logout-button' onClick={() => { 
+                    sessionStorage.removeItem("token"); 
+                    navigate("/login"); 
+                }}>
+                    Sistemden Çıkış Yap
+                </button>
             </ul>
 
         </div>

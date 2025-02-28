@@ -28,35 +28,37 @@ const AdminSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             <ul className="sidebar-menu">
                 <li className="menu-label">Ana Menü</li>
                 <li>
-                    <a href="#" className="active">
+                    <a href="#" onClick={() => navigate('/company-management')}>
                         <i className="fas fa-users"></i>
                         <span>Şirket Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" className="active">
+                    <a href="#" onClick={() => navigate('/definition-management')}>
                         <i className="fas fa-users"></i>
                         <span>Tanımlamalar Yönetimi</span>
                     </a>
                 </li>
                 <li className="menu-label">Diğer</li>
                 <li>
-                    <a href="#">
+                    <a href="#" onClick={() => navigate('/profile')}>
                         <i className="fas fa-user-cog"></i>
                         <span>Profil Ayarları</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#" onClick={() => navigate('/settings')}>
                         <i className="fas fa-cog"></i>
                         <span>Ayarlar</span>
                     </a>
                 </li>
-                <button className='logout-button' onClick={() => { sessionStorage.removeItem("token"); navigate("/login"); }}>
+                <button className='logout-button' onClick={() => { 
+                    sessionStorage.removeItem("token"); 
+                    navigate("/login"); 
+                }}>
                     Sistemden Çıkış Yap
                 </button>
             </ul>
-
         </div>
     );
 };
