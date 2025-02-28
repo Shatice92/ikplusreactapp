@@ -9,56 +9,63 @@ interface SidebarProps {
 const AdminSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     const navigate = useNavigate();
 
+    // Tek bir fonksiyon ile yönlendirme işlemi
+    const handleNavigation = (path: string) => {
+        navigate(path);
+    };
+
     return (
         <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
             <div className="sidebar-header">
                 <div className="logo-container">
-                    {collapsed ? (
-                        <img src="/assets/logo1.png" alt="IK Plus Logo" className="sidebar-logo" />
-                    ) : (
-                        <img src="/assets/logo2.png" alt="IK Plus Logo" className="sidebar-logo" />
-                    )}
+                    <img src={collapsed ? "/assets/logo1.png" : "/assets/logo2.png"} alt="IK Plus Logo" className="sidebar-logo" />
                 </div>
 
                 <button className="sidebar-toggle" onClick={onToggle}>
-                    <i className="fas fa-chevron-left"></i>
+                    <i className={`fas ${collapsed ? "fa-chevron-right" : "fa-chevron-left"}`}></i>
                 </button>
             </div>
 
             <ul className="sidebar-menu">
                 <li className="menu-label">Ana Menü</li>
                 <li>
-                    <a href="#" onClick={() => navigate('/company-management')}>
-                        <i className="fas fa-users"></i>
+                    <button onClick={() => handleNavigation('/company-management')}>
+                        <i className="fas fa-building"></i>
                         <span>Şirket Yönetimi</span>
-                    </a>
+                    </button>
                 </li>
                 <li>
-                    <a href="#" onClick={() => navigate('/definition-management')}>
-                        <i className="fas fa-users"></i>
+                    <button onClick={() => handleNavigation('/definition-management')}>
+                        <i className="fas fa-list"></i>
                         <span>Tanımlamalar Yönetimi</span>
-                    </a>
+                    </button>
                 </li>
+
                 <li className="menu-label">Diğer</li>
                 <li>
-                    <a href="#" onClick={() => navigate('/profile')}>
+                    <button onClick={() => handleNavigation('/profile')}>
                         <i className="fas fa-user-cog"></i>
                         <span>Profil Ayarları</span>
-                    </a>
+                    </button>
                 </li>
                 <li>
-                    <a href="#" onClick={() => navigate('/settings')}>
+                    <button onClick={() => handleNavigation('/settings')}>
                         <i className="fas fa-cog"></i>
                         <span>Ayarlar</span>
-                    </a>
+                    </button>
                 </li>
-                <button className='logout-button' onClick={() => { 
+            </ul>
+
+            {/* Logout butonu menüden ayrı olarak eklendi */}
+            <div className="sidebar-footer">
+                <button className="logout-button" onClick={() => { 
                     sessionStorage.removeItem("token"); 
                     navigate("/login"); 
                 }}>
-                    Sistemden Çıkış Yap
+                    <i className="fas fa-sign-out-alt"></i>
+                    <span>Çıkış Yap</span>
                 </button>
-            </ul>
+            </div>
         </div>
     );
 };

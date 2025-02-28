@@ -12,11 +12,12 @@ type RoleName = "ADMIN" | "COMPANY_MANAGER" | "EMPLOYEE" | "VISITOR" | "WEBSITE_
 
 
 const UserProfile = () => {
+  
   const navigate = useNavigate();
   const [userData, setUserData] = useState<IUserProfileProps["userData"] | null>(null);
   const [editableData, setEditableData] = useState<IUserProfileProps["userData"] | null>(null);
   const [bloodTypes, setBloodTypes] = useState<string[]>([]);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
   const [userRole, setUserRole] = useState<RoleName | null>(null);
 
 
@@ -88,17 +89,11 @@ const UserProfile = () => {
     }
     switch (userRole) {
       case "ADMIN":
-        return <AdminSideBar collapsed={sidebarCollapsed} onToggle={function (): void {
-          throw new Error('Function not implemented.');
-        }} />;
+        return <AdminSideBar collapsed={collapsed} onToggle={handleToggleSidebar} />;
       case "COMPANY_MANAGER":
-        return <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={function (): void {
-          throw new Error('Function not implemented.');
-        }} />;
+        return <CompanyManagerSidebar collapsed={collapsed} onToggle={handleToggleSidebar} />;
       case "EMPLOYEE":
-        return <EmployeeSideBar collapsed={sidebarCollapsed} onToggle={function (): void {
-          throw new Error('Function not implemented.');
-        }} />;
+        return <EmployeeSideBar collapsed={collapsed} onToggle={handleToggleSidebar} />;
       default:
         return null;
     }
@@ -144,10 +139,9 @@ const UserProfile = () => {
       })
       .catch((err) => console.error("Hesap durumu güncellenirken hata oluştu:", err));
   };
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed);
+  const handleToggleSidebar = () => {
+    setCollapsed((prev) => !prev);
   };
-
 
 
   return (

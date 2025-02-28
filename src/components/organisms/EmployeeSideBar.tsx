@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 import "./Sidebar.css";
 
 interface SidebarProps {
@@ -9,67 +10,42 @@ interface SidebarProps {
 const EmployeeSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   const navigate = useNavigate();
 
-  const handleLeaveNavigation = () => {
-    navigate("/employee-leaves");
-  };
-
-  const handleShiftNavigation = () => {
-    navigate("/employee-shifts");
-  };
-
-  const handleAssetNavigation = () => {
-    navigate("/employee-assets");
-  };
-
-  const handleExpenseNavigation = () => {
-    navigate("/employee-expenses");
-  };
-
-  const handleProfileNavigation = () => {
-    navigate("/profile");
-  };
-
-  const handleSettingsNavigation = () => {
-    navigate("/employee-settings");
-  };
-
-  const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    navigate("/login");
-  };
+  const onNavigate = useCallback((path: string) => {
+    navigate(path);
+  }, [navigate]);
 
   return (
-    <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
+    <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
       <div className="sidebar-header">
         <div className="logo-container">
-          {collapsed ? (
-            <img src="/assets/logo1.png" alt="IK Plus Logo" className="sidebar-logo" />
-          ) : (
-            <img src="/assets/logo2.png" alt="IK Plus Logo" className="sidebar-logo" />
-          )}
+          <img
+            src={collapsed ? "/assets/logo1.png" : "/assets/logo2.png"}
+            alt="IK Plus Logo"
+            className="sidebar-logo"
+          />
         </div>
 
         <button className="sidebar-toggle" onClick={onToggle}>
-          <i className="fas fa-chevron-left"></i>
+          <i className={`fas ${collapsed ? "fa-chevron-right" : "fa-chevron-left"}`}></i>
         </button>
       </div>
 
       <ul className="sidebar-menu">
         <li className="menu-label">Ana Menü</li>
         <li>
-          <a onClick={handleLeaveNavigation}>
+          <a onClick={() => onNavigate("/employee-leaves")}>
             <i className="fas fa-calendar-alt"></i>
             <span>İzin Yönetimi</span>
           </a>
         </li>
         <li>
-          <a onClick={handleShiftNavigation}>
+          <a onClick={() => onNavigate("/employee-shifts")}>
             <i className="fas fa-clock"></i>
             <span>Vardiya Yönetimi</span>
           </a>
         </li>
         <li>
-          <a onClick={handleAssetNavigation}>
+          <a onClick={() => onNavigate("/employee-assets")}>
             <i className="fas fa-box"></i>
             <span>Zimmet Yönetimi</span>
           </a>
@@ -77,7 +53,7 @@ const EmployeeSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
 
         <li className="menu-label">Finans</li>
         <li>
-          <a onClick={handleExpenseNavigation}>
+          <a onClick={() => onNavigate("/employee-expenses")}>
             <i className="fas fa-receipt"></i>
             <span>Harcama Yönetimi</span>
           </a>
@@ -85,19 +61,24 @@ const EmployeeSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
 
         <li className="menu-label">Diğer</li>
         <li>
-          <a onClick={handleProfileNavigation}>
+          <a onClick={() => onNavigate("/profile")}>
             <i className="fas fa-user-cog"></i>
             <span>Profil Ayarları</span>
           </a>
         </li>
         <li>
-          <a onClick={handleSettingsNavigation}>
+          <a onClick={() => onNavigate("/employee-settings")}>
             <i className="fas fa-cog"></i>
             <span>Ayarlar</span>
           </a>
         </li>
         <li>
-          <a onClick={handleLogout}>
+          <a
+            onClick={() => {
+              sessionStorage.removeItem("token");
+              navigate("/login");
+            }}
+          >
             <i className="fas fa-sign-out-alt"></i>
             <span>Çıkış Yap</span>
           </a>
