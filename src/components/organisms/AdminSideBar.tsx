@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 
 interface SidebarProps {
@@ -5,7 +6,8 @@ interface SidebarProps {
     onToggle: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
+const AdminSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
+    const navigate = useNavigate();
 
     return (
         <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
@@ -50,10 +52,13 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                         <span>Ayarlar</span>
                     </a>
                 </li>
+                <button className='logout-button' onClick={() => { sessionStorage.removeItem("token"); navigate("/login"); }}>
+                    Sistemden Çıkış Yap
+                </button>
             </ul>
 
         </div>
     );
 };
 
-export default Sidebar;
+export default AdminSidebar;

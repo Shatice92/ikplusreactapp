@@ -5,6 +5,7 @@
         {
             "userImageUrl": "https://randomuser.me/api/portraits/men/10.jpg",
             "companyId": 1,
+            "companyName": "ABC Teknoloji",
             "userId": 101,
             "comment": "İK süreçlerimizi çok daha verimli hale getirdi. Kullanımı kolay ve pratik!",
             "rating": 4.8,
@@ -14,11 +15,42 @@
         {
             "userImageUrl": "https://randomuser.me/api/portraits/women/12.jpg",
             "companyId": 2,
+            "companyName": "XYZ Yazılım",
             "userId": 102,
             "comment": "Özellikle bordro yönetimi sayesinde büyük bir zaman tasarrufu sağladık.",
             "rating": 5.0,
             "createdAt": "2024-02-16T09:45:00",
             "updatedAt": "2024-02-16T09:45:00"
+        },
+        {
+            "userImageUrl": "https://randomuser.me/api/portraits/men/15.jpg",
+            "companyId": 3,
+            "companyName": "DEF Danışmanlık",
+            "userId": 103,
+            "comment": "Sistemi çok başarılı bulduk, entegrasyonu oldukça kolay oldu.",
+            "rating": 4.5,
+            "createdAt": "2024-02-15T14:30:00",
+            "updatedAt": "2024-02-15T14:30:00"
+        },
+        {
+            "userImageUrl": "https://randomuser.me/api/portraits/women/18.jpg",
+            "companyId": 4,
+            "companyName": "GHI Lojistik",
+            "userId": 104,
+            "comment": "Kullanıcı dostu arayüzü sayesinde tüm süreçlerimizi kolayca yönetiyoruz.",
+            "rating": 4.7,
+            "createdAt": "2024-02-14T11:20:45",
+            "updatedAt": "2024-02-14T11:20:45"
+        },
+        {
+            "userImageUrl": "https://randomuser.me/api/portraits/men/22.jpg",
+            "companyId": 5,
+            "companyName": "JKL Finans",
+            "userId": 105,
+            "comment": "Çok yönlü ve gelişmiş özelliklere sahip, kesinlikle tavsiye ederim!",
+            "rating": 4.9,
+            "createdAt": "2024-02-13T08:10:30",
+            "updatedAt": "2024-02-13T08:10:30"
         }
     ]
 }

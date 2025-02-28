@@ -248,10 +248,7 @@ const UserProfile = () => {
               <button onClick={toggleAccountStatus} className={editableData.status === "ACTIVE" ? "deactivate-button" : "activate-button"}>
                 {editableData.status === "ACTIVE" ? "Hesabı Dondur" : "Hesabı Aktifleştir"}
               </button>
-
-              <button className='logout-button' onClick={() => { sessionStorage.removeItem("token"); navigate("/login"); }}>
-                Sistemden Çıkış Yap
-              </button>
+           
             </div>
           )}
 
