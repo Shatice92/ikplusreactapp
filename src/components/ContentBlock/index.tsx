@@ -63,7 +63,7 @@ const ContentBlock = ({
                           <Button
                             key={id}
                             color={item.color}
-                            onClick={() => scrollTo("about")}
+                            onClick={() => scrollTo("Hakkımızda")}
                           >
                             {t(item.title)}
                           </Button>

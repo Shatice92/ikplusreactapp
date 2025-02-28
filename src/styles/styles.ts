@@ -2,12 +2,19 @@ import { createGlobalStyle } from "styled-components";
 
 // Home sayfasına özel stiller
 export const HomeStyles = createGlobalStyle`
-  /* Home sayfasına özgü stil */
+
+
+.deneme-container {
+  min-height: 100vh;
+  background: 
+      linear-gradient(135deg, rgba(255, 65, 108, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff416c' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  padding: 30px 20px;
+
+}
   body {
     margin: 0;
     padding: 0;
-    border: 0;
-    outline: 0;
     background: #fff;
     overflow-x: hidden;
   }
@@ -22,7 +29,6 @@ export const HomeStyles = createGlobalStyle`
   .profile-header {
     display: flex;
     align-items: center;
-    width: 100%;
     max-width: 900px;
     background-color: white;
     border-radius: 8px;
@@ -54,8 +60,7 @@ export const HomeStyles = createGlobalStyle`
 
   .profile-details {
     list-style-type: none;
-    padding-left: 0;
-    margin: 0;
+    padding: 0;
     font-size: 16px;
   }
 
@@ -88,16 +93,16 @@ export const HomeStyles = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Motiva Sans Bold', serif;
     color: #ff416c;
-    font-size: 3rem; /* 48px */
+    font-size: 3rem;
     line-height: 1.2;
-    margin-bottom: 1rem; /* Başlıklar arasındaki boşluğu azaltmak */
+    margin-bottom: 0.5rem;
     font-weight: 600;
   }
 
   p {
-    font-size: 1.2rem; /* Paragrafların font boyutunu biraz daha küçük yapmak */
+    font-size: 1.2rem;
     line-height: 1.5;
-    margin-bottom: 1rem; /* Paragraflar arasındaki boşluğu azaltmak */
+    margin-bottom: 0.8rem;
   }
 
   input,
@@ -105,8 +110,7 @@ export const HomeStyles = createGlobalStyle`
   button {
     border-radius: 6px;
     border: 1px solid #ccc;
-    padding: 0.8rem 1rem; /* Daha küçük padding */
-    margin: 0.5rem 0; /* Form elemanları arasındaki boşluğu azaltmak */
+    padding: 0.8rem 1rem;
     background: #f1f2f3;
     width: 100%;
     transition: all 0.3s ease;
@@ -122,51 +126,27 @@ export const HomeStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
-    outline: none;
     color: #2E186A;
-
-    :hover {
-      color: #2e186a;
-    }
-  }
-  
-  *:focus {
-    outline: none;
-  }
-
-  .about-block-image svg {
-    text-align: center;
-  }
-
-  .ant-drawer-body {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    padding-top: 1.5rem;
-  }
-
-  .ant-drawer-content-wrapper {
-    width: 300px !important;
   }
 
   .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1.5rem; /* Daha küçük boşluklar */
-    padding: 1rem; /* Container'a iç boşluk */
+    gap: 1rem;
+    padding: 1rem;
   }
 
   .section {
     flex: 1 1 calc(33.33% - 2rem);
-    padding: 1rem; /* Daha küçük iç boşluk */
+    padding: 1rem;
     box-sizing: border-box;
   }
 
   @media (max-width: 768px) {
     .section {
-      flex: 1 1 100%;  /* Ekran küçüldüğünde tüm öğeler alt alta sıralanır */
-      padding: 0.5rem; /* Küçük ekranlarda daha az padding */
+      flex: 1 1 100%;
+      padding: 0.5rem;
     }
   }
 `;
@@ -176,8 +156,6 @@ export const DefaultStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    border: 0;
-    outline: 0;
     background: #fff;
   }
 
@@ -186,8 +164,7 @@ export const DefaultStyles = createGlobalStyle`
   button {
     border-radius: 6px;
     border: 1px solid #ccc;
-    padding: 0.8rem 1rem; /* Daha küçük padding */
-    margin: 0.5rem 0; /* Form elemanları arasındaki boşluğu azaltmak */
+    padding: 0.8rem 1rem;
     background: #f1f2f3;
     width: 100%;
     transition: all 0.3s ease;
@@ -201,25 +178,15 @@ export const DefaultStyles = createGlobalStyle`
     border-color: #2e186a;
   }
   
-  /* Genel font ve renkler */
   body, html, a {
     font-family: 'Motiva Sans Light', sans-serif;
   }
   
   a {
     text-decoration: none;
-    outline: none;
     color: #2E186A;
-
-    :hover {
-      color: #2e186a;
-    }
   }
   
-  *:focus {
-    outline: none;
-  }
-
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Motiva Sans Bold', serif;
     color: #ff416c;
