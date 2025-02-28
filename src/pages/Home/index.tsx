@@ -6,6 +6,7 @@ import MissionContent from "../../content/MissionContent.json";
 import ProductContent from "../../content/ProductContent.json";
 import ContactContent from "../../content/ContactContent.json";
 import CommentContent from "../../content/CommentContent.json";
+import Testimonials from "../../components/CommentContent/Testimonials";
 
 const Contact = lazy(() => import("../../components/ContactForm"));
 const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
@@ -16,6 +17,7 @@ const ContentBlock = lazy(() => import("../../components/ContentBlock"));
 
 const Home = () => {
   return (
+    <div className="deneme-container">
     <Container>
       <ScrollToTop />
       <ContentBlock
@@ -46,13 +48,7 @@ const Home = () => {
         icon="product-launch.svg"
         id="mission"
       />
-      <ContentBlock
-        direction="right"
-        title={CommentContent.title}
-        content={CommentContent.text}  
-        icon="usercomment.svg"
-        id="comment"
-      />
+      <Testimonials />
 
       <ContentBlock
         direction="right"
@@ -67,6 +63,7 @@ const Home = () => {
         id="contact"
       />
     </Container>
+    </div>
   );
 };
 

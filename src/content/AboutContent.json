@@ -23,6 +23,9 @@
       "icon": "performance.svg"
     },
     {
+      "title": "Doküman Yönetimi",
+      "content": "Açık pozisyonları yönetin, aday havuzu oluşturun ve işe alım süreçlerini hızlandırın.",
+      "icon": "document.svg",
       "title": "Eğitim ve Gelişim",
       "content": "Çalışanlarınıza eğitim fırsatları sunun, gelişim planları oluşturun, eğitimleri dijital ortamda takip edin.",
       "icon": "education.svg"
