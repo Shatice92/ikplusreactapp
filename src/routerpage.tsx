@@ -6,6 +6,13 @@ import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfile from "./page/UserProfile";
 
+import CompanyManagement from "./page/CompanyManagement";
+
+import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
+import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
+import ResetPassword from "./page/ResetPassword";
+
+
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -53,9 +60,16 @@ const RouterPage = () => {
           <Route path="/homepage" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
           <Route path="/reset-password" element={<ForgotPassword />} />
           
           
+
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
+
+
+
           {/* Profil Görüntüleme Sayfası */}
           <Route
             path="/profile"
