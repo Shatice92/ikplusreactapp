@@ -16,6 +16,7 @@ import {
   Label,
   Outline,
   Span,
+  HeaderContainer,
 } from "./styles";
 
 interface HeaderProps {
@@ -92,11 +93,12 @@ const Header = ({
   };
 
   return (
+    
     <HeaderSection>
       <Container>
-        <Row justify="space-between">
+        <HeaderContainer>
           <LogoContainer to="/homepage" aria-label="homepage">
-            <SvgIcon src="logo.svg" width="250px" height="250px" />
+            <SvgIcon src="logo.svg" width="200px" height="200px" />
           </LogoContainer>
           <NotHidden>
             <MenuItem />
@@ -104,7 +106,7 @@ const Header = ({
           <Burger onClick={toggleButton}>
             <Outline />
           </Burger>
-        </Row>
+        </HeaderContainer>
         <Drawer closable={false} open={visible} onClose={toggleButton}>
           <Col style={{ marginBottom: "2.5rem" }}>
             <Label onClick={toggleButton}>
