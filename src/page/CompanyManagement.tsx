@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import { Modal } from "antd";
 import './CompanyManagement.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './personalmanagement.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
  
 interface SidebarProps {
