@@ -5,9 +5,13 @@ import Header from "./components/Header";
 import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfile from "./page/UserProfile";
-import ResetPassword from "./page/ResetPassword";
+
+import CompanyManagement from "./page/CompanyManagement";
+
 import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
-import Permissions from "./page/Permissions";
+import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
+import ResetPassword from "./page/ResetPassword";
+
 
 
 // Lazy loaded pages
@@ -27,21 +31,7 @@ const RouterPage = () => {
       navigate(`/#${sectionId}`, { replace: true });
     }
   };
-// Dummy user data (bu veriyi backend'den alabilirsiniz)
-const dummyUserData = {
-  firstName: "Hatice",
-  lastName: "SEYREK",
-  email: "hatice@example.com",
-  gender: "Kadın",
-  phoneNumber: "1234567890",
-  birthDate: "1992-11-29",
-  maritalStatus: "Evli",
-  bloodType: "A+",
-  identificationNumber: "12345678901",
-  nationality: "Türk",
-  educationLevel: "Üniversite",
-  status: "ACTIVE" as "ACTIVE" | "INACTIVE" 
-};
+
 
   const handleSave = (updatedData: any) => {
     // API'ye güncellenmiş veriyi göndermek için burada bir işlem yapılabilir
@@ -70,22 +60,27 @@ const dummyUserData = {
           <Route path="/homepage" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/CompanyManagerPermissions" element={<CompanyManagerPermissions/>}/>
-          <Route path="/Permissions" element={<Permissions/>}/>
+
           <Route path="/reset-password" element={<ForgotPassword />} />
+          <Route path="/company" element={<CompanyManagement />} />
+          
+          
+
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
+
+
 
           {/* Profil Görüntüleme Sayfası */}
-          <Route 
-            path="/user-profile" 
+          <Route
+            path="/profile"
             element={
               <UserProfile
               />
             }
           />
-         
+          {/* Profil Düzenleme Sayfası */}
+
         </Routes>
       </Suspense>
 

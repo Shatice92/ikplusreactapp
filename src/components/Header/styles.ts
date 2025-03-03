@@ -5,14 +5,24 @@ import { MenuOutlined } from "@ant-design/icons";
 export const HeaderSection = styled("header")`
   padding: 1rem 0.5rem;
 
-  .ant-row-space-between {
-    align-items: center;
-    text-align: center;
+ .ant-row-space-between {
+    display: flex;
+    align-items: center; /* Dikey hizalama */
+    justify-content: space-between; /* Logoyu ve menüyü uçlara yasla */
   }
 `;
 
+export const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+
 export const LogoContainer = styled(Link)`
   display: flex;
+  align-items: center; /* Logoyu ortalar */
 `;
 
 export const NavLink = styled("div")`
@@ -46,6 +56,9 @@ export const Burger = styled("div")`
 `;
 
 export const NotHidden = styled("div")`
+  display: flex;
+  align-items: center;
+
   @media only screen and (max-width: 890px) {
     display: none;
   }

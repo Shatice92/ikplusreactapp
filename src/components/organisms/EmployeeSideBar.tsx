@@ -5,7 +5,7 @@ interface SidebarProps {
   onToggle: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
+const EmployeeSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
   
   return (
       <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
@@ -67,10 +67,16 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                       <span>Ayarlar</span>
                   </a>
               </li>
+              <li>
+                    <a href="#">
+                        <i className="fas fa-cog"></i>
+                        <span>Çıkış Yap</span>
+                    </a>
+                </li>
           </ul>
         
       </div>
   );
 };
 
-export default Sidebar;
+export default EmployeeSidebar;
