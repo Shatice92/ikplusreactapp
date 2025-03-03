@@ -165,8 +165,7 @@ const UserProfile = () => {
             <div className="card-body">
               <h5 className="welcome-title">Merhaba, {userData?.firstName}</h5>
               <p className="welcome-description">Hesabınız başarıyla oluşturuldu. Lütfen bilgilerinizi güncelleyin!</p>
-              {/* Son İşlemler Alanı */}
-              {/* Son İşlemler Alanı */}
+    
               <div className="recent-actions">
                 <h6>Son İşlemler</h6>
                 <ul>

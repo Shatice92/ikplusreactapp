@@ -8,11 +8,7 @@
   
   }
 
-.employee-assets-container {
-    display: flex;
-    width: 100%;
-  }
-  
+
   
 .content {
   flex: 1;
@@ -42,14 +38,7 @@
     border: none;
     cursor: pointer;
   }
-  
-  .approve-btn {
-    background-color: #4CAF50;
-  }
-  
-  .reject-btn {
-    background-color: #f44336;
-  }
+
   
   .modal {
     position: fixed;
