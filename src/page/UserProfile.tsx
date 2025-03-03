@@ -88,17 +88,11 @@ const UserProfile = () => {
     }
     switch (userRole) {
       case "ADMIN":
-        return <AdminSideBar collapsed={sidebarCollapsed} onToggle={function (): void {
-          throw new Error('Function not implemented.');
-        }} />;
+        return <AdminSideBar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />;
       case "COMPANY_MANAGER":
-        return <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={function (): void {
-          throw new Error('Function not implemented.');
-        }} />;
+        return <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />;
       case "EMPLOYEE":
-        return <EmployeeSideBar collapsed={sidebarCollapsed} onToggle={function (): void {
-          throw new Error('Function not implemented.');
-        }} />;
+        return <EmployeeSideBar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />;
       default:
         return null;
     }
@@ -248,7 +242,7 @@ const UserProfile = () => {
               <button onClick={toggleAccountStatus} className={editableData.status === "ACTIVE" ? "deactivate-button" : "activate-button"}>
                 {editableData.status === "ACTIVE" ? "Hesabı Dondur" : "Hesabı Aktifleştir"}
               </button>
-           
+
             </div>
           )}
 
