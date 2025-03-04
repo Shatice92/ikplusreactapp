@@ -11,8 +11,7 @@ import CompanyManagement from "./page/CompanyManagement";
 import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
 import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
 import ResetPassword from "./page/ResetPassword";
-
-
+import ShiftManagement from "./page/ShiftManagement";
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -69,8 +68,7 @@ const RouterPage = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
           <Route path="/companyemployee-leaves" element={<Permissions />} />
-
-
+          <Route path="/shiftmanagement" element={<ShiftManagement />} />
 
           {/* Profil Görüntüleme Sayfası */}
           <Route
