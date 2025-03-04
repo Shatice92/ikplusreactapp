@@ -52,8 +52,7 @@ const UserProfile = () => {
       })
       .catch((err) => console.error("Profil yüklenirken hata oluştu:", err));
 
-    // Kullanıcı rolünü çekme
-    // Kullanıcı rolünü çekme
+    
     fetch("http://localhost:9090/v1/dev/user/dashboard", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
@@ -67,11 +66,11 @@ const UserProfile = () => {
         }
       })
 
-    // Kan grubu verisini çekme
+    
     fetch("http://localhost:9090/v1/dev/blood-types")
       .then((res) => res.json())
       .then((response) => {
-        console.log("Kan grupları:", response.data); // Kontrol için log ekleyelim
+        
         setBloodTypes(response.data); // "data" içindeki diziye erişiyoruz
       })
       .catch((err) => console.error("Kan grupları yüklenirken hata oluştu:", err));
@@ -81,7 +80,7 @@ const UserProfile = () => {
       setEditableData({ ...editableData, [e.target.name]: e.target.value });
     }
   };
-  // Sidebar Seçimi
+  
   const renderSidebar = () => {
     if (!userRole || userRole === "VISITOR" || userRole === "WEBSITE_MEMBER") {
       return null; // Visitor ve Website Member için sidebar yok

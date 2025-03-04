@@ -9,7 +9,7 @@ interface SidebarProps {
 const AdminSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     const navigate = useNavigate();
 
-    // Tek bir fonksiyon ile yönlendirme işlemi
+    
     const handleNavigation = (path: string) => {
         navigate(path);
     };
@@ -49,9 +49,9 @@ const AdminSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => handleNavigation('/settings')}>
+                    <button onClick={() => handleNavigation('/notifications')}>
                         <i className="fas fa-cog"></i>
-                        <span>Ayarlar</span>
+                        <span>Bildirimler</span>
                     </button>
                 </li>
             </ul>

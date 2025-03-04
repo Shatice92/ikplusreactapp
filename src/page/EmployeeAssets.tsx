@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import EmployeeSidebar from "../components/organisms/EmployeeSideBar";
 import { IAssets } from "../model/IAssets";
 import AssetsTable from "../components/organisms/EmployeeAssetsTable";
+import EmployeeAssetsTable from "../components/organisms/EmployeeAssetsTable";
 
 
 const EmployeeAssets = () => {
@@ -11,19 +12,13 @@ const EmployeeAssets = () => {
     setSidebarCollapsed(!sidebarCollapsed);
   };
 
-
-
-
-
-
-
   return (
     <div className="deneme-container">
       <EmployeeSidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
       <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
         <div className="content">
-          <h2 className="content-title">Personel Zimmet Yönetimi</h2>
-          <AssetsTable />
+          
+          <EmployeeAssetsTable />
         </div>
       </main>
     </div>

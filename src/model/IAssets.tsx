@@ -6,7 +6,15 @@ export interface IAssets{
     serialNumber: string;
     assignedDate: string;
     assetType: string;
-    status: string;
+    status: AssetStatus;
     dueDate: string;
+    companyManagerId: number;
 
 }
+
+
+export enum AssetStatus {
+    ACTIVE = "ACTIVE",
+    INACTIVE = "INACTIVE",
+    REFUND="REFUND"
+  }
