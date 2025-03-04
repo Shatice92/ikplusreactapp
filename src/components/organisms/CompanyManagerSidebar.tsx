@@ -27,25 +27,25 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
             <ul className="sidebar-menu">
                 <li className="menu-label">Ana Menü</li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-personal-management")}> 
+                    <a onClick={() => handleNavigation("/companymanager-personal-management")}>
                         <i className="fas fa-users"></i>
                         <span>Personel Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-leaves")}> 
+                    <a onClick={() => handleNavigation("/companymanager-leaves")}>
                         <i className="fas fa-calendar-alt"></i>
                         <span>İzin Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-shifts")}> 
+                    <a onClick={() => handleNavigation("/companymanager-shifts")}>
                         <i className="fas fa-clock"></i>
                         <span>Vardiya Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-assets")}> 
+                    <a onClick={() => handleNavigation("/companymanager-assets")}>
                         <i className="fas fa-box"></i>
                         <span>Zimmet Yönetimi</span>
                     </a>
@@ -53,46 +53,53 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
 
                 <li className="menu-label">Finans</li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-salaries")}> 
+                    <a onClick={() => handleNavigation("/companymanager-salaries")}>
                         <i className="fas fa-money-bill-wave"></i>
                         <span>Maaş Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-bonuses")}> 
+                    <a onClick={() => handleNavigation("/companymanager-bonuses")}>
                         <i className="fas fa-gift"></i>
                         <span>Prim Yönetimi</span>
                     </a>
                 </li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-expenses")}> 
+                    <a onClick={() => handleNavigation("/companymanager-expenses")}>
                         <i className="fas fa-receipt"></i>
                         <span>Harcama Yönetimi</span>
                     </a>
                 </li>
-                
+
                 <li className="menu-label">Diğer</li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-reports")}> 
+                    <a onClick={() => handleNavigation("/companymanager-reports")}>
                         <i className="fas fa-chart-line"></i>
                         <span>Raporlar</span>
                     </a>
                 </li>
                 <li>
-                    <a onClick={() => handleNavigation("/profile")}> 
+                    <a onClick={() => handleNavigation("/profile")}>
                         <i className="fas fa-user-cog"></i>
                         <span>Profil Ayarları</span>
                     </a>
                 </li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-settings")}> 
+                    <a onClick={() => handleNavigation("/companymanager-settings")}>
                         <i className="fas fa-cog"></i>
                         <span>Ayarlar</span>
                     </a>
                 </li>
-                <button className='logout-button' onClick={() => { 
-                    sessionStorage.removeItem("token"); 
-                    navigate("/login"); 
+                <li>
+                    <a onClick={() => handleNavigation("/companymanager-comments")}>
+                        <i className="fas fa-question-circle"></i>
+                        <span>Bizi Değerlendirin</span>
+                    </a>
+                </li>
+
+                <button className='logout-button' onClick={() => {
+                    sessionStorage.removeItem("token");
+                    navigate("/login");
                 }}>
                     Sistemden Çıkış Yap
                 </button>
