@@ -67,6 +67,8 @@ const RouterPage = () => {
 
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
+          <Route path="/company" element={<CompanyManagement />} />
+ 
 
 
 

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import { Modal } from "antd";
 import './CompanyManagement.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './personalmanagement.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
  
 interface SidebarProps {
@@ -332,7 +331,6 @@ const CompanyManagement: React.FC = () => {
  
     return (
         <div className="personal-management-container">
-            <Sidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
             <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
                 <section className="bg-light py-5 py-md-7 py-xl-10">
                     <div className="container">
