@@ -1,0 +1,187 @@
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ddd;
+  font-family: "Motiva Sans Light", sans-serif;
+  font-weight: 300;
+}
+
+/* === MESAJ BİLEŞENİ === */
+.Message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 40px auto 0;
+  width: 500px;
+  padding: 15px;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #0074d9; /* Mavi */
+  transition: all 0.3s ease-in-out;
+}
+
+.Message.is-hidden {
+  opacity: 0;
+  height: 0;
+  font-size: 0;
+  padding: 0;
+  margin: 0 auto;
+  display: block;
+}
+
+/* === RENK SEÇENEKLERİ === */
+.Message--orange {
+  background-color: #f39c12; /* Turuncu */
+}
+
+.Message--red {
+  background-color: #ff416c; /* Kırmızı */
+}
+
+.Message--green {
+  background-color: #2ecc40; /* Yeşil */
+}
+
+/* === MESAJ İKONU === */
+.Message-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/* === MESAJ GÖVDESİ === */
+.Message-body {
+  flex: 1;
+}
+
+.Message-body h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.Message-body p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+/* === TARİH === */
+.Message-body small {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* === MESAJ KAPAT BUTONU === */
+.Message-close {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.Message-close:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* === BUTON === */
+.Message-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background 0.2s ease-in-out;
+}
+
+.Message-button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.Message-button:active {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* === İTALİK YAZI === */
+.u-italic {
+  font-style: italic;
+}
+
+
+/* === RESPOSİVE DÜZEN === */
+@media (max-width: 600px) {
+  .Message {
+    width: 90%; /* Daha esnek bir genişlik */
+    padding: 12px; /* Küçük ekranlar için padding azaltılabilir */
+  }
+
+  .Message-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .Message-body h3 {
+    font-size: 14px; /* Küçük ekranlarda başlık daha küçük olabilir */
+  }
+
+  .Message-body p {
+    font-size: 12px; /* Küçük ekranlarda metin boyutunu azaltabilirsin */
+  }
+}
+
+
+
+.Message-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-read {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-read:hover {
+  background-color: #45a049;
+}
+
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-delete:hover {
+  background-color: #d32f2f;
+}
