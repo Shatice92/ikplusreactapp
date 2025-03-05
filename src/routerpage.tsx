@@ -14,6 +14,8 @@ import ResetPassword from "./page/ResetPassword";
 import EmployeeAssets from "./page/EmployeeAssets";
 import AssetsTable from "./components/organisms/EmployeeAssetsTable";
 import CompanyManagerAssetManagement from "./page/CompanyManagerAssetManagement";
+import Notifications from "./page/Notifications";
+
 
 
 
@@ -65,11 +67,12 @@ const RouterPage = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
           <Route path="/company" element={<CompanyManagement />} />
-          <Route path="/assets" element={<AssetsTable />} />
           <Route path="/employee-assets" element={<EmployeeAssets />} />
           <Route path="/companymanager-assets" element={<CompanyManagerAssetManagement />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
+          <Route path="/employee-leaves" element={<Permissions />} />
 
 
 

@@ -85,7 +85,7 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
                     </a>
                 </li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-notifications")}>
+                    <a onClick={() => handleNavigation("/notifications")}>
                         <i className="fas fa-cog"></i>
                         <span>Bildirimler</span>
                     </a>
