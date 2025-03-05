@@ -29,30 +29,30 @@ const AdminSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
             <ul className="sidebar-menu">
                 <li className="menu-label">Ana Menü</li>
                 <li>
-                    <button onClick={() => handleNavigation('/company-management')}>
-                        <i className="fas fa-building"></i>
+                    <a onClick={() => handleNavigation("/company-management")}>
+                        <i className="fas fa-users"></i>
                         <span>Şirket Yönetimi</span>
-                    </button>
+                    </a>
                 </li>
                 <li>
-                    <button onClick={() => handleNavigation('/definition-management')}>
-                        <i className="fas fa-list"></i>
+                    <a onClick={() => handleNavigation("/definition-management")}>
+                        <i className="fas fa-users"></i>
                         <span>Tanımlamalar Yönetimi</span>
-                    </button>
+                    </a>
                 </li>
 
                 <li className="menu-label">Diğer</li>
                 <li>
-                    <button onClick={() => handleNavigation('/profile')}>
+                    <a onClick={() => handleNavigation("/profile")}>
                         <i className="fas fa-user-cog"></i>
                         <span>Profil Ayarları</span>
-                    </button>
+                    </a>
                 </li>
                 <li>
-                    <button onClick={() => handleNavigation('/notifications')}>
+                    <a onClick={() => handleNavigation("/notifications")}>
                         <i className="fas fa-cog"></i>
                         <span>Bildirimler</span>
-                    </button>
+                    </a>
                 </li>
                 <li>
                     <a
