@@ -5,12 +5,13 @@ import Header from "./components/Header";
 import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfile from "./page/UserProfile";
-
-import CompanyManagement from "./page/CompanyManagement";
-
 import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
 import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
 import ResetPassword from "./page/ResetPassword";
+import EmployeeAssets from "./page/EmployeeAssets";
+import AssetsTable from "./components/organisms/EmployeeAssetsTable";
+import AdminCompanyManagement from "./page/AdminCompanyManagement";
+
 
 
 
@@ -60,14 +61,13 @@ const RouterPage = () => {
           <Route path="/homepage" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
           <Route path="/reset-password" element={<ForgotPassword />} />
-          
-          
 
+          <Route path="/assets" element={<AssetsTable />} />
+          <Route path="/employee-assets" element={<EmployeeAssets />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
-          <Route path="/company" element={<CompanyManagement />} />
+          <Route path="/company-management" element={<AdminCompanyManagement />} />
  
 
 
@@ -80,7 +80,6 @@ const RouterPage = () => {
               />
             }
           />
-          {/* Profil Düzenleme Sayfası */}
 
         </Routes>
       </Suspense>

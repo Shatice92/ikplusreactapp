@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Table, Button, Switch, Select, Menu } from "antd";
 import { useNavigate } from "react-router";
 import { Modal } from "antd";
-import './CompanyManagement.css';
+import './AdminCompanyManagement.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import AdminSidebar from "../components/organisms/AdminSideBar";
  
 interface SidebarProps {
     collapsed: boolean;
@@ -91,32 +92,45 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     );
 };
  
-const mockCompanies: Company[] = [
-    { id: 1, name: "ABC Ltd.", registrationDate: "2023-01-10", isApproved: false, emailVerified: true, membershipPlan: "Yıllık", description: "Teknoloji Şirketi", address: "İstanbul, Türkiye", phone: "+90 212 123 45 67", email: "info@abc.com", website: "www.abc.com", logo: "/img/svg/logo1.svg", sector: "Teknoloji", taxNumber: "1234567890", taxOffice: "İstanbul" },
-    { id: 2, name: "XYZ Corp.", registrationDate: "2022-11-15", isApproved: false, emailVerified: false, membershipPlan: "Aylık", description: "Finans Şirketi", address: "Ankara, Türkiye", phone: "+90 312 987 65 43", email: "contact@xyz.com", website: "www.xyz.com", logo: "/img/svg/logo2.svg", sector: "Finans", taxNumber: "0987654321", taxOffice: "Ankara" },
-    { id: 3, name: "Tech Innovations", registrationDate: "2021-09-25", isApproved: true, emailVerified: true, membershipPlan: "Yıllık", description: "Yazılım Şirketi", address: "İzmir, Türkiye", phone: "+90 232 456 78 90", email: "hello@tech.com", website: "www.tech.com", logo: "/img/svg/logo3.svg", sector: "Yazılım", taxNumber: "5678901234", taxOffice: "İzmir" }
-];
+
 
 
  
 const CompanyManagement: React.FC = () => {
-    const [companies, setCompanies] = useState<Company[]>(mockCompanies);
+    const [companies, setCompanies] = useState<Company[]>([]);
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [newCompany, setNewCompany] = useState<Partial<Company>>({});
     const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
     const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
 
     useEffect(() => {
+        fetchAssets();
+      }, []);
+   
+      const fetchAssets = () => {
         const token = sessionStorage.getItem("token");
         if (!token) {
-            navigate("/login");  // Token yoksa login sayfasına yönlendir
+          setErrorMessage("Geçersiz veya eksik token!");
+          return;
         }
-    }, [navigate]);  // ✅ `navigate` bağımlılığı eklenmeli.
+   
+        fetch("http://localhost:9090/v1/dev/admin/companies/getAll", {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) setCompanies(data.data);
+            else setErrorMessage(data.message || "API Response Error");
+          })
+          .catch((error) => setErrorMessage(error.message));
+      };
 
-     // ✅ Şirketi onaylama fonksiyonu (Backend ile bağlantılı)
+      
+   
      const handleApprove = (companyId: number) => {
         fetch(`http://localhost:9090/v1/dev/admin/companies/approve/${companyId}`, {
             method: "PUT",
@@ -163,53 +177,9 @@ const CompanyManagement: React.FC = () => {
         .catch((err) => console.error("Reddetme sırasında hata:", err));
     };
 
-      // 🆕 Yeni Şirket Ekleme Fonksiyonu (POST)
-      const handleSave = () => {
-        fetch("http://localhost:9090/v1/dev/admin/companies/save", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                
-            },
-            body: JSON.stringify(newCompany),
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            if (data.code === 200) {
-                setCompanies([...companies, { ...newCompany, id: data.data.id } as Company]);
-                alert("Şirket başarıyla eklendi!");
-                setIsModalVisible(false);
-            } else {
-                console.error("Şirket eklenirken hata oluştu");
-            }
-        })
-        .catch((err) => console.error("Ekleme sırasında hata:", err));
-    };
+      
 
-    // **Bir Şirketi Silme API Çağrısı**
-    const handleDeleteCompany = (companyId: number) => {
-        if (!window.confirm("Bu şirketi silmek istediğinizden emin misiniz?")) {
-            return;
-        }
-    
-        fetch(`http://localhost:9090/v1/dev/admin/companies/${companyId}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${companyId}`,
-            },
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            if (data.code === 200) {
-                setCompanies(companies.filter(company => company.id !== companyId));
-                alert("Şirket başarıyla silindi!");
-            } else {
-                console.error("Şirket silinirken hata oluştu");
-            }
-        })
-        .catch((err) => console.error("Şirket silme sırasında hata:", err));
-    };
+   
 
     // **Bir Şirketi Güncelleme API Çağrısı**
     const handleUpdateCompany = (companyId: number, updatedCompanyData: Partial<Company>) => {
@@ -235,44 +205,9 @@ const CompanyManagement: React.FC = () => {
         .catch((err) => console.error("Güncelleme sırasında hata:", err));
     };
 
-    // **Belirli Bir Şirketi Getiren API Çağrısı**
-    const fetchCompanyById = (companyId: number) => {
-        fetch(`http://localhost:9090/v1/dev/admin/companies/ById/${companyId}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${companyId}`,
-            },
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            if (data.code === 200) {
-                setSelectedCompany(data.data);
-                setIsDetailModalVisible(true);
-            } else {
-                console.error("Şirket verisi alınamadı");
-            }
-        })
-        .catch((err) => console.error("Şirket bilgisi yüklenirken hata oluştu:", err));
-    };
-
+   
     
-     // **Tüm Şirketleri Getiren API Çağrısı**
-     const fetchAllCompanies = () => {
-        fetch("http://localhost:9090/v1/dev/admin/companies/getAll", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            if (data.code === 200) {
-                setCompanies(data.data);
-            } else {
-                console.error("Şirket verileri alınamadı");
-            }
-        })
-        .catch((err) => console.error("Şirketler yüklenirken hata oluştu:", err));
-    };
+  
     
 
  
@@ -330,6 +265,8 @@ const CompanyManagement: React.FC = () => {
     ];
  
     return (
+        <div className="deneme-container">
+            <AdminSidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
         <div className="personal-management-container">
             <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
                 <section className="bg-light py-5 py-md-7 py-xl-10">
@@ -342,6 +279,7 @@ const CompanyManagement: React.FC = () => {
                     </div>
                 </section>
             </main>
+        </div>
         </div>
     );
 };

@@ -88,17 +88,11 @@ const UserProfile = () => {
     }
     switch (userRole) {
       case "ADMIN":
-        return <AdminSideBar collapsed={sidebarCollapsed} onToggle={function (): void {
-          throw new Error('Function not implemented.');
-        }} />;
+        return <AdminSideBar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />;
       case "COMPANY_MANAGER":
-        return <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={function (): void {
-          throw new Error('Function not implemented.');
-        }} />;
+        return <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />;
       case "EMPLOYEE":
-        return <EmployeeSideBar collapsed={sidebarCollapsed} onToggle={function (): void {
-          throw new Error('Function not implemented.');
-        }} />;
+        return <EmployeeSideBar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />;
       default:
         return null;
     }
@@ -171,8 +165,7 @@ const UserProfile = () => {
             <div className="card-body">
               <h5 className="welcome-title">Merhaba, {userData?.firstName}</h5>
               <p className="welcome-description">Hesabınız başarıyla oluşturuldu. Lütfen bilgilerinizi güncelleyin!</p>
-              {/* Son İşlemler Alanı */}
-              {/* Son İşlemler Alanı */}
+    
               <div className="recent-actions">
                 <h6>Son İşlemler</h6>
                 <ul>
@@ -248,7 +241,7 @@ const UserProfile = () => {
               <button onClick={toggleAccountStatus} className={editableData.status === "ACTIVE" ? "deactivate-button" : "activate-button"}>
                 {editableData.status === "ACTIVE" ? "Hesabı Dondur" : "Hesabı Aktifleştir"}
               </button>
-           
+
             </div>
           )}
 
