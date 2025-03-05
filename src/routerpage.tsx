@@ -1,14 +1,16 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfile from "./page/UserProfile";
+import PersonalManagementPage from "./page/PersonalManagementPage";
 import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
 import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
 import ResetPassword from "./page/ResetPassword";
-
+import ExpensesPage from "./page/ExpensesPage";
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -72,9 +74,11 @@ const RouterPage = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
-          <Route path="/personel" element={<PersonalManagementPage />} />
           <Route path="/profile" element={<UserProfile />} />
-          <Route path="/test" element={<TestPage />} />
+          <Route path="/personal" element={<PersonalManagementPage />} />
+          <Route path="/permissions" element={<Permissions />} />
+          <Route path="/companymanagerpermissions" element={<CompanyManagerPermissions />} />
+          <Route path="/expenses" element={<ExpensesPage />} />
           {/* Profil Görüntüleme Sayfası */}
           <Route
             path="/user-profile"

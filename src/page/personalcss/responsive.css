@@ -1,0 +1,123 @@
+/* Responsive styles for different screen sizes */
+
+/* Large desktop and down */
+@media (max-width: 1200px) {
+    .main-content {
+        margin-left: calc(var(--sidebar-width) + 20px);
+        padding: 20px;
+    }
+    
+    .main-content.expanded {
+        margin-left: calc(var(--sidebar-collapsed-width) + 20px);
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+}
+
+/* Medium devices and down */
+@media (max-width: 992px) {
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .main-content.expanded {
+        margin-left: 0;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+        z-index: 1050;
+    }
+    
+    .sidebar.show {
+        transform: translateX(0);
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .table-responsive {
+        border-radius: 10px;
+    }
+}
+
+/* Small devices and down */
+@media (max-width: 768px) {
+    body {
+        padding: 15px 10px;
+    }
+    
+    .personal-management-container {
+        padding: 15px 10px;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+    
+    .sidebar {
+        width: 280px;
+    }
+    
+    .card-header {
+        padding: 15px;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .table > :not(caption) > * > * {
+        padding: 10px 15px;
+    }
+    
+    .modal-header, .modal-footer {
+        padding: 15px 20px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 576px) {
+    .employee-avatar img {
+        width: 80px;
+        height: 80px;
+        margin-top: -40px;
+    }
+    
+    .table td .fw-bold {
+        font-size: 0.85rem;
+    }
+    
+    .table td small.text-muted {
+        font-size: 0.75rem;
+    }
+    
+    .modal-content {
+        margin: 0 10px;
+    }
+    
+    .modal-title {
+        font-size: 1.25rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-group .btn {
+        margin-bottom: 5px;
+        border-radius: 8px !important;
+    }
+} 

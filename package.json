@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@testing-library/jest-dom": "^5.17.0",
@@ -11,6 +12,7 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.126",
     "@types/react": "^18.3.18",
+    "@types/react-bootstrap": "^0.32.37",
     "@types/react-dom": "^18.3.5",
     "@types/react-i18next": "^8.1.0",
     "antd": "^5.24.0",
@@ -24,6 +26,7 @@
     "nodemailer": "^6.10.0",
     "react": "^18.3.1",
     "react-awesome-reveal": "^4.3.1",
+    "react-bootstrap": "^2.10.9",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.3.1",
     "react-i18next": "^14.0.0",
