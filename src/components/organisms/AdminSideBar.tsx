@@ -9,7 +9,7 @@ interface SidebarProps {
 const AdminSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     const navigate = useNavigate();
 
-    
+
     const handleNavigation = (path: string) => {
         navigate(path);
     };
@@ -54,18 +54,19 @@ const AdminSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
                         <span>Bildirimler</span>
                     </button>
                 </li>
+                <li>
+                    <a
+                        onClick={() => {
+                            sessionStorage.removeItem("token");
+                            navigate("/login");
+                        }}
+                    >
+                        <i className="fas fa-sign-out-alt"></i>
+                        <span>Çıkış Yap</span>
+                    </a>
+                </li>
             </ul>
 
-            {/* Logout butonu menüden ayrı olarak eklendi */}
-            <div className="sidebar-footer">
-                <button className="logout-button" onClick={() => { 
-                    sessionStorage.removeItem("token"); 
-                    navigate("/login"); 
-                }}>
-                    <i className="fas fa-sign-out-alt"></i>
-                    <span>Çıkış Yap</span>
-                </button>
-            </div>
         </div>
     );
 };
