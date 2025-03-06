@@ -35,6 +35,7 @@ interface ExpenseForm {
 const API = {
     BASE_URL: 'http://localhost:9090',
     VERSION: '/v1',
+    API: '/api',
     DEVELOPER: '/dev',
     get ROOT() { return this.VERSION + this.DEVELOPER; }
 };
@@ -46,23 +47,26 @@ const API_ENDPOINTS = {
         EXPENSES: `${API.ROOT}/employee/expenses`,
     },
     CRUD: {
-        SAVE: (baseEndpoint: string) => `${baseEndpoint}/save`,
-        UPDATE: (baseEndpoint: string, id: number) => `${baseEndpoint}/update/${id}`,
-        DELETE: (baseEndpoint: string, id: number) => `${baseEndpoint}/delete/${id}`,
-        LIST: (baseEndpoint: string) => `${baseEndpoint}/list`,
-        GET_BY_ID: (baseEndpoint: string, id: number) => `${baseEndpoint}/get-by-id/${id}`,
-        GET_EXPENSES_BY_EMPLOYEE_ID: (baseEndpoint: string, id: number) => `${baseEndpoint}/get-expenses-by-employee/${id}`
+        SAVE: '/save',
+        UPDATE: (id: number) => `/update/${id}`,
+        DELETE: (id: number) => `/delete/${id}`,
+        LIST: '/list',
+        GET_BY_ID: (id: number) => `/get-by-id/${id}`,
+        GET_EXPENSES_BY_EMPLOYEE_ID: (id: number) => `/get-expenses-by-employee/${id}`
     }
 };
 
 // Kullanılacak Routes
 const ROUTES = {
     EXPENSES: {
-        LIST: API_ENDPOINTS.CRUD.LIST(API_ENDPOINTS.EMPLOYEE.EXPENSES),
-        SAVE: API_ENDPOINTS.CRUD.SAVE(API_ENDPOINTS.EMPLOYEE.EXPENSES),
-        UPDATE: (id: number) => API_ENDPOINTS.CRUD.UPDATE(API_ENDPOINTS.EMPLOYEE.EXPENSES, id),
-        DELETE: (id: number) => API_ENDPOINTS.CRUD.DELETE(API_ENDPOINTS.EMPLOYEE.EXPENSES, id),
-        GET_BY_EMPLOYEE_ID: (employeeId: number) => API_ENDPOINTS.CRUD.GET_EXPENSES_BY_EMPLOYEE_ID(API_ENDPOINTS.EMPLOYEE.EXPENSES, employeeId)
+        LIST: API_ENDPOINTS.EMPLOYEE.EXPENSES + API_ENDPOINTS.CRUD.LIST,
+        SAVE: API_ENDPOINTS.EMPLOYEE.EXPENSES + API_ENDPOINTS.CRUD.SAVE,
+        UPDATE: (id: number) => API_ENDPOINTS.EMPLOYEE.EXPENSES + API_ENDPOINTS.CRUD.UPDATE(id),
+        DELETE: (id: number) => API_ENDPOINTS.EMPLOYEE.EXPENSES + API_ENDPOINTS.CRUD.DELETE(id),
+        GET_BY_EMPLOYEE_ID: (employeeId: number) => 
+            API_ENDPOINTS.EMPLOYEE.EXPENSES + API_ENDPOINTS.CRUD.GET_EXPENSES_BY_EMPLOYEE_ID(employeeId),
+        APPROVE: (id: number) => `${API_ENDPOINTS.EMPLOYEE.EXPENSES}/approve/${id}`,
+        REJECT: (id: number) => `${API_ENDPOINTS.EMPLOYEE.EXPENSES}/reject/${id}`
     }
 };
 

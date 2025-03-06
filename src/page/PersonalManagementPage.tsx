@@ -276,54 +276,205 @@ const EmployeeRow: React.FC<{
     );
 });
 
-// API Endpoints - PersonalManagementPage içinde centralize edilmiş
-const API_BASE_URL = 'http://localhost:9090/api'; // veya uygun base URL
+// API yapılandırması
+const API = {
+    BASE_URL: 'http://localhost:9090',
+    VERSION: '/v1',
+    API: '/api',
+    DEVELOPER: '/dev',
+    get ROOT() { return this.VERSION + this.DEVELOPER; }
+};
+
+// API Endpoints
 const API_ENDPOINTS = {
-  // Personel (Employee) endpoint'leri
-  EMPLOYEE: {
-    BASE: `${API_BASE_URL}/get-all-users`,
-    BY_ID: (id: number) => `${API_BASE_URL}/get-by-id/${id}`,
-    STATUS: (id: number) => `${API_BASE_URL}/employees/${id}/status`,
-    SEARCH: `${API_BASE_URL}/employees/search`,
-    BY_DEPARTMENT: (departmentId: number) => `${API_BASE_URL}/employees/department/${departmentId}`,
-  },
-  
-  // Doküman endpoint'leri
-  DOCUMENT: {
-    BASE: `${API_BASE_URL}/documents`,
-    BY_ID: (id: number) => `${API_BASE_URL}/documents/${id}`,
-    DOWNLOAD: (id: number) => `${API_BASE_URL}/documents/${id}/download`,
-    PREVIEW: (id: number) => `${API_BASE_URL}/documents/${id}/preview`,
-    BY_EMPLOYEE: (employeeId: number) => `${API_BASE_URL}/documents/employee/${employeeId}`,
-    UPLOAD: `${API_BASE_URL}/documents/upload`,
-  },
-  
-  // İzin talepleri endpoint'leri
-  LEAVE_REQUEST: {
-    BASE: `${API_BASE_URL}/leave-requests`,
-    BY_ID: (id: number) => `${API_BASE_URL}/leave-requests/${id}`,
-    STATUS: (id: number) => `${API_BASE_URL}/leave-requests/${id}/status`,
-    BY_EMPLOYEE: (employeeId: number) => `${API_BASE_URL}/leave-requests/employee/${employeeId}`,
-  },
-  
-  // Zimmet (asset) endpoint'leri
-  ASSET: {
-    BASE: `${API_BASE_URL}/assets`,
-    BY_ID: (id: number) => `${API_BASE_URL}/assets/${id}`,
-    BY_EMPLOYEE: (employeeId: number) => `${API_BASE_URL}/assets/employee/${employeeId}`,
-  },
-  
-  // Primler (bonus) endpoint'leri
-  BONUS: {
-    BASE: `${API_BASE_URL}/bonuses`,
-    BY_ID: (id: number) => `${API_BASE_URL}/bonuses/${id}`,
-    BY_EMPLOYEE: (employeeId: number) => `${API_BASE_URL}/bonuses/employee/${employeeId}`,
-  },
-  
-  // Email endpoint'i
-  EMAIL: {
-    SEND: `${API_BASE_URL}/email/send`,
-  }
+    // Rol bazlı endpointler
+    ADMIN: {
+        BASE: `${API.ROOT}/admin`,
+        COMPANIES: `${API.ROOT}/admin/companies`,
+        USERS: `${API.ROOT}/admin/users`,
+        SETTINGS: `${API.ROOT}/admin/settings`,
+        FEATURES: `${API.ROOT}/admin/features`,
+        SUBSCRIPTION: `${API.ROOT}/admin/subscription`,
+        LEAVE_TYPES: `${API.ROOT}/admin/leave-types`,
+        ROLE: `${API.ROOT}/admin/role`,
+        SAVE_USER: `${API.ROOT}/admin/save-user`,
+        GET_ALL_USERS: `${API.ROOT}/admin/get-all-users`,
+        UPDATE_USER: (id: number) => `${API.ROOT}/admin/update-user/${id}`,
+        FIND_BY_ID: (id: number) => `${API.ROOT}/admin/find-by-id/${id}`
+    },
+    COMPANY_MANAGER: {
+        BASE: `${API.ROOT}/company-manager`,
+        EMPLOYEES: `${API.ROOT}/company-manager/employees`,
+        SHIFTS: `${API.ROOT}/company-manager/shifts`,
+        BREAK: `${API.ROOT}/company-manager/break`,
+        COMMENTS: `${API.ROOT}/company-manager/comments`,
+        LEAVES: `${API.ROOT}/company-manager/leaves`,
+        EMPLOYEE_DOCUMENT: `${API.ROOT}/company-manager/employee-document`,
+        SETTINGS: `${API.ROOT}/company-manager/settings`,
+        NOTIFICATION: `${API.ROOT}/company-manager/notification`
+    },
+    EMPLOYEE: {
+        BASE: `${API.ROOT}/employee`,
+        PROFILE: `${API.ROOT}/employee/profile`,
+        LEAVES: `${API.ROOT}/employee/leaves`,
+        ASSETS: `${API.ROOT}/employee/assets`,
+        EXPENSES: `${API.ROOT}/employee/expenses`,
+        NOTIFICATION: `${API.ROOT}/employee/notification`,
+        STATUS: (id: number) => `${API.ROOT}/employee/status/${id}`,
+        BY_ID: (id: number) => `${API.ROOT}/employee/get-by-id/${id}`
+    },
+    USER: {
+        BASE: `${API.ROOT}/user`,
+        PROFILE: '/profile',
+        UPDATE_PROFILE: '/update-user-profile'
+    },
+    AUTH: {
+        REGISTER: '/register',
+        LOGIN: '/login',
+        VERIFY: (authId: string) => `/verify/${authId}`,
+        PASSWORD: {
+            BASE: `${API.ROOT}/password`,
+            REQUEST: '/request',
+            RESET: '/reset'
+        }
+    },
+    CRUD: {
+        SAVE: '/save',
+        UPDATE: (id: number) => `/update/${id}`,
+        DELETE: (id: number) => `/delete/${id}`,
+        LIST: '/list',
+        GET_BY_ID: (id: number) => `/get-by-id/${id}`,
+        GET_BY_USERNAME: '/get-by-username',
+        GET_PROFILE_BY_TOKEN: '/get-profile-by-token',
+        GET_BY_STATUS: '/get-by-status',
+        ASSIGN: '/assign',
+        ASSIGN_ROLE: '/assign-role',
+        GET_BY_ROLE_NAME: (roleName: string) => `/get-by-role-name/${roleName}`,
+        ACTIVATE: (id: number) => `/activate/${id}`,
+        DEACTIVATE: (id: number) => `/deactivate/${id}`,
+        GET_BY_COMPANY_ID: (companyId: number) => `/get-by-company-id/${companyId}`,
+        GET_BY_EMPLOYEE_ID: (employeeId: number) => `/get-by-employee-id/${employeeId}`,
+        FIND_BY_ID: (id: number) => `/find-by-id/${id}`,
+        UPDATE_STATUS: '/update-status',
+        APPROVE: (id: number) => `/approve/${id}`,
+        REJECT: (id: number) => `/reject/${id}`
+    },
+    DOCUMENT: {
+        BASE: `${API.ROOT}/document`,
+        UPLOAD: `${API.ROOT}/document/upload`,
+        GET_ALL: `${API.ROOT}/document/list`,
+        DELETE: (id: number) => `${API.ROOT}/document/delete/${id}`
+    },
+    LEAVE_REQUEST: {
+        BASE: `${API.ROOT}/leaves`,
+        LIST: `${API.ROOT}/leaves/list`,
+        SAVE: `${API.ROOT}/leaves/save`,
+        UPDATE: (id: number) => `${API.ROOT}/leaves/update/${id}`,
+        DELETE: (id: number) => `${API.ROOT}/leaves/delete/${id}`,
+        GET_BY_EMPLOYEE: (employeeId: number) => `${API.ROOT}/leaves/get-by-employee/${employeeId}`
+    },
+    ASSET: {
+        BASE: `${API.ROOT}/employee/assets`,
+        LIST: `${API.ROOT}/employee/assets/list`,
+        SAVE: `${API.ROOT}/employee/assets/save`,
+        UPDATE: (id: number) => `${API.ROOT}/employee/assets/update/${id}`,
+        DELETE: (id: number) => `${API.ROOT}/employee/assets/delete/${id}`,
+        GET_BY_EMPLOYEE: (employeeId: number) => `${API.ROOT}/employee/assets/get-by-employee/${employeeId}`
+    },
+    BONUS: {
+        BASE: `${API.ROOT}/bonus`,
+        LIST: `${API.ROOT}/bonus/list`,
+        SAVE: `${API.ROOT}/bonus/save`,
+        UPDATE: (id: number) => `${API.ROOT}/bonus/update/${id}`,
+        DELETE: (id: number) => `${API.ROOT}/bonus/delete/${id}`
+    },
+    EMAIL: {
+        BASE: `${API.ROOT}/email`,
+        SEND: `${API.ROOT}/email/send`
+    }
+};
+
+// Kullanılacak Routes
+const ROUTES = {
+    EMPLOYEES: {
+        LIST: API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.LIST,
+        SAVE: API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.SAVE,
+        UPDATE: (id: number) => API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.UPDATE(id),
+        DELETE: (id: number) => API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.DELETE(id),
+        GET_BY_ID: (id: number) => API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.GET_BY_ID(id),
+        GET_BY_COMPANY: (companyId: number) => 
+            API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.GET_BY_COMPANY_ID(companyId),
+        ACTIVATE: (id: number) => API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.ACTIVATE(id),
+        DEACTIVATE: (id: number) => API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.DEACTIVATE(id),
+        UPDATE_STATUS: API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.UPDATE_STATUS,
+        ASSIGN_ROLE: API_ENDPOINTS.COMPANY_MANAGER.EMPLOYEES + API_ENDPOINTS.CRUD.ASSIGN_ROLE
+    },
+    DOCUMENTS: {
+        LIST: API_ENDPOINTS.DOCUMENT.GET_ALL,
+        UPLOAD: API_ENDPOINTS.DOCUMENT.UPLOAD,
+        DELETE: (id: number) => API_ENDPOINTS.DOCUMENT.DELETE(id)
+    },
+    LEAVE_REQUESTS: {
+        LIST: API_ENDPOINTS.LEAVE_REQUEST.LIST,
+        SAVE: API_ENDPOINTS.LEAVE_REQUEST.SAVE,
+        UPDATE: (id: number) => API_ENDPOINTS.LEAVE_REQUEST.UPDATE(id),
+        DELETE: (id: number) => API_ENDPOINTS.LEAVE_REQUEST.DELETE(id),
+        GET_BY_EMPLOYEE: (employeeId: number) => API_ENDPOINTS.LEAVE_REQUEST.GET_BY_EMPLOYEE(employeeId)
+    },
+    ASSETS: {
+        LIST: API_ENDPOINTS.ASSET.LIST,
+        SAVE: API_ENDPOINTS.ASSET.SAVE,
+        UPDATE: (id: number) => API_ENDPOINTS.ASSET.UPDATE(id),
+        DELETE: (id: number) => API_ENDPOINTS.ASSET.DELETE(id),
+        GET_BY_EMPLOYEE: (employeeId: number) => API_ENDPOINTS.ASSET.GET_BY_EMPLOYEE(employeeId)
+    },
+    BONUSES: {
+        LIST: API_ENDPOINTS.BONUS.LIST,
+        SAVE: API_ENDPOINTS.BONUS.SAVE,
+        UPDATE: (id: number) => API_ENDPOINTS.BONUS.UPDATE(id),
+        DELETE: (id: number) => API_ENDPOINTS.BONUS.DELETE(id)
+    },
+    EMAIL: {
+        SEND: API_ENDPOINTS.EMAIL.SEND
+    },
+    USER: {
+        UPDATE_PROFILE: API_ENDPOINTS.USER.BASE + API_ENDPOINTS.USER.UPDATE_PROFILE,
+        GET_PROFILE: API_ENDPOINTS.USER.BASE + API_ENDPOINTS.CRUD.GET_PROFILE_BY_TOKEN
+    }
+};
+
+// API yardımcı fonksiyonları
+const getAuthToken = () => {
+    return localStorage.getItem('authToken');
+};
+
+const fetchWithAuth = async (url: string, options: any = {}) => {
+    const token = getAuthToken();
+    
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': token ? `Bearer ${token}` : '',
+        ...options.headers
+    };
+    
+    return fetch(`${API.BASE_URL}${url}`, {
+        ...options,
+        headers
+    });
+};
+
+const postFormDataWithAuth = async (url: string, formData: FormData) => {
+    const token = getAuthToken();
+    
+    const headers = {
+        'Authorization': token ? `Bearer ${token}` : ''
+    };
+    
+    return fetch(`${API.BASE_URL}${url}`, {
+        method: 'POST',
+        body: formData,
+        headers
+    });
 };
 
 function PersonalManagementPage() {
