@@ -6,11 +6,20 @@ import Header from "./components/Header";
 import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfile from "./page/UserProfile";
-import PersonalManagementPage from "./page/PersonalManagementPage";
+
+import CompanyManagement from "./page/CompanyManagement";
+
 import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
 import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
 import ResetPassword from "./page/ResetPassword";
-import ExpensesPage from "./page/ExpensesPage";
+
+import ShiftManagement from "./page/ShiftManagement";
+
+import EmployeeAssets from "./page/EmployeeAssets";
+import AssetsTable from "./components/organisms/EmployeeAssetsTable";
+import CompanyManagerAssetManagement from "./page/CompanyManagerAssetManagement";
+import Notifications from "./page/Notifications";
+
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -30,21 +39,6 @@ const RouterPage = () => {
     }
   };
 
-  // Dummy user data (bu veriyi backend'den alabilirsiniz)
-  const dummyUserData = {
-    firstName: "Hatice",
-    lastName: "SEYREK",
-    email: "hatice@example.com",
-    gender: "Kadın",
-    phoneNumber: "1234567890",
-    birthDate: "1992-11-29",
-    maritalStatus: "Evli",
-    bloodType: "A+",
-    identificationNumber: "12345678901",
-    nationality: "Türk",
-    educationLevel: "Üniversite",
-    status: "ACTIVE" as "ACTIVE" | "INACTIVE"
-  };
 
   const handleSave = (updatedData: any) => {
     // API'ye güncellenmiş veriyi göndermek için burada bir işlem yapılabilir
@@ -74,24 +68,30 @@ const RouterPage = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/personal" element={<PersonalManagementPage />} />
-          <Route path="/permissions" element={<Permissions />} />
-          <Route path="/companymanagerpermissions" element={<CompanyManagerPermissions />} />
-          <Route path="/expenses" element={<ExpensesPage />} />
+          <Route path="/company" element={<CompanyManagement />} />
+          <Route path="/employee-assets" element={<EmployeeAssets />} />
+          <Route path="/companymanager-assets" element={<CompanyManagerAssetManagement />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
+          <Route path="/shiftmanagement" element={<ShiftManagement />} />
+          <Route path="/employee-leaves" element={<Permissions />} />
+
+
+
+
           {/* Profil Görüntüleme Sayfası */}
           <Route
-            path="/user-profile"
+            path="/profile"
             element={
               <UserProfile
               />
             }
           />
-          {/* Profil Düzenleme Sayfası */}
-          
+
         </Routes>
       </Suspense>
-      
+
       <Footer />
     </>
   );

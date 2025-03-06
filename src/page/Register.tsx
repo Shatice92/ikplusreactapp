@@ -53,7 +53,7 @@ function Register() {
             console.log(data);
 
             if (data.code === 200) {
-                swal("Başarılı", "Kayıt işlemi başarılı", "success");
+                swal("Başarılı", "Kayıt işlemi başarılı,Hesap Aktivasyonu için mailinizi kontrol ediniz.", "success");
                 navigate("/login");
             } else {
                 swal("Hata", data.message, "error");

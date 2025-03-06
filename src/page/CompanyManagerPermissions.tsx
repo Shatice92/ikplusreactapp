@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './personalmanagement.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import './CompanyManagerPermissions.css';
+import CompanyManagerSidebar from '../components/organisms/CompanyManagerSidebar';
  
-interface SidebarProps {
-    collapsed: boolean;
-    onToggle: () => void;
-}
+
  
 interface CompanyManagerPermissionRequest {
     employeeName: string;
@@ -16,97 +13,6 @@ interface CompanyManagerPermissionRequest {
     type: string;
     status: "Pending" | "Approved" | "Rejected";
 }
- 
-const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
-    return (
-        <div className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
-            <div className="sidebar-header">
-                <div className="logo-container">
-                    {collapsed ? (
-                        <img src="/assets/logo1.png" alt="IK Plus Logo" className="sidebar-logo" />
-                    ) : (
-                        <img src="/assets/logo2.png" alt="IK Plus Logo" className="sidebar-logo" />
-                    )}
-                </div>
-                <button className="sidebar-toggle" onClick={onToggle}>
-                    <i className="fas fa-chevron-left"></i>
-                </button>
-            </div>
-            
-            <ul className="sidebar-menu">
-                <li className="menu-label">Ana Menü</li>
-                <li>
-                    <a href="#" className="active">
-                        <i className="fas fa-users"></i>
-                        <span>Personel Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-calendar-alt"></i>
-                        <span>İzin Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-clock"></i>
-                        <span>Vardiya Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-box"></i>
-                        <span>Zimmet Yönetimi</span>
-                    </a>
-                </li>
-                
-                <li className="menu-label">Finans</li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-money-bill-wave"></i>
-                        <span>Maaş Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-gift"></i>
-                        <span>Prim Yönetimi</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-receipt"></i>
-                        <span>Harcama Yönetimi</span>
-                    </a>
-                </li>
-                
-                <li className="menu-label">Diğer</li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-chart-line"></i>
-                        <span>Raporlar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-user-cog"></i>
-                        <span>Profil Ayarları</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i className="fas fa-cog"></i>
-                        <span>Ayarlar</span>
-                    </a>
-                </li>
-            </ul>
-            
-            <div className="sidebar-footer">
-                IK Plus v1.0.0
-            </div>
-        </div>
-    );
-};
  
 const CompanyManagerPermissions: React.FC = () => {
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -143,11 +49,73 @@ const CompanyManagerPermissions: React.FC = () => {
  
     const [editIndex, setEditIndex] = useState<number | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
- 
-    const toggleSidebar = () => {
-        setSidebarCollapsed(!sidebarCollapsed);
-    };
- 
+    const [employees, setEmployees] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+            const token = sessionStorage.getItem("token");
+            if (!token) {
+                navigate("/login");  // Token yoksa login sayfasına yönlendir
+            }
+        }, [navigate]);  // ✅ `navigate` bağımlılığı eklenmeli.
+
+    // ✅ Çalışanı Güncelleme
+    const updateEmployee = (employeeId: number, updatedData: Record<string,any>) => {
+    fetch(`http://localhost:9090/v1/dev/company-manager/employees/update/${employeeId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${employeeId}`,
+        },
+    })
+    .then((res) => res.json())
+    .then((data) => console.log("Çalışan güncellendi:", data))
+    .catch((err) => console.error("Çalışanı güncellerken hata oluştu:", err));
+};
+
+    // ✅ Yeni Çalışan Kaydetme
+    const saveEmployee = (employeeData: Record<string,any>) => {
+    fetch("http://localhost:9090/v1/dev/company-manager/employees/save", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${employeeData}`,
+        },
+        body: JSON.stringify(employeeData),
+    })
+    .then((res) => res.json())
+    .then((data) => console.log("Çalışan kaydedildi:", data))
+    .catch((err) => console.error("Çalışan kaydedilirken hata oluştu:", err));
+};
+
+    // ✅ Çalışanları Listeleme
+    const fetchEmployees = () => {
+    fetch("http://localhost:9090/v1/dev/company-manager/employees/list", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    })
+    .then((res) => res.json())
+    .then((data) => console.log("Çalışan listesi:", data))
+    .catch((err) => console.error("Çalışanları çekerken hata oluştu:", err));
+};
+
+    // ✅ Çalışanı Silme
+    const deleteEmployee = (employeeId:number) => {
+    fetch(`http://localhost:9090/v1/dev/company-manager/employees/delete/${employeeId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${employeeId}`,
+        },
+    })
+    .then((res) => res.json())
+    .then((data) => console.log("Çalışan silindi:", data))
+    .catch((err) => console.error("Çalışanı silerken hata oluştu:", err));
+};
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setNewRequest(prevState => {
@@ -205,8 +173,10 @@ const CompanyManagerPermissions: React.FC = () => {
  
     return (
         <div className="personal-management-container">
-            <Sidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
-            <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
+            <CompanyManagerSidebar collapsed={false} onToggle={function (): void {
+                throw new Error('Function not implemented.');
+            } } />
+            
                 <div className="permissions-container">
                     <h2>İzin Talepleri</h2>
  
@@ -372,9 +342,9 @@ const CompanyManagerPermissions: React.FC = () => {
                         </table>
                     </div>
                 </div>
-            </main>
-        </div>
-    );
+                </div> 
+
+    )
 };
- 
+
 export default CompanyManagerPermissions;
