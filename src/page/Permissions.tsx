@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import './Permissions.css';
 import EmployeeSidebar from '../components/organisms/EmployeeSideBar';
 
@@ -17,6 +18,65 @@ const Permissions = () => {
     { employeeName: 'Alice Johnson', date: '2025-03-03', type: 'Maternity Leave', status: 'Rejected' },
   ]);
   const [newRequest, setNewRequest] = useState({ employeeName: '', date: '', type: '' });
+  const [employees, setEmployees] = useState([]);
+      const navigate = useNavigate();
+  
+      useEffect(() => {
+              const token = sessionStorage.getItem("token");
+              if (!token) {
+                  navigate("/login");  // Token yoksa login sayfasına yönlendir
+              }
+          }, [navigate]);  // ✅ `navigate` bağımlılığı eklenmeli.
+
+      // ✅ İzin güncelleme
+  const updateEmployeeLeave = (id: number, updatedData: Record<string, any>) => {
+  fetch(`http://localhost:9090/v1/dev/employee/leaves/update/${id}`, {
+      method: "PUT",
+      headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(updatedData),
+  })
+  .then((res) => res.json())
+  .then((data) => {
+      console.log("İzin güncellendi:", data);
+  })
+  .catch((err) => console.error("İzin güncellenirken hata oluştu:", err));
+};
+
+// ✅ Yeni bir izin talebi kaydetme
+const saveEmployeeLeave = (leaveData: Record<string, any>) => {
+  fetch("http://localhost:9090/v1/dev/employee/leaves/save", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(leaveData),
+  })
+  .then((res) => res.json())
+  .then((data) => {
+      console.log("Yeni izin kaydedildi:", data);
+  })
+  .catch((err) => console.error("Yeni izin kaydedilirken hata oluştu:", err));
+};
+
+// ✅ Sistemde kayıtlı tüm izin taleplerini listeleme
+const fetchEmployeeLeaves = () => {
+  fetch("http://localhost:9090/v1/dev/employee/leaves/list", {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+  })
+  .then((res) => res.json())
+  .then((data) => {
+      console.log("İzinler listelendi:", data);
+  })
+  .catch((err) => console.error("İzinleri listelerken hata oluştu:", err));
+};
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setNewRequest({ ...newRequest, [e.target.name]: e.target.value });

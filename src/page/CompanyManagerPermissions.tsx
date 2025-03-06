@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CompanyManagerPermissions.css';
 import CompanyManagerSidebar from '../components/organisms/CompanyManagerSidebar';
@@ -48,11 +49,73 @@ const CompanyManagerPermissions: React.FC = () => {
  
     const [editIndex, setEditIndex] = useState<number | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
- 
-    const toggleSidebar = () => {
-        setSidebarCollapsed(!sidebarCollapsed);
-    };
- 
+    const [employees, setEmployees] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+            const token = sessionStorage.getItem("token");
+            if (!token) {
+                navigate("/login");  // Token yoksa login sayfasına yönlendir
+            }
+        }, [navigate]);  // ✅ `navigate` bağımlılığı eklenmeli.
+
+    // ✅ Çalışanı Güncelleme
+    const updateEmployee = (employeeId: number, updatedData: Record<string,any>) => {
+    fetch(`http://localhost:9090/v1/dev/company-manager/employees/update/${employeeId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${employeeId}`,
+        },
+    })
+    .then((res) => res.json())
+    .then((data) => console.log("Çalışan güncellendi:", data))
+    .catch((err) => console.error("Çalışanı güncellerken hata oluştu:", err));
+};
+
+    // ✅ Yeni Çalışan Kaydetme
+    const saveEmployee = (employeeData: Record<string,any>) => {
+    fetch("http://localhost:9090/v1/dev/company-manager/employees/save", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${employeeData}`,
+        },
+        body: JSON.stringify(employeeData),
+    })
+    .then((res) => res.json())
+    .then((data) => console.log("Çalışan kaydedildi:", data))
+    .catch((err) => console.error("Çalışan kaydedilirken hata oluştu:", err));
+};
+
+    // ✅ Çalışanları Listeleme
+    const fetchEmployees = () => {
+    fetch("http://localhost:9090/v1/dev/company-manager/employees/list", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    })
+    .then((res) => res.json())
+    .then((data) => console.log("Çalışan listesi:", data))
+    .catch((err) => console.error("Çalışanları çekerken hata oluştu:", err));
+};
+
+    // ✅ Çalışanı Silme
+    const deleteEmployee = (employeeId:number) => {
+    fetch(`http://localhost:9090/v1/dev/company-manager/employees/delete/${employeeId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${employeeId}`,
+        },
+    })
+    .then((res) => res.json())
+    .then((data) => console.log("Çalışan silindi:", data))
+    .catch((err) => console.error("Çalışanı silerken hata oluştu:", err));
+};
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setNewRequest(prevState => {
