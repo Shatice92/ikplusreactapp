@@ -73,7 +73,7 @@ const RouterPage = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
-          <Route path="/shiftmanagement" element={<ShiftManagement />} />
+          <Route path="/companymanager-shifts" element={<ShiftManagement />} />
           <Route path="/employee-leaves" element={<Permissions />} />
 
 
