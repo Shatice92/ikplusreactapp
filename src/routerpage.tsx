@@ -10,8 +10,8 @@ import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sa
 import ResetPassword from "./page/ResetPassword";
 import EmployeeAssets from "./page/EmployeeAssets";
 import AssetsTable from "./components/organisms/EmployeeAssetsTable";
+import CompanyManagerAssetManagement from "./page/CompanyManagerAssetManagement";
 import AdminCompanyManagement from "./page/AdminCompanyManagement";
-
 
 
 
@@ -65,6 +65,7 @@ const RouterPage = () => {
 
           <Route path="/assets" element={<AssetsTable />} />
           <Route path="/employee-assets" element={<EmployeeAssets />} />
+          <Route path="/companymanager-assets" element={<CompanyManagerAssetManagement />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
           <Route path="/company-management" element={<AdminCompanyManagement />} />
