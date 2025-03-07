@@ -112,183 +112,102 @@ const CompanyManagerPermissions: React.FC = () => {
         });
     };
 
-    const toggleSidebar = () => {
-        setSidebarCollapsed(!sidebarCollapsed);
-    };
-
     return (
-        <div className="personal-management-container">
-            <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
-            <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
+        <div className={`deneme-container ${sidebarCollapsed ? 'collapsed' : ''}`}>
+            <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} />
+            <div className="permissions-container">
+                <h2>İzin Talepleri</h2>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
+                
+                <div className="new-request-form">
+                    <h3>{editIndex !== null ? "İzni Güncelle" : "Yeni İzin Talebi Ekle"}</h3>
+                    <input
+                        type="text"
+                        name="employeeName"
+                        value={newRequest.employeeName}
+                        placeholder="Çalışan Adı"
+                        onChange={handleInputChange}
+                    />
+                    <input
+                        type="date"
+                        name="startDate"
+                        value={newRequest.startDate}
+                        onChange={handleInputChange}
+                    />
+                    <input
+                        type="date"
+                        name="endDate"
+                        value={newRequest.endDate}
+                        onChange={handleInputChange}
+                    />
+                    <select
+                        name="type"
+                        value={newRequest.type}
+                        onChange={handleInputChange}
+                    >
+                        <option value="">İzin Türü Seçin</option>
+                        <option value="Annual Leave">Yıllık İzin</option>
+                        <option value="Sick Leave">Sağlık İzni</option>
+                        <option value="Maternity Leave">Kadın Doğum İzni</option>
+                        <option value="Paternity Leave">Erkek Doğum İzni</option>
+                        <option value="Marriage Leave">Evlilik İzni</option>
+                        <option value="Bereavement Leave">Vefat İzni</option>
+                        <option value="Compensatory Leave">Fazla Mesai İzni</option>
+                        <option value="Unpaid Leave">Ücretsiz İzin</option>
+                        <option value="Study Leave">Mesleki Eğitim İzni</option>
+                        <option value="Public Holiday">Ulusal İzin</option>
+                        <option value="Religious Holiday">Dini Bayram İzni</option>
+                        <option value="Emergency Leave">Acil Durum İzni</option>
+                        <option value="Voiting Leave">Seçim İzni</option>
+                        <option value="Military Leave">Askerlik İzni</option>
+                        <option value="Medical Leave">Tedavi İzni</option>
+                        <option value="Adoption Leave">Evlat Edinme İzni</option>
+                        <option value="Special Occasion Leave">Özel Gün İzni</option>
+                        <option value="Quarantine Leave">Karantina İzni</option>
+                        <option value="Work From Home">Evden Çalışma İzni</option>
+                    </select>
 
-                <div className="permissions-container">
-
-                    <div className="new-request-form">
-                        <h3>{editIndex !== null ? "İzni Güncelle" : "Yeni İzin Talebi Ekle"}</h3>
-                        <input
-                            type="text"
-                            name="employeeName"
-                            value={newRequest.employeeName}
-                            placeholder="Çalışan Adı"
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="date"
-                            name="startDate"
-                            value={newRequest.startDate}
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="date"
-                            name="endDate"
-                            value={newRequest.endDate}
-                            onChange={handleInputChange}
-                        />
-                        <select
-                            name="type"
-                            value={newRequest.type}
-                            onChange={handleInputChange}
+                    {editIndex !== null ? (
+                        <button
+                            onClick={() => {
+                                if (editIndex !== null) {
+                                    const selectedRequest = companyManagerPermissionRequests[editIndex]; // Edit edilen izin talebini alıyoruz
+                                    if (selectedRequest) {
+                                        updateEmployee(selectedRequest.id, newRequest); // İzin talebini güncelliyoruz
+                                    }
+                                }
+                            }}
                         >
-                            <option value="">İzin Türü Seçin</option>
-                            <option value="Annual Leave">Yıllık İzin</option>
-                            <option value="Sick Leave">Sağlık İzni</option>
-                            <option value="Maternity Leave">Kadın Doğum İzni</option>
-                            <option value="Paternity Leave">Erkek Doğum İzni</option>
-                            <option value="Marriage Leave">Evlilik İzni</option>
-                            <option value="Bereavement Leave">Vefat İzni</option>
-                            <option value="Compensatory Leave">Fazla Mesai İzni</option>
-                            <option value="Unpaid Leave">Ücretsiz İzin</option>
-                            <option value="Study Leave">Mesleki Eğitim İzni</option>
-                            <option value="Public Holiday">Ulusal İzin</option>
-                            <option value="Religious Holiday">Dini Bayram İzni</option>
-                            <option value="Emergency Leave">Acil Durum İzni</option>
-                            <option value="Voiting Leave">Seçim İzni</option>
-                            <option value="Military Leave">Askerlik İzni</option>
-                            <option value="Medical Leave">Tedavi İzni</option>
-                            <option value="Adoption Leave">Evlat Edinme İzni</option>
-                            <option value="Special Occasion Leave">Özel Gün İzni</option>
-                            <option value="Quarantine Leave">Karantina İzni</option>
-                            <option value="Work From Home">Evden Çalışma İzni</option>
-                        </select>
-                        {editIndex !== null ? (
-                            <button onClick={handleUpdateRequest}>Güncelle</button>
-                        ) : (
-                            <button onClick={handleAddRequest}>Ekle</button>
-                        )}
-                    </div>
-
-                    <div className="requests-list">
-                        <h3>İzin Talepleri</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Çalışan Adı</th>
-                                    <th>Başlangıç Tarihi</th>
-                                    <th>Bitiş Tarihi</th>
-                                    <th>İzin Türü</th>
-                                    <th>Durum</th>
-                                    <th>İşlemler</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {companyManagerPermissionRequests.map((request, index) => (
-                                    <tr key={index}>
-                                        <td>{request.employeeName}</td>
-                                        <td>{request.startDate}</td>
-                                        <td>{request.endDate}</td>
-                                        <td>{request.type}</td>
-                                        <td>{request.status}</td>
-                                        <td>
-                                            <div style={{ display: 'flex', gap: '3px', justifyContent: 'flex-start' }}>
-                                                {request.status === "Pending" && (
-                                                    <>
-                                                        <button
-                                                            style={{
-                                                                backgroundColor: '#28a745',
-                                                                color: 'white',
-                                                                border: 'none',
-                                                                padding: '3px 6px',
-                                                                borderRadius: '3px',
-                                                                cursor: 'pointer',
-                                                                display: 'flex',
-                                                                alignItems: 'center',
-                                                                gap: '3px',
-                                                                fontSize: '11px'
-                                                            }}
-                                                            onClick={() => handleApprove(index)}
-                                                        >
-                                                            <i className="fas fa-check" style={{ fontSize: '10px' }}></i>
-                                                            Onayla
-                                                        </button>
-                                                        <button
-                                                            style={{
-                                                                backgroundColor: '#dc3545',
-                                                                color: 'white',
-                                                                border: 'none',
-                                                                padding: '3px 6px',
-                                                                borderRadius: '3px',
-                                                                cursor: 'pointer',
-                                                                display: 'flex',
-                                                                alignItems: 'center',
-                                                                gap: '3px',
-                                                                fontSize: '11px'
-                                                            }}
-                                                            onClick={() => handleReject(index)}
-                                                        >
-                                                            <i className="fas fa-times" style={{ fontSize: '10px' }}></i>
-                                                            Reddet
-                                                        </button>
-                                                    </>
-                                                )}
-                                                <button
-                                                    style={{
-                                                        backgroundColor: '#17a2b8',
-                                                        color: 'white',
-                                                        border: 'none',
-                                                        padding: '3px 6px',
-                                                        borderRadius: '3px',
-                                                        cursor: 'pointer',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: '3px',
-                                                        fontSize: '11px'
-                                                    }}
-                                                    onClick={() => handleEditRequest(index)}
-                                                >
-                                                    <i className="fas fa-edit" style={{ fontSize: '10px' }}></i>
-                                                    Düzenle
-                                                </button>
-                                                <button
-                                                    style={{
-                                                        backgroundColor: '#6c757d',
-                                                        color: 'white',
-                                                        border: 'none',
-                                                        padding: '3px 6px',
-                                                        borderRadius: '3px',
-                                                        cursor: 'pointer',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: '3px',
-                                                        fontSize: '11px'
-                                                    }}
-                                                    onClick={() => handleDeleteRequest(index)}
-                                                >
-                                                    <i className="fas fa-trash-alt" style={{ fontSize: '10px' }}></i>
-                                                    Sil
-                                                </button>
-                                            </div>
-                                        </td>
-
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                            Güncelle
+                        </button>
+                    ) : (
+                        <button onClick={() => saveEmployee(newRequest)}>Ekle</button>
+                    )}
                 </div>
-            </main>
-        </div>
 
-    )
+                <h3>İzin Talepleri</h3>
+                <ul>
+                {companyManagerPermissionRequests.map((request: ICompanyManagerPermissions, index: number) => (
+                <li key={request.id}>
+                {request.employeeName} - {request.startDate} - {request.endDate} - {request.type}
+                <button onClick={() => deleteEmployee(request.id)}>Sil</button>
+                <button onClick={() => {
+                setEditIndex(index);
+                setNewRequest({
+                    employeeName: request.employeeName,
+                    startDate: request.startDate,
+                    endDate: request.endDate,
+                    type: request.type,
+                });
+                }}>
+                Düzenle
+            </button>
+        </li>
+    ))}
+</ul>
+            </div>
+        </div>
+    );
 };
 
 export default CompanyManagerPermissions;
