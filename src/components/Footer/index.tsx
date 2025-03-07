@@ -94,9 +94,9 @@ const Footer = () => {
       <Extra>
         <Container border={true}>
           <Row justify="space-between" align="middle" style={{ paddingTop: "3rem" }}>
-            <NavLink to="/homepage">
+          <NavLink to="/homepage">
               <LogoContainer>
-                <SvgIcon src="logo.svg" aria-label="homepage" width="150px" height="100px" />
+                <SvgIcon src="logo2.png" aria-label="homepage" width="100px" height="100px" />
               </LogoContainer>
             </NavLink>
             <FooterContainer>

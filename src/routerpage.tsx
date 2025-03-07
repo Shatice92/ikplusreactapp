@@ -1,17 +1,26 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { HomeStyles, DefaultStyles } from "./styles/styles"; 
 import ForgotPassword from "./page/ForgotPassword";
 import UserProfile from "./page/UserProfile";
 import CompanyManagement from "./page/CompanyManagement";
+
 import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
 import Permissions from "./page/Permissions"; 
 import ResetPassword from "./page/ResetPassword";
+
+import ShiftManagement from "./page/ShiftManagement";
+
 import EmployeeAssets from "./page/EmployeeAssets";
 import AssetsTable from "./components/organisms/EmployeeAssetsTable";
 import CompanyManagerAssetManagement from "./page/CompanyManagerAssetManagement";
+import AdminCompanyManagement from "./page/AdminCompanyManagement";
+
+
+import Notifications from "./page/Notifications";
 
 // Lazy loaded pages
 const Home = lazy(() => import("./pages/Home"));
@@ -55,16 +64,29 @@ const RouterPage = () => {
           <Route path="/homepage" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/company" element={<CompanyManagement />} />
+      
+          <Route path="/company" element={<CompanyManagement />} /
+          <Route path="/reset-password" element={<ForgotPassword />} />
+
           <Route path="/assets" element={<AssetsTable />} />
           <Route path="/employee-assets" element={<EmployeeAssets />} />
           <Route path="/companymanager-assets" element={<CompanyManagerAssetManagement />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
           <Route path="/comments" element={<Comments />} /> 
 
-          <Route path="/profile" element={<UserProfile />} />
+        
+  <Route path="/company-management" element={<AdminCompanyManagement />} />
+          <Route path="/companymanager-shifts" element={<ShiftManagement />} />
+          <Route path="/employee-leaves" element={<Permissions />} />
+          <Route
+            path="/profile"
+            element={
+              <UserProfile
+              />
+            }
+          />
         </Routes>
       </Suspense>
 

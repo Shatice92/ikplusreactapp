@@ -67,7 +67,7 @@ const EmployeeSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
           </a>
         </li>
         <li>
-          <a onClick={() => onNavigate("/employee-notifications")}>
+          <a onClick={() => onNavigate("/notifications")}>
             <i className="fas fa-cog"></i>
             <span>Bildirimler</span>
           </a>
