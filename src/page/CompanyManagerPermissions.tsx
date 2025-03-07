@@ -1,52 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { ICompanyManagerPermissions } from '../model/ICompanyManagerPermissions';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CompanyManagerPermissions.css';
 import CompanyManagerSidebar from '../components/organisms/CompanyManagerSidebar';
 
-
-
-interface CompanyManagerPermissionRequest {
-    employeeName: string;
-    startDate: string;
-    endDate: string;
-    type: string;
-    status: "Pending" | "Approved" | "Rejected";
-}
-
 const CompanyManagerPermissions: React.FC = () => {
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-    const [companyManagerPermissionRequests, setCompanyManagerPermissionRequests] = useState<CompanyManagerPermissionRequest[]>([
-        {
-            employeeName: "Emirhan Aydın",
-            startDate: "2025-03-01",
-            endDate: "2025-03-05",
-            type: "Sick Leave",
-            status: "Pending",
-        },
-        {
-            employeeName: "Buğra Aydın",
-            startDate: "2025-03-10",
-            endDate: "2025-03-15",
-            type: "Annual Leave",
-            status: "Pending",
-        },
-        {
-            employeeName: "Emirhan Buğra Aydın",
-            startDate: "2025-03-10",
-            endDate: "2025-03-15",
-            type: "Marriage Leave",
-            status: "Pending",
-        },
-    ]);
-
+    const [companyManagerPermissionRequests, setCompanyManagerPermissionRequests] = useState<ICompanyManagerPermissions[]>([]);
     const [newRequest, setNewRequest] = useState({
         employeeName: "",
         startDate: "",
         endDate: "",
         type: "",
     });
-
     const [editIndex, setEditIndex] = useState<number | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [employees, setEmployees] = useState([]);
@@ -55,40 +22,10 @@ const CompanyManagerPermissions: React.FC = () => {
     useEffect(() => {
         const token = sessionStorage.getItem("token");
         if (!token) {
-            navigate("/login");  // Token yoksa login sayfasına yönlendir
+            navigate("/login");
         }
-    }, [navigate]);  // ✅ `navigate` bağımlılığı eklenmeli.
+    }, [navigate]);
 
-    // ✅ Çalışanı Güncelleme
-    const updateEmployee = (employeeId: number, updatedData: Record<string, any>) => {
-        fetch(`http://localhost:9090/v1/dev/company-manager/employees/update/${employeeId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${employeeId}`,
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => console.log("Çalışan güncellendi:", data))
-            .catch((err) => console.error("Çalışanı güncellerken hata oluştu:", err));
-    };
-
-    // ✅ Yeni Çalışan Kaydetme
-    const saveEmployee = (employeeData: Record<string, any>) => {
-        fetch("http://localhost:9090/v1/dev/company-manager/employees/save", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${employeeData}`,
-            },
-            body: JSON.stringify(employeeData),
-        })
-            .then((res) => res.json())
-            .then((data) => console.log("Çalışan kaydedildi:", data))
-            .catch((err) => console.error("Çalışan kaydedilirken hata oluştu:", err));
-    };
-
-    // ✅ Çalışanları Listeleme
     const fetchEmployees = () => {
         fetch("http://localhost:9090/v1/dev/company-manager/employees/list", {
             method: "GET",
@@ -97,78 +34,82 @@ const CompanyManagerPermissions: React.FC = () => {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         })
-            .then((res) => res.json())
-            .then((data) => console.log("Çalışan listesi:", data))
-            .catch((err) => console.error("Çalışanları çekerken hata oluştu:", err));
-    };
-
-    // ✅ Çalışanı Silme
-    const deleteEmployee = (employeeId: number) => {
-        fetch(`http://localhost:9090/v1/dev/company-manager/employees/delete/${employeeId}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${employeeId}`,
-            },
+        .then((res) => res.json())
+        .then((data) => {
+            setEmployees(data); // Veriyi employees'e atıyoruz
+            setCompanyManagerPermissionRequests(data); // Veriyi permissionRequests'e atıyoruz
         })
-            .then((res) => res.json())
-            .then((data) => console.log("Çalışan silindi:", data))
-            .catch((err) => console.error("Çalışanı silerken hata oluştu:", err));
-    };
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setNewRequest(prevState => {
-            const updatedRequest = { ...prevState, [name]: value };
-
-            if (updatedRequest.startDate && updatedRequest.endDate && updatedRequest.startDate > updatedRequest.endDate) {
-                setErrorMessage("Başlangıç tarihi bitiş tarihinden sonra olamaz!");
-                updatedRequest.endDate = updatedRequest.startDate;
-            } else {
-                setErrorMessage(null);
-            }
-
-            return updatedRequest;
+        .catch((err) => {
+            setErrorMessage("Çalışanları çekerken hata oluştu.");
         });
     };
 
-    const handleAddRequest = () => {
-        setCompanyManagerPermissionRequests([
-            ...companyManagerPermissionRequests,
-            { ...newRequest, status: 'Pending' as 'Pending' },
-        ]);
-        setNewRequest({ employeeName: "", startDate: "", endDate: "", type: "" });
+    useEffect(() => {
+        fetchEmployees();
+    }, []);
+
+    const updateEmployee = (id: number, updatedData: Record<string, any>) => {
+        fetch(`http://localhost:9090/v1/dev/company-manager/employees/update/{id}`, { // Düzeltilen URL
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+            body: JSON.stringify(updatedData),
+        })
+        .then((res) => res.json())
+        .then(() => {
+            fetchEmployees();  // Güncellenen çalışan verileri listelenir
+            setEditIndex(null);  // Edit işlemi tamamlandığında, düzenleme modundan çıkılır
+            setNewRequest({ employeeName: "", startDate: "", endDate: "", type: "" });  // Form sıfırlanır
+        })
+        .catch((err) => {
+            setErrorMessage("Çalışanı güncellerken hata oluştu.");
+            console.error("Çalışanı güncellerken hata oluştu:", err);
+        });
     };
 
-    const handleUpdateRequest = () => {
-        if (editIndex !== null) {
-            const updatedRequests = [...companyManagerPermissionRequests];
-            updatedRequests[editIndex] = { ...newRequest, status: updatedRequests[editIndex].status };
-            setCompanyManagerPermissionRequests(updatedRequests);
-            setEditIndex(null);
-            setNewRequest({ employeeName: "", startDate: "", endDate: "", type: "" });
-        }
+    const saveEmployee = (employeeData: Record<string, any>) => {
+        fetch("http://localhost:9090/v1/dev/company-manager/employees/save", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+            body: JSON.stringify(employeeData),
+        })
+        .then((res) => res.json())
+        .then(() => {
+            fetchEmployees();  // Yeni çalışan eklendikten sonra çalışanlar listesi güncelleniyor
+            setNewRequest({ employeeName: "", startDate: "", endDate: "", type: "" });  // Formu temizleme
+        })
+        .catch((err) => {
+            setErrorMessage("Çalışan kaydedilirken hata oluştu.");
+            console.error("Çalışan kaydedilirken hata oluştu:", err);
+        });
     };
 
-    const handleEditRequest = (index: number) => {
-        setEditIndex(index);
-        setNewRequest(companyManagerPermissionRequests[index]);
+    const deleteEmployee = (id: number) => {
+        fetch(`http://localhost:9090/v1/dev/company-manager/employees/delete/{id}`, {  // Düzeltilen URL
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+        })
+        .then((res) => res.json())
+        .then(() => fetchEmployees())
+        .catch((err) => {
+            setErrorMessage("Çalışanı silerken hata oluştu.");
+            console.error("Çalışanı silerken hata oluştu:", err);
+        });
     };
 
-    const handleDeleteRequest = (index: number) => {
-        setCompanyManagerPermissionRequests(companyManagerPermissionRequests.filter((_, i) => i !== index));
-    };
-
-    const handleApprove = (index: number) => {
-        const updatedRequests = [...companyManagerPermissionRequests];
-        updatedRequests[index].status = "Approved";
-        setCompanyManagerPermissionRequests(updatedRequests);
-    };
-
-    const handleReject = (index: number) => {
-        const updatedRequests = [...companyManagerPermissionRequests];
-        updatedRequests[index].status = "Rejected";
-        setCompanyManagerPermissionRequests(updatedRequests);
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setNewRequest({
+            ...newRequest,
+            [e.target.name]: e.target.value,
+        });
     };
 
     const toggleSidebar = () => {

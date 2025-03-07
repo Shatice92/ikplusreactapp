@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./ShiftManagement.css";
+import { IShiftManagement } from '../model/IShiftManagement';
+import CompanyManagerSidebar from "../components/organisms/CompanyManagerSidebar";
 
-interface Shift {
-  id: number;
-  startTime: string;
-  endTime: string;
-  employee: string;
-}
+
 
 const ShiftManagement = () => {
-  const [shifts, setShifts] = useState<Shift[]>([]);
-  const [newShift, setNewShift] = useState<Shift>({
+  const [shifts, setShifts] = useState<IShiftManagement[]>([]);
+  const [newShift, setNewShift] = useState<IShiftManagement>({
     id: 0,
     startTime: "",
     endTime: "",
     employee: "",
   });
-  const [editingShiftId, setEditingShiftId] = useState<number | null>(null);
+  const [id, setEditingShiftId] = useState<number | null>(null);
 
   useEffect(() => {
     fetchShifts();
@@ -38,7 +35,7 @@ const ShiftManagement = () => {
 
   // ✅ 2. Vardiya Ekleme (POST)
   const addShift = () => {
-    fetch("http://localhost:9090/v1/dev/company-manager/shifts/add", {
+    fetch("http://localhost:9090/v1/dev/company-manager/shifts/save", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,9 +57,9 @@ const ShiftManagement = () => {
 
   // ✅ 3. Vardiya Güncelleme (UPDATE)
   const updateShift = () => {
-    if (editingShiftId === null) return;
+    if (id === null) return;
 
-    fetch(`http://localhost:9090/v1/dev/company-manager/shifts/update/${editingShiftId}`, {
+    fetch(`http://localhost:9090/v1/dev/company-manager/shifts/update/{id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +82,7 @@ const ShiftManagement = () => {
 
   // ✅ 4. Vardiya Silme (DELETE)
   const deleteShift = (id: number) => {
-    fetch(`http://localhost:9090/v1/dev/company-manager/shifts/delete/${id}`, {
+    fetch(`http://localhost:9090/v1/dev/company-manager/shifts/delete/{id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -95,13 +92,20 @@ const ShiftManagement = () => {
       .catch((err) => console.error("Vardiya silinirken hata oluştu:", err));
   };
 
-  // ✅ 5. Vardiya Düzenleme Moduna Geçme
-  const editShift = (shift: Shift) => {
+  const editShift = (shift: IShiftManagement) => {
     setNewShift(shift);
     setEditingShiftId(shift.id);
   };
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+ 
+  const toggleSidebar = () => {
+    setSidebarCollapsed(!sidebarCollapsed);
+  };
 
   return (
+    <div className="deneme-container">
+      <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
+      <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
     <div className="shift-management">
       <h2>Vardiya Yönetimi</h2>
 
@@ -131,7 +135,7 @@ const ShiftManagement = () => {
           }
           placeholder="Çalışan"
         />
-        {editingShiftId ? (
+        {id ? (
           <button onClick={updateShift}>Vardiya Güncelle</button>
         ) : (
           <button onClick={addShift}>Vardiya Ekle</button>
@@ -152,6 +156,8 @@ const ShiftManagement = () => {
           ))}
         </ul>
       </div>
+    </div>
+    </main>
     </div>
   );
 };
