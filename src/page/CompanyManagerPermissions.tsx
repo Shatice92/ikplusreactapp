@@ -112,9 +112,14 @@ const CompanyManagerPermissions: React.FC = () => {
         });
     };
 
+    const toggleSidebar = () => {
+        setSidebarCollapsed(!sidebarCollapsed);
+      };
+
     return (
         <div className={`deneme-container ${sidebarCollapsed ? 'collapsed' : ''}`}>
-            <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={() => setSidebarCollapsed(!sidebarCollapsed)} />
+            <CompanyManagerSidebar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
+            <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
             <div className="permissions-container">
                 <h2>İzin Talepleri</h2>
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -206,6 +211,7 @@ const CompanyManagerPermissions: React.FC = () => {
     ))}
 </ul>
             </div>
+            </main>
         </div>
     );
 };

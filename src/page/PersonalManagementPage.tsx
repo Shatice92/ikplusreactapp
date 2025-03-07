@@ -16,7 +16,7 @@ import {
     Legend,
     PointElement,
 } from 'chart.js'
-import { Sidebar } from '../components/Sidebar'
+import { Sidebar } from '../components/organisms/Sidebar'
 
 ChartJS.register(
     CategoryScale,

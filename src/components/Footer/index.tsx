@@ -94,11 +94,6 @@ const Footer = () => {
       <Extra>
         <Container border={true}>
           <Row justify="space-between" align="middle" style={{ paddingTop: "3rem" }}>
-          <NavLink to="/homepage">
-              <LogoContainer>
-                <SvgIcon src="logo2.png" aria-label="homepage" width="100px" height="100px" />
-              </LogoContainer>
-            </NavLink>
             <FooterContainer>
               <SocialLink href="https://github.com/Adrinlol/create-react-app-adrinlol" src="github.svg" />
               <SocialLink href="https://twitter.com/Adrinlolx" src="twitter.svg" />

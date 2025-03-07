@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../page/personalcss/layout.css';
 import '../page/personalcss/components.css';
 import '../page/personalcss/responsive.css';
-import { Sidebar } from '../components/Sidebar';
+import { Sidebar } from '../components/organisms/Sidebar';
 
 // Harcama arayüzü
 interface Expense {

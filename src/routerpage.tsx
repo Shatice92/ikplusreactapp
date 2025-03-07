@@ -19,6 +19,8 @@ import AdminCompanyManagement from "./page/AdminCompanyManagement";
 
 
 import Notifications from "./page/Notifications";
+import PersonalManagementPage from "./page/PersonalManagementPage";
+import ExpensesPage from "./page/ExpensesPage";
 
 
 
@@ -78,6 +80,8 @@ const RouterPage = () => {
           <Route path="/company-management" element={<AdminCompanyManagement />} />
           <Route path="/companymanager-shifts" element={<ShiftManagement />} />
           <Route path="/employee-leaves" element={<Permissions />} />
+          <Route path="/personal" element={<PersonalManagementPage />} />
+          <Route path="/employee-expenses" element={<ExpensesPage />} />
           <Route
             path="/profile"
             element={
