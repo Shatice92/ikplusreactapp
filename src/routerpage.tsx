@@ -68,7 +68,7 @@ const RouterPage = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
-          <Route path="/company" element={<CompanyManagement />} />
+          <Route path="/company-management" element={<CompanyManagement />} />
           <Route path="/employee-assets" element={<EmployeeAssets />} />
           <Route path="/companymanager-assets" element={<CompanyManagerAssetManagement />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -76,11 +76,6 @@ const RouterPage = () => {
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
           <Route path="/companymanager-shifts" element={<ShiftManagement />} />
           <Route path="/employee-leaves" element={<Permissions />} />
-
-
-
-
-          {/* Profil Görüntüleme Sayfası */}
           <Route
             path="/profile"
             element={
