@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { HomeStyles, DefaultStyles } from "./styles/styles"; // Import yaptık
@@ -8,10 +9,16 @@ import UserProfile from "./page/UserProfile";
 import CompanyManagerPermissions from "./page/CompanyManagerPermissions";
 import Permissions from "./page/Permissions"; // Çalışanlar için İzinler Sayfası
 import ResetPassword from "./page/ResetPassword";
+
+import ShiftManagement from "./page/ShiftManagement";
+
 import EmployeeAssets from "./page/EmployeeAssets";
 import AssetsTable from "./components/organisms/EmployeeAssetsTable";
 import CompanyManagerAssetManagement from "./page/CompanyManagerAssetManagement";
 import AdminCompanyManagement from "./page/AdminCompanyManagement";
+
+
+import Notifications from "./page/Notifications";
 
 
 
@@ -62,19 +69,15 @@ const RouterPage = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
-
           <Route path="/assets" element={<AssetsTable />} />
           <Route path="/employee-assets" element={<EmployeeAssets />} />
           <Route path="/companymanager-assets" element={<CompanyManagerAssetManagement />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
           <Route path="/company-management" element={<AdminCompanyManagement />} />
-          
- 
-
-
-
-          {/* Profil Görüntüleme Sayfası */}
+          <Route path="/companymanager-shifts" element={<ShiftManagement />} />
+          <Route path="/employee-leaves" element={<Permissions />} />
           <Route
             path="/profile"
             element={

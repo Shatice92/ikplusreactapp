@@ -85,7 +85,7 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
                     </a>
                 </li>
                 <li>
-                    <a onClick={() => handleNavigation("/companymanager-notifications")}>
+                    <a onClick={() => handleNavigation("/notifications")}>
                         <i className="fas fa-cog"></i>
                         <span>Bildirimler</span>
                     </a>
@@ -97,12 +97,17 @@ const CompanyManagerSidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) 
                     </a>
                 </li>
 
-                <button className='logout-button' onClick={() => {
-                    sessionStorage.removeItem("token");
-                    navigate("/login");
-                }}>
-                    Sistemden Çıkış Yap
-                </button>
+                <li>
+                    <a
+                        onClick={() => {
+                            sessionStorage.removeItem("token");
+                            navigate("/login");
+                        }}
+                    >
+                        <i className="fas fa-sign-out-alt"></i>
+                        <span>Çıkış Yap</span>
+                    </a>
+                </li>
             </ul>
         </div>
     );
