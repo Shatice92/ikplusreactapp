@@ -19,6 +19,8 @@ import EmployeeAssets from "./page/EmployeeAssets";
 import AssetsTable from "./components/organisms/EmployeeAssetsTable";
 import CompanyManagerAssetManagement from "./page/CompanyManagerAssetManagement";
 import Notifications from "./page/Notifications";
+import PersonalManagementPage from "./page/PersonalManagementPage";
+import ExpensesPage from "./page/ExpensesPage";
 
 
 // Lazy loaded pages
@@ -76,6 +78,10 @@ const RouterPage = () => {
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
           <Route path="/shiftmanagement" element={<ShiftManagement />} />
           <Route path="/employee-leaves" element={<Permissions />} />
+          <Route path="/personal" element={<PersonalManagementPage />} />
+          <Route path="/employee-expenses" element={<ExpensesPage />} />
+
+
 
 
 
