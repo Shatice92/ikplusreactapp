@@ -17,7 +17,12 @@ import ShiftManagement from "./page/ShiftManagement";
 import EmployeeAssets from "./page/EmployeeAssets";
 import AssetsTable from "./components/organisms/EmployeeAssetsTable";
 import CompanyManagerAssetManagement from "./page/CompanyManagerAssetManagement";
+import Notifications from "./page/Notifications";
+import PersonalManagementPage from "./page/PersonalManagementPage";
+import ExpensesPage from "./page/ExpensesPage";
+
 import AdminCompanyManagement from "./page/AdminCompanyManagement";
+
 
 
 import Notifications from "./page/Notifications";
@@ -74,9 +79,11 @@ const RouterPage = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/companymanager-leaves" element={<CompanyManagerPermissions />} />
+          <Route path="/shiftmanagement" element={<ShiftManagement />} />
+          <Route path="/employee-leaves" element={<Permissions />} />
+          <Route path="/personal" element={<PersonalManagementPage />} />
+          <Route path="/employee-expenses" element={<ExpensesPage />} />
           <Route path="/comments" element={<Comments />} /> 
-
-        
   <Route path="/company-management" element={<AdminCompanyManagement />} />
           <Route path="/companymanager-shifts" element={<ShiftManagement />} />
           <Route path="/employee-leaves" element={<Permissions />} />
